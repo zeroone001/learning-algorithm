@@ -1,0 +1,66 @@
+1. 用 JavaScript 写一个函数，输入 int 型，返回整数逆序后的字符串。如：输入整型 1234，返回字符串“4321”。要求必须使用递归函数调用，不能用全局变量，输入函数必须只有一个参数传入，必须返回字符串。(哔哩哔哩算法题)
+
+```js
+function reverse (n) {
+    if (typeof n === 'string') {
+        console.log('请输入number类型');
+        return;
+    }
+    let s = n % 10; // 4
+    let s_string = s + '';
+    if ((n / 10) >= 1) {
+        s_string = s_string + reverse((n-s) / 10);
+    }
+    return s_string;
+}
+```
+2. 已知如下数组：
+
+`var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];`
+
+编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组 (携程算法题)
+
+```js
+// 这个题考察， 扁平化 + 去重 + 排序，考察的很全面
+// 思路型
+
+function flatten (arr) {
+    let newArr = [];
+    for(let i = 0; i < arr.length; i++) {
+        let a = arr[i];
+        if (Array.isArray(a)) {
+            // 假如是数组
+            newArr = flatten(newArr.concat(a));
+        } else {
+            if (newArr.indexOf(a) > -1) continue;
+            newArr.push(a);
+        }
+    }
+    return newArr.sort((b, c) => b - c);
+}
+
+// API 型
+function flatten2(arr) {
+  return Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b);
+}
+
+
+// 思路
+
+function flatten (arr) {
+    let newArr = [];
+    for(let i = 0; i < arr.length; i++) {
+        let a = arr[i];
+        if (Array.isArray(a)) {
+            // 假如是数组
+            newArr = flatten(newArr.concat(a));
+        } else {
+            if (newArr.indexOf(a) > -1) continue;
+            newArr.push(a);
+        }
+    }
+    return newArr.sort((b, c) => b - c);
+}
+
+```
+

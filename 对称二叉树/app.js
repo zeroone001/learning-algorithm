@@ -43,7 +43,7 @@ const the_node = {
             right: null
         },
         right: {
-            value: 5,
+            value: 3,
             left: null,
             right: null
         }
@@ -51,3 +51,71 @@ const the_node = {
 }
 const SolutionThe = new Solution(the_node);
 
+// 方法二 队列解决问题
+const the_node = {
+    value: 1,
+    left: {
+        value: 2,
+        left: {
+            value: 3,
+            left: null,
+            right: null
+        },
+        right: {
+            value: 4,
+            left: null,
+            right: null
+        }
+    },
+    right: {
+        value: 2,
+        left: {
+            value: 4,
+            left: null,
+            right: null
+        },
+        right: {
+            value: 3,
+            left: null,
+            right: null
+        }
+    }
+}
+class Solution2 {
+    constructor (node) {
+        this.isSymmetric(node);
+    }
+    isSymmetric (node) {
+        const result = this.check(node.left, node.right);
+        console.log('result------>', result);
+    }
+    check (left, right) {
+        const arr = [];
+        arr.push(left);
+        arr.push(right);
+
+        while (arr.length) {
+            let p = arr.shift();
+            let q = arr.shift();
+
+            if(p === null && q === null){
+                continue;
+            }
+            if(p === null || q === null){
+                return false;
+            }
+            if(p.value !== q.value){
+                return false;
+            }
+            arr.push(p.left);
+            arr.push(q.right);
+
+            arr.push(p.right);
+            arr.push(q.left);
+
+        }
+        return true;
+    }
+}
+
+const s2 = new Solution2(the_node);

@@ -4,6 +4,13 @@
 
 https://juejin.cn/post/6900698814093459463
 
+
+## 学习资料
+
+[JavaScript 算法与数据结构](https://github.com/trekhleb/javascript-algorithms/blob/master/README.zh-CN.md)
+
+[数据结构与算法之美（极客时间）](https://time.geekbang.org/column/article/41802)
+
 ## 常用数据结构
 
 * 数组，字符串

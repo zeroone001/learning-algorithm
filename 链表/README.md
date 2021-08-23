@@ -54,6 +54,8 @@ var reverseList = function(head) {
 
 [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 
+利用了归并排序的算法
+
 ```js
 /**
  * Definition for singly-linked list.

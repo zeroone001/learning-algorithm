@@ -77,10 +77,6 @@ var insertionSortList = function(head) {
         }
         cur = lastSort.next;
     }
-
-
-
-
     return dummyHead.next;
 };
 ```
@@ -125,16 +121,136 @@ function selectionSort (arr) {
 }
 ```
 
+### 下面两种排序适
+
+都是O(nlogn)，适合大规模的排序，比上面三个更加常用
+
+分治是一种解决问题的处理思想，递归是一种编程技巧
+
 ### 归并排序
 
+缺点： 不是原地排序
 
+原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
+
+```js
+function mergeSort(arr) {
+  let array = mergeSortRec(arr)
+  return array
+}
+
+// 若分裂后的两个数组长度不为 1，则继续分裂
+// 直到分裂后的数组长度都为 1，
+// 然后合并小数组
+function mergeSortRec(arr) {
+  let length = arr.length
+  if(length === 1) {
+    return arr
+  }
+  let mid = Math.floor(length / 2),
+      left = arr.slice(0, mid),
+      right = arr.slice(mid, length)
+  return merge(mergeSortRec(left), mergeSortRec(right))
+}
+
+// 顺序合并两个小数组left、right 到 result
+function merge(left, right) {
+  let result = [],
+      ileft = 0,
+      iright = 0
+  while(ileft < left.length && iright < right.length) {
+    if(left[ileft] < right[iright]){
+      result.push(left[ileft ++])
+    } else {
+      result.push(right[iright ++])
+    }
+  }
+  while(ileft < left.length) {
+    result.push(left[ileft ++])
+  }
+  while(iright < right.length) {
+    result.push(right[iright ++])
+  }
+  return result
+}
+
+// 测试
+let arr = [1, 3, 2, 5, 4]
+console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
+```
 
 
 ### 快速排序
 
+快排的思想是这样的：如果要排序数组中下标从 p 到 r 之间的一组数据，我们选择 p 到 r 之间的任意一个数据作为 pivot（分区点）。
 
+快排的思想是这样的：如果要排序数组中下标从p到r之间的一组数据，我们选择p到r之间的任意一个数据作为pivot（分区点）。然后遍历p到r之间的数据，将小于pivot的放到左边，将大于pivot的放到右边，将povit放到中间。经过这一步之后，数组p到r之间的数据就分成了3部分，前面p到q-1之间都是小于povit的，中间是povit，后面的q+1到r之间是大于povit的。根据分治、递归的处理思想，我们可以用递归排序下标从p到q-1之间的数据和下标从q+1到r之间的数据，直到区间缩小为1，就说明所有的数据都有序了。
 
+1. 首先从序列中选取一个数作为基准数
+2. 将比这个数大的数全部放到它的右边，把小于或者等于它的数全部放到它的左边 （一次快排 partition）
+3. 然后分别对基准的左右两边重复以上的操作，直到数组完全排序
+```js
+let quickSort = (arr) => {
+  quick(arr, 0 , arr.length - 1)
+}
 
+let quick = (arr, left, right) => {
+  let index
+  if(left < right) {
+    // 划分数组
+    index = partition(arr, left, right)
+    if(left < index - 1) {
+      quick(arr, left, index - 1)
+    }
+    if(index < right) {
+      quick(arr, index, right)
+    }
+  }
+}
+
+// 一次快排
+let partition = (arr, left, right) => {
+  // 取中间项为基准
+  var datum = arr[Math.floor(Math.random() * (right - left + 1)) + left],
+      i = left,
+      j = right
+  // 开始调整
+  while(i <= j) {
+    
+    // 左指针右移
+    while(arr[i] < datum) {
+      i++
+    }
+    
+    // 右指针左移
+    while(arr[j] > datum) {
+      j--
+    }
+    
+    // 交换
+    if(i <= j) {
+      swap(arr, i, j)
+      i += 1
+      j -= 1
+    }
+  }
+  return i
+}
+
+// 交换
+let swap = (arr, i , j) => {
+    let temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+}
+
+// 测试
+let arr = [1, 3, 2, 5, 4]
+quickSort(arr)
+console.log(arr) // [1, 2, 3, 4, 5]
+// 第 2 个最大值
+console.log(arr[arr.length - 2])  // 4
+```
 
 ### 参考资料
 

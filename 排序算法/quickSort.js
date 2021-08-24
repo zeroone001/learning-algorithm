@@ -6,28 +6,30 @@
     然后进行交换
 
 */
-let swap = (arr, i , j) => {
-    let temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
-}
+let swap = (arr, i, j) => {
+    let tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
+};
 let partition = (arr, left, right) => {
-    // 取中间项作为基准
-    var pivot = arr[Math.floor(Math.random() * (right - left + 1)) + left],
-      i = left,
-      j = right;
-    
+    // 定义两个指针
+    let i = 0;
+    let j = 0;
+    // 取一个随机的pivot
+    let pivot = Math.floor(Math.random(right - left + 1) + left);
     while (i <= j) {
-        while (arr[i] < pivot) {
+        // 找到比pivot大的一个数
+        while(arr[i] < pivot) {
             i++;
         }
-        while (arr[j] > pivot) {
+        while(arr[j] > pivot) {
             j--;
         }
+        // 进行交换
         if (i <= j) {
             swap(arr, i, j);
-            i += 1
-            j -= 1
+            i++;
+            j--;
         }
     }
     return i;
@@ -36,16 +38,18 @@ let partition = (arr, left, right) => {
 let quick = (arr, left, right) => {
     let index;
     if (left < right) {
-        index = partition(arr, left, right);
+
+        index = partition(arr, left, right); // 返回中位数，一次快排
 
         if (left < index - 1) {
-            quick(arr, 0, index - 1);
-        } 
-        if (index < right) {
+            quick(arr, left, index - 1);
+        }
+        if (right > index) {
             quick(arr, index, right);
         }
     }
 };
+
 let quickSort = (arr) => {
     quick(arr, 0, arr.length - 1);
 }

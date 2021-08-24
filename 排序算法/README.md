@@ -252,6 +252,52 @@ console.log(arr) // [1, 2, 3, 4, 5]
 console.log(arr[arr.length - 2])  // 4
 ```
 
+
+
+
+### 希尔排序
+
+1959年Shell发明，第一个突破 O(n^2^) 的排序算法，是简单插入排序的改进版。它与插入排序的不同之处在于，它会优先比较距离较远的元素
+
+时间复杂度：O(nlogn)
+空间复杂度：O(1)
+不稳定排序
+
+本质上讲，希尔排序是插入排序的升级版本
+
+又叫，缩小增量排序
+
+原理，
+1. 就是把序列进行分组，组内进行插入排序；这个时候从宏观上来看是有序的，
+2. 最后一次进行插入排序，无须多次位移或者交换
+
+[希尔排序参考资料https://juejin.cn/post/6844904007182319624](https://juejin.cn/post/6844904007182319624)
+
+```js
+function shellSort(arr) {
+    let n = arr.length;
+    for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
+        // 这里太巧妙了，这里并不是一个组排序完成，再下个组，每次的增加都是一个组
+        for (let i = gap; i < n; i++) {
+            let j = i;
+            let current = arr[i];
+            
+            while (j - gap >= 0 && current < arr[j - gap]) {
+                arr[j] = arr[j - gap];
+                j = j - gap;
+            }
+            arr[j] = current;
+        }
+    }
+    return arr;
+}
+```
+
+### 桶排序
+
+
+
+
 ### 参考资料
 
 [https://mp.weixin.qq.com/s/N_6vAyZYdD41yoe7-KYfnw](https://mp.weixin.qq.com/s/N_6vAyZYdD41yoe7-KYfnw)

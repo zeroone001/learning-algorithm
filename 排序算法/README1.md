@@ -1,4 +1,4 @@
-## O(nlogn)排序
+## 三种排序O(nlogn)
 
 都是O(nlogn)，适合大规模的排序，比上面三个更加常用
 
@@ -59,9 +59,21 @@ console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
 
 ### 快速排序
 
-快排的思想是这样的：如果要排序数组中下标从 p 到 r 之间的一组数据，我们选择 p 到 r 之间的任意一个数据作为 pivot（分区点）。
+快排的思想是这样的：
 
-快排的思想是这样的：如果要排序数组中下标从p到r之间的一组数据，我们选择p到r之间的任意一个数据作为pivot（分区点）。然后遍历p到r之间的数据，将小于pivot的放到左边，将大于pivot的放到右边，将povit放到中间。经过这一步之后，数组p到r之间的数据就分成了3部分，前面p到q-1之间都是小于povit的，中间是povit，后面的q+1到r之间是大于povit的。根据分治、递归的处理思想，我们可以用递归排序下标从p到q-1之间的数据和下标从q+1到r之间的数据，直到区间缩小为1，就说明所有的数据都有序了。
+如果要排序数组中下标从p到r之间的一组数据，我们选择p到r之间的任意一个数据作为pivot（分区点）。
+
+然后遍历p到r之间的数据，将小于pivot的放到左边，将大于pivot的放到右边，将povit放到中间。
+
+经过这一步之后，数组p到r之间的数据就分成了3部分，前面p到q-1之间都是小于povit的，中间是povit，后面的q+1到r之间是大于povit的。根据分治、递归的处理思想，
+
+我们可以用递归排序下标从p到q-1之间的数据和下标从q+1到r之间的数据，直到区间缩小为1，就说明所有的数据都有序了。
+
+
+
+时间复杂度：O(nlogn)
+
+
 
 1. 首先从序列中选取一个数作为基准数
 2. 将比这个数大的数全部放到它的右边，把小于或者等于它的数全部放到它的左边 （一次快排 partition）
@@ -140,7 +152,7 @@ console.log(arr[arr.length - 2])  // 4
 空间复杂度：O(1)
 不稳定排序
 
-本质上讲，希尔排序是插入排序的升级版本
+本质上讲，希尔排序是插入排序的升级版本（分组+ 插入排序）
 
 又叫，缩小增量排序
 
@@ -172,3 +184,87 @@ function shellSort(arr) {
     return arr;
 }
 ```
+
+
+
+## 排序链表
+
+
+
+在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
+
+输入: 4->2->1->3
+输出: 1->2->3->4
+
+
+
+```js
+
+function sortList (head) {
+    return mergeSortList(head);
+}
+
+function mergeSortList (head) {
+    if (!head || !head.next) return head;
+
+    let middle = getMiddleNode(head);
+    let tmp = middle.next;
+    middle.next = null;
+    let left = head;
+    let right = tmp;
+
+    // 执行递归
+    left = mergeSortList(left);
+    right = mergeSortList(right);
+
+    return merge(left, right);
+}
+
+// 获取中间节点
+// 利用快慢指针的方式去寻找
+function getMiddleNode (head) {
+    let slow = head;
+    let fast = head;
+    // 如果数量是偶数的话，返回第一个节点
+    while (fast != null && fast.next != null && fast.next.next != null) {
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+
+    return slow;
+}
+// 一次归并操作
+function merge (left, right) {
+    let result = new ListNode(0);
+    // 需要加一个指针
+    let current = result;
+    while (left && right) {
+        if (left.value > right.value) {
+            current.next = right;
+            right = right.next;
+        } else {
+            current.next = left;
+            left = left.next;
+        }
+        // 这里指针移动到下一位
+        current = current.next;
+    }
+
+    result.next = left || right;
+
+    // while (left != null) {
+    //     result.next = left;
+    //     left = left.next;
+    // }
+    // while (right != null) {
+    //     result.next = right;
+    //     right = right.next
+    // }
+
+    return result.next;
+
+}
+```
+
+
+

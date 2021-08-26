@@ -283,5 +283,71 @@ var swapPairs = function(head) {
 
 ```
 
+10. 链表排序
 
+[leetcode地址](https://leetcode-cn.com/problems/7WHec2/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+ // 归并排序解决问题
+ var sortList = function(head) {
+    return mergeSortList(head);
+};
+
+ let getMiddleNode = function (head) {
+    let slow = head;
+    let fast = head;
+    while (fast != null && fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+// 归并排序
+let merge = function (left, right) {
+    let result = new ListNode(-1);
+    let current = result;
+
+    while (left != null && right != null) {
+        if (right.val > left.val) {
+            current.next = left;
+            left = left.next;
+        } else {
+            current.next = right;
+            right = right.next;
+        }
+        current = current.next;
+    }
+    // 差点漏下这个
+    current.next = left || right;
+
+    return result.next;
+}
+let mergeSortList = function (head) {
+    if (!head || !head.next) return head;
+
+    let middle = getMiddleNode(head);
+    let tmp = middle.next;
+    middle.next = null;
+
+    let left = head;
+    let right = tmp;
+
+    left = mergeSortList(left);
+    right = mergeSortList(right);
+
+    return merge(left, right);
+}
+
+```
 

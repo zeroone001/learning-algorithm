@@ -34,10 +34,10 @@ function partition (arr, left, right) {
     let pivot = Math.floor(Math.random(right - left + 1) + left);
 
     while (i < j) {
-        while (arr[i] < pivot) {
+        while (arr[i] < arr[pivot]) {
             i++;
         }
-        while (arr[j] > pivot) {
+        while (arr[j] > arr[pivot]) {
             j--;
         }
         // 交换

@@ -1,8 +1,5 @@
 /* 
     归并排序链表
-
-
-
 */
 
 function sortList (head) {

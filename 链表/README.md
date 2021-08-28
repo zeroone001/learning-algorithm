@@ -1,9 +1,12 @@
 ## 链表
 
-1. 经典，反转链表 demo1
 
 
-[https://leetcode-cn.com/problems/reverse-linked-list/submissions/](https://leetcode-cn.com/problems/reverse-linked-list/submissions/)
+### 经典，反转链表 
+
+给你单链表的头节点 `head` ，请你反转链表，并返回反转后的链表。
+
+[https://leetcode-cn.com/problems/reverse-linked-list/](https://leetcode-cn.com/problems/reverse-linked-list/)
 
 
 双指针解决这个问题
@@ -21,20 +24,23 @@
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    let current = head;
     let prev = null;
-    
-    while (current) {
-        let tmp = current.next;
-        current.next = prev;
-        prev = current;
-        current = tmp;
-    }
-    return prev;
+  let current = head;
+  while (current) {
+    let tmp = current.next;
+    current.next = prev;
+    prev = current;
+    current = tmp;
+  }
+  return prev;
 };
 ```
 
-2. 两两交换链表中的节点 demo2
+
+
+### 两两交换链表中的节点 demo2
+
+
 
 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
@@ -170,7 +176,13 @@ var middleNode = function(head) {
 };
 ```
 
-8. 回文链表
+
+
+#### 回文链表
+
+
+
+给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
 
 方案： 1，通过快慢指针找到中间节点；2， 把后面节点reverse反转；3， 两个链表进行比较
 
@@ -204,6 +216,7 @@ var isPalindrome = function(head) {
     let left = head;
 
     // right 反转
+  	// 反转的方法，就是定义一个prev指针，current指向prev
     let current = right;
     let prev = null;
     while (current) {
@@ -228,7 +241,11 @@ var isPalindrome = function(head) {
 };
 ```
 
-9. 两两交换链表中的节点
+
+
+#### 两两交换链表中的节点
+
+
 
 [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
@@ -283,7 +300,11 @@ var swapPairs = function(head) {
 
 ```
 
-10. 链表排序
+
+
+#### 链表排序
+
+
 
 [leetcode地址](https://leetcode-cn.com/problems/7WHec2/)
 

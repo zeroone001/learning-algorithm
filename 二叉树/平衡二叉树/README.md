@@ -2,6 +2,10 @@
 
 [110. 平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/)
 
+O(logn)。
+
+二叉树中任意一个节点的左右子树的高度相差不能大于 1
+
 平衡二叉树的定义：
 
 1. 左右两个子树的高度差，绝对值不能超过1；

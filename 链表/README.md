@@ -93,10 +93,38 @@ var reverseBetween = function(head, left, right) {
 
 
 
+## 160. 相交链表
 
+
+[160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(headA, headB) {
+    let a = headA;
+    let b = headB;
+    if (!a || !b) return null;
+    while (a !== b) {
+        a = a == null ? headB : a.next;
+        b = b == null ? headA : b.next;
+    }
+    return a;
+};
+```
 
 ## 两两交换链表中的节点
-
 
 
 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
@@ -158,11 +186,55 @@ node2.next = node1
 ```
 
 
-3. 判断链表是否有环 demo3 环形链表
+## 判断链表是否有环  环形链表
 
 使用快慢指针来处理问题
 
-[https://leetcode-cn.com/problems/linked-list-cycle/](https://leetcode-cn.com/problems/linked-list-cycle/)
+[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+```js
+/*
+    解决方案： 
+    1. 硬做，定个0.5秒的时间
+    2. Set 判断是否重复，时间复杂度， O(n*1)
+    3. 快慢指针。 如果有环的话，快慢会相遇
+*/
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+ var hasCycle = function(head) {
+    let fast = head;
+    let slow = head;
+    // 如果不是环形的话，那么fast是先走到底的
+    // slow 走一步， fast走两步
+    while (slow && fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow === fast) return true; 
+    }
+    return false;
+};
+
+```
+
+## 142. 环形链表 II
+
+[142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+```js
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function(head) {
+    
+};
+```
+
+
+
 
 4. 链表中环的检测
 

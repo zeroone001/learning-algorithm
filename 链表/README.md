@@ -223,17 +223,101 @@ node2.next = node1
 
 [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 
+1. 这个题目有个简单解法，就是加一个flag，但是，有个犯规的意思了，
+随着遍历每一个节点都加一个flag，如果，下一个节点有了这个flag，说明找到了这个节点了
+
+2. 正常考察的还是双指针的使用方法
+
+第一步，双指针开始迭代，等到，两个指针相遇
+第二步，再建一个从头开始的指针p, p和slow 开始循环，等到两个相遇，就是循环的入口
+
+这里面其实涉及到了数学的逻辑，算出来的
+
 ```js
 /**
  * @param {ListNode} head
  * @return {ListNode}
  */
 var detectCycle = function(head) {
-    
+    let fast = head；
+    let slow = head;
+
+    while (fast !== null) {
+        slow = slow.next;
+        if (fast.next !== null) {
+            fast = fast.next.next;
+        } else {
+            return null;
+        }
+        // 先找到快慢指针相遇的地方
+        if (slow === fast) {
+            let p = head;
+            // 再次开始迭代
+            while (p !== slow) {
+                p = p.next;
+                slow = slow.next;
+            }
+            return p;
+        }
+    }
+    return null;
 };
 ```
 
+## 86. 分隔链表
 
+[86. 分隔链表](https://leetcode-cn.com/problems/partition-list/)
+
+原理：
+
+创建两个链表，小于x的放在链表A，大于等于x的放在链表B，
+最后，把两个链表链接在一起就好了
+
+
+```js
+
+/**
+ * @param {ListNode} head
+ * @param {number} x
+ * @return {ListNode}
+ */
+var partition = function(head, x) {
+    let left_head = new ListNode(0);
+    let right_head = new ListNode(0);
+
+    let par_left = left_head;
+    let par_right = right_head;
+    while (head) {
+        if (head.val >= x) {
+            par_right.next = head;
+            par_right = par_right.next;
+        } else {
+            par_left.next = head;
+            par_left = par_left.next;
+        }
+        head = head.next;
+    }
+    par_left.next = right_head.next;
+    par_right.next = null;
+    return left_head.next;
+};
+```
+
+## 138. 复制带随机指针的链表
+
+[138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
+
+
+
+```js
+/**
+ * @param {Node} head
+ * @return {Node}
+ */
+var copyRandomList = function(head) {
+    
+};
+```
 
 
 4. 链表中环的检测

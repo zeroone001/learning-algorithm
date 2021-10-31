@@ -307,7 +307,11 @@ var partition = function(head, x) {
 
 [138. 复制带随机指针的链表](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
 
+原理： 使用Map
 
+两次循环遍历
+第一次创建值
+第二次遍历，加上next和 random
 
 ```js
 /**
@@ -315,8 +319,21 @@ var partition = function(head, x) {
  * @return {Node}
  */
 var copyRandomList = function(head) {
-    
-};
+    if (!head) return null;
+    let node = head;
+    const map = new Map();
+    while (node) {
+        map.set(node, new Node(node.val));
+        node = node.next;
+    }
+    let current = head;
+    while (current) {
+        map.get(current).next = current.next ? map.get(current.next) : null;
+        map.get(current).random = current.random ? map.get(current.random) : null;
+        current = current.next;
+    }
+    return map.get(head);
+}; 
 ```
 
 

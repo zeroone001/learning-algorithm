@@ -91,7 +91,6 @@ function generatorBST() {
         if (node !== null) {
             this.lastOrderTraverselNode(node.left, handle);
 
-
             this.lastOrderTraverselNode(node.right, handle);
 
             handle(node.key); // 关键

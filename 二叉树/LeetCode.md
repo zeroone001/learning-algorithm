@@ -1,0 +1,269 @@
+# leetcode
+
+## 剑指 Offer 34. 二叉树中和为某一值的路径
+
+[剑指 Offer 34. 二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} target
+ * @return {number[][]}
+ */
+var pathSum = function(root, target) {
+    let path = [];
+    let result = [];
+    
+    function DFS (node, sum) {
+        if (!node) {
+            return;
+        }
+
+        // 主逻辑
+        if (!node.left && !node.right && (target === (sum+node.val))) {
+            result.push([...path, node.val]);
+        }
+        path.push(node.val);
+        DFS(node.left, sum + node.val);
+        DFS(node.right, sum + node.val);
+        path.pop();
+    }
+    DFS(root, 0);
+    return result;
+};
+```
+
+## 1372. 二叉树中的最长交错路径
+
+[1372. 二叉树中的最长交错路径](https://leetcode-cn.com/problems/longest-zigzag-path-in-a-binary-tree/)
+
+
+
+![image-20211107172718993](/Users/smzdm/Library/Application Support/typora-user-images/image-20211107172718993.png)
+
+原理，每一个节点都可以用 [l, r] 来表示
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var longestZigZag = function (root) {
+    let result = 0;
+
+    function DFS (node, l, r) {
+        result = Math.max(result, l, r);
+        if (node.left) {
+            DFS(node.left, r + 1, 0);
+        }
+        if (node.right) {
+            DFS(node.right, 0, l+1);
+        }
+    }
+    DFS(root, 0, 0);
+
+    return result;
+};
+
+```
+
+## 剑指 Offer 37. 序列化二叉树
+
+[剑指 Offer 37. 序列化二叉树](https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/)
+
+用的BFS的方法解决的这个问题，主要是使用的队列
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize = function(root) {
+    if (!root) return JSON.stringify([]);
+    
+    let res = [];
+    let queue = [root];
+    while (queue.length) {
+        let node = queue.shift();
+
+        if (node !== null) {
+            res.push(node.val);
+            queue.push(node.left);
+            queue.push(node.right);
+        } else {
+            res.push(null)
+        }
+
+    }
+
+    return JSON.stringify(res);
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize = function(data) {
+    if (data === '[]') return null;
+    let arr = JSON.parse(data);
+
+    let root = new TreeNode(arr[0]);
+    let queue = [root];
+
+    let i = 1;
+
+    while (queue.length){
+        let node = queue.shift();
+
+        if (arr[i] !== null) {
+            node.left = new TreeNode(arr[i]);
+            queue.push(node.left);
+        }
+        i++;
+
+        if (arr[i] !== null) {
+            node.right = new TreeNode(arr[i]);
+            queue.push(node.right);
+        }
+        i++;
+    }
+
+    return root;
+
+};
+
+/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ */
+```
+
+
+## 654. 最大二叉树 
+
+[654. 最大二叉树 ](https://leetcode-cn.com/problems/maximum-binary-tree/)
+
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+// 使用前序遍历来 序列化这个最大二叉树
+var constructMaximumBinaryTree = function(nums) {
+    function DFS (arr, l, r) {
+        
+        if (l > r) {
+            return null;
+        }
+
+        // 找到数组的中的最大值
+        let newArr = arr.slice(l, r + 1);
+        let maxVal = -1;
+        let maxIndex = -1;
+        maxVal = Math.max(...newArr);
+        maxIndex = arr.indexOf(maxVal);
+
+
+        let root = new TreeNode(maxVal);
+        root.left = DFS(arr, l, maxIndex - 1);
+        root.right = DFS(arr, maxIndex + 1, r);
+        //
+        return root;
+    }
+
+    const res = DFS(nums, 0, nums.length - 1);
+    
+    return res;
+};
+
+```
+
+
+## 894. 所有可能的满二叉树
+
+[894. 所有可能的满二叉树](https://leetcode-cn.com/problems/all-possible-full-binary-trees/)
+
+
+
+## 919. 完全二叉树插入器
+
+
+[919. 完全二叉树插入器](https://leetcode-cn.com/problems/complete-binary-tree-inserter/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ */
+var CBTInserter = function(root) {
+
+};
+
+/** 
+ * @param {number} val
+ * @return {number}
+ */
+CBTInserter.prototype.insert = function(val) {
+
+};
+
+/**
+ * @return {TreeNode}
+ */
+CBTInserter.prototype.get_root = function() {
+
+};
+
+/**
+ * Your CBTInserter object will be instantiated and called as such:
+ * var obj = new CBTInserter(root)
+ * var param_1 = obj.insert(val)
+ * var param_2 = obj.get_root()
+ */
+
+```

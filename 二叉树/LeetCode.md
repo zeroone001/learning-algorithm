@@ -221,7 +221,56 @@ var constructMaximumBinaryTree = function(nums) {
 
 [894. 所有可能的满二叉树](https://leetcode-cn.com/problems/all-possible-full-binary-trees/)
 
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number} n
+ * @return {TreeNode[]}
+ */
+var allPossibleFBT = function(n) {
+    const map = new Map();
+    if (!map.has(n)) {
+        const ans = [];
+        if (n == 1) {
+            ans.push(new TreeNode(0));
+        } else if (n % 2 == 1) {
+            for (let i = 1; i < n; i++) {
+                let j = n - 1 - i;
+                // 左子树分配i节点
+                const leftNodes = allPossibleFBT(i);
+                const rightNodes = allPossibleFBT(j);
 
+                leftNodes.forEach((left) => {
+                    rightNodes.forEach((right) => {
+                        const node = new TreeNode(0);
+                        node.left = left;
+                        node.right = right;
+                        ans.push(node);
+                    });
+                });
+            }
+        }
+        map.set(n, ans);
+    }
+    return map.get(n);
+};
+
+```
+
+## 1008. 前序遍历构造二叉搜索树
+
+[1008. 前序遍历构造二叉搜索树](https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/)
+
+```js
+
+```
 
 ## 919. 完全二叉树插入器
 

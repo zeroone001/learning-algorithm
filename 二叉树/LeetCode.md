@@ -299,6 +299,72 @@ var bstFromPreorder = function(preorder) {
 
 [863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/)
 
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} target
+ * @param {number} k
+ * @return {number[]}
+ */
+/* 
+    从target出发，使用DFS，找到深度为k的所有的节点
+    遍历的方向是有三个的，分别是左右子节点，还有自己的父节点
+
+    其实这个题目最重要的是，还要向自己的父节点去遍历
+*/
+var distanceK = function(root, target, k) {
+    const map = new Map();
+    const res = [];
+
+    /* map 记录所有节点的父节点 */
+    function findParents(node) {
+        if (node.left) {
+            map.set(node.left.val, node);
+            findParents(node.left);
+        }
+        if (node.right) {
+            map.set(node.right.val, node);
+            findParents(node.right);
+        }
+    }
+    findParents(root);
+
+    function DFS (node, from, depth, k) {
+        if (!node) return;
+        if (depth === k) {
+            res.push(node.val);
+            return;
+        }
+        // 向左下边递归
+        if (node.left !== from) {
+            DFS(node.left, node, depth + 1, k);
+        }
+        /* 向右下边递归 */
+        if (node.right !== from) {
+            DFS(node.right, node, depth + 1, k);
+        }
+        /* 向父元素递归 */
+        if (map.get(node.val) !== from) {
+            DFS(map.get(node.val), node, depth + 1, k);
+        }
+    }
+    DFS(target, null, 0, k);
+    return res;
+};
+```
+
+
+
+
+
 ## 919. 完全二叉树插入器
 
 

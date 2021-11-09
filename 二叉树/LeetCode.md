@@ -269,8 +269,35 @@ var allPossibleFBT = function(n) {
 [1008. 前序遍历构造二叉搜索树](https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/)
 
 ```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @return {TreeNode}
+ */
+var bstFromPreorder = function(preorder) {
+    if (!preorder.length) {
+        return null;
+    }
+    const val = preorder.shift();
+    let root = new TreeNode(val);
 
+    // digui
+    root.left = bstFromPreorder(preorder.filter(item => item < val));
+    root.right = bstFromPreorder(preorder.filter(item => item > val));
+    return root;
+};
 ```
+
+## 863. 二叉树中所有距离为 K 的结点
+
+[863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/)
 
 ## 919. 完全二叉树插入器
 

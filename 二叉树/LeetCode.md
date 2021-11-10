@@ -361,8 +361,93 @@ var distanceK = function(root, target, k) {
 };
 ```
 
+## 98. 验证二叉搜索树
 
 
+[98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isValidBST = function(root) {
+    let pre = -Infinity;
+
+    function inorder(node) {
+        if (node == null) return true;
+
+        let left = inorder(node.left);
+
+        // zhu
+        if (node.val <= pre) return false;
+        pre = node.val;
+
+        let right = inorder(node.right);
+
+        return left && right;
+    }
+    return inorder(root);
+};
+
+```
+
+
+
+## 99. 恢复二叉搜索树
+
+[99. 恢复二叉搜索树](https://leetcode-cn.com/problems/recover-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+var recoverTree = function(root) {
+    let prev = new TreeNode(-Infinity);
+    let err1 = null, err2 = null;
+    function inorder(node) {
+        if (node == null) return;
+        inorder(node.left);
+        // 主逻辑
+        /* 第一对错误，错的点是prev */
+        if (prev.val >= node.val && err1 == null) {
+            err1 = prev;
+        }
+        /* 第二对错误，错的点是 node，也就是第二个 */
+        if (prev.val >= node.val && err1 !== null) {
+            err2 = node;
+        }
+        prev = node;
+        inorder(node.right);
+
+    }
+    inorder(root);
+    // swap 
+    let temp = err1.val;
+    err1.val = err2.val;
+    err2.val = temp;
+
+    return root;
+};
+```
 
 
 ## 919. 完全二叉树插入器

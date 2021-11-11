@@ -449,6 +449,88 @@ var recoverTree = function(root) {
 };
 ```
 
+// tag 掘金
+
+## 94. 二叉树的中序遍历
+
+[94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function(root) {
+    const res = []
+    function inorder(node) {
+        if (node == null) return;
+
+        inorder(node.left);
+
+        if (node.val) {
+            res.push(node.val);
+        }
+
+        inorder(node.right);
+    }
+    inorder(root);
+    return res;
+};
+```
+
+## 173. 二叉搜索树迭代器
+
+[173. 二叉搜索树迭代器](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ */
+var BSTIterator = function(root) {
+
+};
+
+/**
+ * @return {number}
+ */
+BSTIterator.prototype.next = function() {
+
+};
+
+/**
+ * @return {boolean}
+ */
+BSTIterator.prototype.hasNext = function() {
+
+};
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * var obj = new BSTIterator(root)
+ * var param_1 = obj.next()
+ * var param_2 = obj.hasNext()
+ */
+```
+
+
+
 
 ## 919. 完全二叉树插入器
 

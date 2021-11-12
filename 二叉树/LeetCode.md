@@ -540,6 +540,72 @@ BSTIterator.prototype.inorder = function(node) {
  * var param_2 = obj.hasNext()
  */
 ```
+
+# 完全二叉树 
+
+## 222. 完全二叉树的节点个数
+
+[222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
+
+使用的BFS 广度优先遍历，来计算数量
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var countNodes = function(root) {
+    if (root == null) return 0;
+    let arr = [root];
+    let res = 1;
+    while (arr.length) {
+        let node = arr.shift();
+        if (node.left) {
+            res++;
+            arr.push(node.left);
+        }
+        if (node.right) {
+            res++;
+            arr.push(node.right);
+        }
+    }
+    return res;
+};
+```
+
+## 662. 二叉树最大宽度
+
+[662. 二叉树最大宽度](https://leetcode-cn.com/problems/maximum-width-of-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var widthOfBinaryTree = function(root) {
+
+};
+```
+
+
+
+
 ## 919. 完全二叉树插入器
 
 

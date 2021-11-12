@@ -599,7 +599,33 @@ var countNodes = function(root) {
  * @return {number}
  */
 var widthOfBinaryTree = function(root) {
+    if (root == null) return 0;
 
+    let res = 0;
+    let leftmost = 0;
+    let cur_deps = 0;
+    let steps = 0;
+
+    let queue = [[root, 0]];
+    while (queue.length) {
+        const len = queue.length;
+
+        for(let i = 0; i < len; i++) {
+            let [node, pos] = queue.shift();
+
+            if (node || node.val == 0) {
+                queue.push([node.left, pos * 2]);
+                queue.push([node.right, pos * 2 + 1]);
+                if (cur_deps !== steps) {
+                    cur_deps = steps;
+                    leftmost = pos;
+                }
+                res = Math.max(res, pos - leftmost + 1);
+            }
+        }
+        steps += 1;
+    }
+    return res;
 };
 ```
 

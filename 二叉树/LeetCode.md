@@ -491,6 +491,9 @@ var inorderTraversal = function(root) {
 
 [173. 二叉搜索树迭代器](https://leetcode-cn.com/problems/binary-search-tree-iterator/)
 
+算法思路： 
+
+1. 在构造器里面的时候，使用中序遍历，都把value放在数组里，然后，调用各个原型上的方法的时候，直接去操作数组就行了
 ```js
 /**
  * Definition for a binary tree node.
@@ -504,23 +507,32 @@ var inorderTraversal = function(root) {
  * @param {TreeNode} root
  */
 var BSTIterator = function(root) {
-
+    this.arr = [];
+    this.index = 0;
+    this.inorder(root);
 };
-
 /**
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-
+    return this.arr[this.index++];
 };
-
 /**
  * @return {boolean}
  */
 BSTIterator.prototype.hasNext = function() {
-
+    return this.index < this.arr.length;
 };
-
+/* 中序遍历 */
+BSTIterator.prototype.inorder = function(node) {
+    if (node == null) return;
+    this.inorder(node.left);
+    //zhu 
+    if (node.val !== null) {
+        this.arr.push(node.val);
+    }
+    this.inorder(node.right);
+};
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * var obj = new BSTIterator(root)
@@ -528,10 +540,6 @@ BSTIterator.prototype.hasNext = function() {
  * var param_2 = obj.hasNext()
  */
 ```
-
-
-
-
 ## 919. 完全二叉树插入器
 
 

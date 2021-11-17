@@ -701,5 +701,55 @@ var maxPathSum = function(root) {
 };
 ```
 
+## 113. 路径总和 II
 
+[113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
 
+路径的概念是：一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。这听起来真的不容易理解，力扣给的 demo 我也没搞懂，这里我自己画了几个图来给大家解释一下这个概念。
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {number[][]}
+ */
+// DFS + 回溯
+var pathSum = function(root, targetSum) {
+    if (root == null) return [];
+    let res = [];
+    let path = [];
+    // DFS 
+    const dfs = (node, sum, path) => {
+        /* 第一步肯定是要终止条件 */
+        if (node == null) return;
+        /* 添加路径 */
+        path.push(node.val);
+        /* 开始加数， 计算路径总和 */
+        sum += node.val;
+        // 先条件判断，找到叶子节点
+        if (node.left == null && node.right == null) {
+            if (targetSum == sum) {
+                res.push([...path]);
+            }
+        }
+        if (node.left) {
+            dfs(node.left, sum, path);
+        }
+        if (node.right) {
+            dfs(node.right, sum, path);
+        }
+        // 回溯
+        path.pop();
+    };
+    dfs(root, 0, path);
+    return res;
+};
+```

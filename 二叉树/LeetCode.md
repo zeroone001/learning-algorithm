@@ -449,7 +449,6 @@ var recoverTree = function(root) {
 };
 ```
 
-// tag 掘金
 
 ## 94. 二叉树的中序遍历
 
@@ -769,4 +768,177 @@ var pathSum = function(root, targetSum) {
     dfs(root, 0, path);
     return res;
 };
+```
+
+## 距离
+
+## 863. 二叉树中所有距离为 K 的结点
+
+[863. 二叉树中所有距离为 K 的结点](https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/description/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} target
+ * @param {number} k
+ * @return {number[]}
+ */
+var distanceK = function(root, target, k) {
+    const map = new Map();
+    const res = [];
+
+    /* map 记录所有节点的父节点， 目的就是为了能向自己的父元素去递归查找 */
+    function findParents(node) {
+        if (node.left) {
+            map.set(node.left.val, node);
+            findParents(node.left);
+        }
+        if (node.right) {
+            map.set(node.right.val, node);
+            findParents(node.right);
+        }
+    }
+    findParents(root);
+
+    function DFS (node, from, depth, k) {
+        if (!node) return;
+        if (depth === k) {
+            res.push(node.val);
+            return;
+        }
+        // 向左下边递归
+        if (node.left !== from) {
+            DFS(node.left, node, depth + 1, k);
+        }
+        /* 向右下边递归 */
+        if (node.right !== from) {
+            DFS(node.right, node, depth + 1, k);
+        }
+        /* 向父元素递归 */
+        if (map.get(node.val) !== from) {
+            DFS(map.get(node.val), node, depth + 1, k);
+        }
+    }
+    DFS(target, null, 0, k);
+    return res;
+};
+```
+
+## 834. 树中距离之和
+
+[834. 树中距离之和](https://leetcode-cn.com/problems/sum-of-distances-in-tree/description/)
+
+这个暂时占个坑
+
+```js
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @return {number[]}
+ */
+let ans, sz, dp, graph;
+const dfs = (u, f) => {
+    sz[u] = 1;
+    dp[u] = 0;
+    for (const v of graph[u]) {
+        if (v === f) {
+            continue;
+        }
+        dfs(v, u);
+        dp[u] += dp[v] + sz[v];
+        sz[u] += sz[v];
+    }
+}
+const dfs2 = (u, f) => {
+    ans[u] = dp[u];
+    for (const v of graph[u]) {
+        if (v === f) {
+            continue;
+        }
+        const pu = dp[u], pv = dp[v];
+        const su = sz[u], sv = sz[v];
+
+        dp[u] -= dp[v] + sz[v];
+        sz[u] -= sz[v];
+        dp[v] += dp[u] + sz[u];
+        sz[v] += sz[u];
+
+        dfs2(v, u);
+
+        dp[u] = pu, dp[v] = pv;
+        sz[u] = su, sz[v] = sv;
+    }
+}
+var sumOfDistancesInTree = function(n, edges) {
+    ans = new Array(n).fill(0);
+    sz = new Array(n).fill(0);
+    dp = new Array(n).fill(0);
+    graph = new Array(n).fill(0).map(v => []);
+    for (const [u, v] of edges) {
+        graph[u].push(v);
+        graph[v].push(u);
+    }
+    dfs(0, -1);
+    dfs2(0, -1);
+    return ans;
+};
+```
+
+// tag 掘金
+
+## 双递归
+
+## 面试题 04.12. 求和路径
+
+
+[面试题 04.12. 求和路径](https://leetcode-cn.com/problems/paths-with-sum-lcci/)
+
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number}
+ */
+// 双递归
+/* 
+    一个主递归函数，一个内部递归函数
+*/
+var pathSum = function(root, sum) {
+    if (root == null) return 0;
+    /* 这里倒着减数字 */
+    const helper = (root, sum) => {
+        if (root == null) return 0;
+        if (sum == root.val) {
+            return 1 + helper(root.left, sum - root.val) + helper(root.right, sum - root.val);
+        }
+        return helper(root.left, sum - root.val) + helper(root.right, sum - root.val);
+    }
+
+    return helper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+};
+```
+
+## 563. 二叉树的坡度
+
+
+[563. 二叉树的坡度](https://leetcode-cn.com/problems/binary-tree-tilt/description/)
+
+```js
+
+
 ```

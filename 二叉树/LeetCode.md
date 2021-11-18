@@ -696,8 +696,25 @@ CBTInserter.prototype.get_root = function() {
  * @param {TreeNode} root
  * @return {number}
  */
+// DFS 后序遍历
 var maxPathSum = function(root) {
-
+    if (root == null) return 0;
+    let res = Number.MIN_SAFE_INTEGER;
+    const dfs = (node, val) => {
+        if (node == null) return 0;
+        
+        const left = dfs(node.left);
+        const right = dfs(node.right);
+        /* 所有的路径加起来 */
+        const maxSum = left + node.val + right;
+        /* 获取最大值，也是最终的返回值 */
+        res = Math.max(maxSum, res);
+        /* 当前子树，能够对外提供的最大的值 */
+        let outputSum = node.val + Math.max(0, left, right);
+        return outputSum < 0 ? 0 : outputSum;
+    }
+    dfs(root);
+    return res;
 };
 ```
 

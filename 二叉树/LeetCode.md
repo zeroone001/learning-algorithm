@@ -939,6 +939,66 @@ var pathSum = function(root, sum) {
 [563. 二叉树的坡度](https://leetcode-cn.com/problems/binary-tree-tilt/description/)
 
 ```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+/* 后序遍历 */
+var findTilt = function(root) {
+    if (root == null) return 0;
+    let res = 0;
 
+    const dfs = (root) => {
+        if (root == null) return 0;
+        const left = dfs(root.left);
+        const right = dfs(root.right);
+        res += Math.abs(right - left);
+        return right + left + root.val;
+    }
+    dfs(root)
+    return res;
+}; 
 
+```
+
+## 129. 求根节点到叶节点数字之和
+
+[129. 求根节点到叶节点数字之和](https://leetcode-cn.com/problems/sum-root-to-leaf-numbers/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+
+var sumNumbers = function(root) {
+    if (root == null) return 0;
+    let path = [];
+    const DFS = (root, sum) => {
+        if (root == null) return;
+        if (root.left == null && root.right == null) {
+            sum = sum * 10 + root.val;
+            path.push(sum);
+        }
+        sum = sum * 10 + root.val;
+        DFS(root.left, sum);
+        DFS(root.right, sum);
+    }
+};
 ```

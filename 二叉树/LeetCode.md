@@ -986,7 +986,12 @@ var findTilt = function(root) {
  * @param {TreeNode} root
  * @return {number}
  */
-
+/* 前序遍历 */
+/* 
+    定义一个数组来收集所有的值；
+    使用前序遍历
+    把所有的值相加
+*/
 var sumNumbers = function(root) {
     if (root == null) return 0;
     let path = [];
@@ -1000,5 +1005,31 @@ var sumNumbers = function(root) {
         DFS(root.left, sum);
         DFS(root.right, sum);
     }
+    DFS(root, 0);
+    return path.reduce((prev, next) => {
+        return prev + next;
+    }, 0);
+};
+```
+
+## 1448. 统计二叉树中好节点的数目
+
+[1448. 统计二叉树中好节点的数目](https://leetcode-cn.com/problems/count-good-nodes-in-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var goodNodes = function(root) {
+
 };
 ```

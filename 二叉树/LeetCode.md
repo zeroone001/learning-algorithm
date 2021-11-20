@@ -1048,3 +1048,43 @@ var goodNodes = function(root) {
     return res;
 };
 ```
+
+## 1022. 从根到叶的二进制数之和
+
+[1022. 从根到叶的二进制数之和](https://leetcode-cn.com/problems/sum-of-root-to-leaf-binary-numbers/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumRootToLeaf = function(root) {
+    if (root == null) return 0;
+    let res = 0;
+    const dfs = (root, path) => {
+        if (root == null) return;
+        /* 添加值到路径里去 */
+        path.push(root.val);
+        
+        if (root.left == null && root.right == null) {
+            /* 处理叶子结点 */
+            const num = path.join('');/* 生成二进制 */
+            res += parseInt(num, 2); /* 二进制转换为10进制 */
+        }
+        dfs(root.left, path);
+        dfs(root.right, path);
+        /* 回溯 */
+        path.pop();
+    };
+    dfs(root, [])
+    return res;
+};
+```

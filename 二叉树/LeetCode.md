@@ -1029,7 +1029,22 @@ var sumNumbers = function(root) {
  * @param {TreeNode} root
  * @return {number}
  */
+/* 后续遍历 */
 var goodNodes = function(root) {
+    if (root == null) return 0;
+    /* 因为根节点也是好节点 */
+    let res = 0; 
+    const dfs = (root, max) => {
+        if (root == null) return;
 
+        if (root.val >= max) {
+            res += 1;
+            max = root.val;
+        }
+        dfs(root.left, max);
+        dfs(root.right, max);
+    }
+    dfs(root, Number.MIN_SAFE_INTEGER);
+    return res;
 };
 ```

@@ -1160,3 +1160,32 @@ var removeLeafNodes = function(root, target) {
 
 };
 ```
+## 边界
+
+## 783. 二叉搜索树节点最小距离
+
+[783. 二叉搜索树节点最小距离](https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDiffInBST = function(root) {
+    const dfs = (root, lower, upper) => {
+        if (root == null) return upper - lower;
+        const left = dfs(root.left, lower, root.val);
+        const right = dfs(root.right, root.val, upper);
+        return Math.min(left, right);
+    }
+    return dfs(root, -Infinity, Infinity);
+};
+```

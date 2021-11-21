@@ -1189,3 +1189,34 @@ var minDiffInBST = function(root) {
     return dfs(root, -Infinity, Infinity);
 };
 ```
+
+## 1026. 节点与其祖先之间的最大差值
+
+[1026. 节点与其祖先之间的最大差值](https://leetcode-cn.com/problems/maximum-difference-between-node-and-ancestor/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+/* 目的是找到最大的差值 */
+var maxAncestorDiff = function(root) {
+    const dfs = (root, lower, upper) => {
+        if (root == null) return upper - lower;
+        /* 计算两边的差值 */
+        const left = dfs(root.left, Math.min(lower, root.val), Math.max(root.val, upper));
+        const right = dfs(root.right, Math.min(lower, root.val), Math.max(root.val, upper));
+        /* 返回最大的一个差值 */
+        return Math.max(left, right);
+    }
+    return dfs(root, root.val, root.val);
+};
+```

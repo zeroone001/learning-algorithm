@@ -1088,3 +1088,75 @@ var sumRootToLeaf = function(root) {
     return res;
 };
 ```
+
+## 814. 二叉树剪枝
+
+[814. 二叉树剪枝](https://leetcode-cn.com/problems/binary-tree-pruning/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+/* 利用了虚拟节点的概念 */
+var pruneTree = function(root) {
+    const dfs = (root) => {
+        if (root == null) return 0;
+        const l = dfs(root.left);
+        const r = dfs(root.right);
+
+        if (l == 0) root.left = null;
+        if (r == 0) root.right = null;
+        /* 加起来，如果是0 就会被剪掉 */
+        return root.val + l + r;
+    }
+    let ans = new TreeNode(-1);
+    ans.left = root;
+
+    dfs(ans);
+    return ans.left;
+};
+```
+## 1325. 删除给定值的叶子节点
+
+[1325. 删除给定值的叶子节点](https://leetcode-cn.com/problems/delete-leaves-with-a-given-value/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} target
+ * @return {TreeNode}
+ */
+var removeLeafNodes = function(root, target) {
+    const dfs = (root) => {
+        if (root == null) return null;
+
+        root.left = dfs(root.left);
+        root.right = dfs(root.right);
+        /* 找到叶子节点，并且值为target */
+        if (root.val == target && root.left == null && root.right == null) {
+            /* 剪掉 */
+            return null;
+        }
+        return root;
+    }
+    return dfs(root);
+
+};
+```

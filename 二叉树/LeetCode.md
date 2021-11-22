@@ -1239,6 +1239,21 @@ var maxAncestorDiff = function(root) {
  * @return {TreeNode}
  */
 var subtreeWithAllDeepest = function(root) {
+    if (root == null) return null; 
+    const getDepth = (root) => {
+        if(root == null) return 0;
+        return Math.max(getDepth(root.left), getDepth(root.right)) + 1;
+    }
+    const left = getDepth(root.left);
+    const right = getDepth(root.right);
 
+    if (left == right) {
+        /* 当左右子树深度相同的时候，就是我们要找的最深的子树 */
+        return root;
+    } else if (left > right) {
+        return subtreeWithAllDeepest(root.left);
+    } else if (left < right) {
+        return subtreeWithAllDeepest(root.right);
+    }
 };
 ```

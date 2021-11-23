@@ -891,7 +891,7 @@ var sumOfDistancesInTree = function(n, edges) {
 };
 ```
 
-// tag 掘金
+
 
 ## 双递归
 
@@ -1221,6 +1221,7 @@ var maxAncestorDiff = function(root) {
 };
 ```
 
+下面两个题目，是一样的
 ## 865. 具有所有最深节点的最小子树
 
 [865. 具有所有最深节点的最小子树](https://leetcode-cn.com/problems/smallest-subtree-with-all-the-deepest-nodes/)
@@ -1255,5 +1256,142 @@ var subtreeWithAllDeepest = function(root) {
     } else if (left < right) {
         return subtreeWithAllDeepest(root.right);
     }
+};
+```
+
+## 1123. 最深叶节点的最近公共祖先
+
+[1123. 最深叶节点的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-deepest-leaves/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var lcaDeepestLeaves = function(root) {
+    if (root == null) return null;
+    const getDepth = (root) => {
+        if (root == null) return 0;
+        return Math.max(getDepth(root.left), getDepth(root.right)) + 1;
+    }
+    const left = getDepth(root.left);
+    const right = getDepth(root.right);
+
+    if (left == right) {
+        /* 如果深度相同，那么就是我们要找的那个子树 */
+        return root;
+    } else if (left > right) {
+        /* 左边深度高，那么就往左侧找 */
+        return lcaDeepestLeaves(root.left);
+    } else if (left < right) {
+        /* 右边深度高，那么就往右侧找 */
+        return lcaDeepestLeaves(root.right);
+    }
+};
+```
+// tag 掘金
+## 1530. 好叶子节点对的数量
+
+[1530. 好叶子节点对的数量](https://leetcode-cn.com/problems/number-of-good-leaf-nodes-pairs/description/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} distance
+ * @return {number}
+ */
+/* 后序遍历 */
+var countPairs = function(root, distance) {
+    if (root == null) return 0;
+    let res = 0;
+    const dfs = (root) => {
+        if (root == null) return [];
+        /* 叶子节点 */
+        if (root.left == null && root.right == null) return [0];
+        const left = dfs(root.left).map(i => i + 1);
+        const right = dfs(root.right).map(i => i + 1);
+        /* 计算最短路径 */
+        for (const l of left) {
+            for (const r of right) {
+                if (l + r <= distance) res++;
+            }
+        }
+
+        return [...left, ...right];
+    }
+    dfs(root);
+    return res;
+};
+```
+
+## 剑指 Offer 55 - I. 二叉树的深度
+
+[剑指 Offer 55 - I. 二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+/* 后序遍历 */
+var maxDepth = function(root) {
+    if (root == null) return 0;
+    const dfs = (root) => {
+        if (root == null) return 0;
+        const left = dfs(root.left);
+        const right = dfs(root.right);
+        return Math.max(left, right) + 1;
+    };
+    return dfs(root);
+};
+```
+
+## 101. 对称二叉树
+
+[101. 对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function(root) {
+    const check = (leftNode, rightNode) => {
+        if (leftNode == null && rightNode == null) return true;
+        if (leftNode == null || rightNode == null) return false;
+        return leftNode.val == rightNode.val && check(leftNode.left, rightNode.right) && check(leftNode.right, rightNode.left);
+    };
+    return check(root, root);
 };
 ```

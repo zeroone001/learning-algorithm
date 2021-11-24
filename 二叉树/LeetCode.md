@@ -1502,3 +1502,41 @@ var flipMatchVoyage = function(root, voyage) {
     return res;
 }; 
 ```
+
+## 面试题 04.06. 后继者
+
+[面试题 04.06. 后继者](https://leetcode-cn.com/problems/successor-lcci/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @return {TreeNode}
+ */
+/* 中序遍历 */
+var inorderSuccessor = function(root, p) {
+    if(root == null) {
+        return null;
+    }
+    const arr = [];
+    let res = 0;
+    const dfs = (root) => {
+        if(root == null) return;
+        dfs(root.left);
+        arr.push(root);
+        if(root == p) {
+            res = arr.length;
+        }
+        dfs(root.right);
+    }
+    dfs(root);
+    return arr[res];
+};
+```

@@ -1397,7 +1397,7 @@ var isSymmetric = function(root) {
 ```
 ## 226. 翻转二叉树
 
-[226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/)
+简单： [226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/)
 
 ```js
 /**
@@ -1412,9 +1412,93 @@ var isSymmetric = function(root) {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+/* 很经典的二叉树问题 */
 var invertTree = function(root) {
+    if (root == null) return null;
+    const left = invertTree(root.left);
+    const right = invertTree(root.right);
 
+    root.left = right;
+    root.right = left;
+    return root;
 };
 ```
 
+## 543. 二叉树的直径
 
+[543. 二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var diameterOfBinaryTree = function(root) {
+    if (root == null) return null;
+    let res = 0;
+    const dfs = (root) => {
+        if (root == null) return 0;
+        const left = dfs(root.left);
+        const right = dfs(root.right);
+        /* 取最大值 */
+        res = Math.max(res, left+right);
+
+        return Math.max(left, right) + 1;
+    }
+    dfs(root);
+    return res;
+};
+```
+
+## 971. 翻转二叉树以匹配先序遍历
+
+[971. 翻转二叉树以匹配先序遍历0](https://leetcode-cn.com/problems/flip-binary-tree-to-match-preorder-traversal/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number[]} voyage
+ * @return {number[]}
+ */
+var flipMatchVoyage = function(root, voyage) {
+    if (root == null) return [-1];
+    if (root.val !== voyage[0]) return [-1];
+    let res = [];
+    let i = 0;
+    const dfs = (root) => {
+        if (root == null) return;
+        i++;
+        /* 如果左树匹配 */
+        if (root.left && root.left.val == voyage[i]) {
+            dfs(root.left);
+        }
+        if (root.right && root.right.val == voyage[i]) {
+            dfs(root.right);
+            /* 右树完成之后，需要看看现在 pos 所在的值是否可以匹配左树，即是否先走右树再走左树，成立即当前的 root 节点就是需要进行翻转的节点 */
+            if (root.left && root.left.val == voyage[i]) {
+                res.push(root.val);
+                dfs(root.left);
+            }
+        }
+    }
+    dfs(root);
+    if (i < voyage.length) return [-1];
+    return res;
+}; 
+```

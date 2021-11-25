@@ -1527,7 +1527,7 @@ var inorderSuccessor = function(root, p) {
     }
     const arr = [];
     let res = 0;
-    const dfs = (root) => {
+    const dfs = (root) => { 
         if(root == null) return;
         dfs(root.left);
         arr.push(root);
@@ -1540,3 +1540,99 @@ var inorderSuccessor = function(root, p) {
     return arr[res];
 };
 ```
+## 144. 二叉树的前序遍历
+
+[144. 二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root) {
+    if (root == null) return [];
+    const res = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        res.push(root.val);
+        root.left && dfs(root.left);
+        root.right && dfs(root.right);
+    }
+    dfs(root);
+    return res;
+};
+```
+
+## 230. 二叉搜索树中第K小的元素
+
+[230. 二叉搜索树中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+/* 中序遍历 */
+var kthSmallest = function(root, k) {
+    if (root == null) return null;
+    const res = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left);
+        res.push(root.val);
+        dfs(root.right);
+    }
+    dfs(root);
+    return res[k - 1];
+};
+```
+
+## 145. 二叉树的后序遍历
+
+[145. 二叉树的后序遍历](https://leetcode-cn.com/problems/binary-tree-postorder-traversal/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal = function(root) {
+    if (root == null) return [];
+    const res = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left);
+        dfs(root.right);
+        res.push(root.val);
+    }
+    dfs(root);
+    return res;
+};
+```
+
+## 

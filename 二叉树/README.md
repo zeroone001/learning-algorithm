@@ -149,6 +149,33 @@ class Solution:
                 queue.append(node.left)
         return -1
 ```
+
+```js
+var levelOrder = function(root) {
+    if (root == null) return [];
+    const res = [];
+    const queue = [root];
+    while (queue.length) {
+        /* 记录当前层的节点数 */
+        let length = queue.length;
+        /* 存放每一层的节点 */
+        let currentArr = [];
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+            currentArr.push(node.val);
+            /* 存放下一层的节点 */
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+        res.push(currentArr);
+    }
+    return res;
+};
+```
 ## 三种题型
 
 1. 搜索类 (BFS, DFS)

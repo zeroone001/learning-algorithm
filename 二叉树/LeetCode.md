@@ -1635,4 +1635,47 @@ var postorderTraversal = function(root) {
 };
 ```
 
-## 
+## 102. 二叉树的层序遍历
+
+[102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * 
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+    if (root == null) return [];
+    const res = [];
+    const queue = [root];
+    while (queue.length) {
+        /* 记录当前层的节点数 */
+        let length = queue.length;
+        /* 存放每一层的节点 */
+        let currentArr = [];
+        for (let index = 0; index < length; index++) {
+            /* 这里注意要用shift， 因为下面是push, 所以要取头部的 */
+            const node = queue.shift();
+            currentArr.push(node.val);
+            /* 存放下一层的节点 */
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+        res.push(currentArr);
+    }
+    return res;
+};
+```

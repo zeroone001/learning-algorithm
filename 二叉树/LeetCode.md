@@ -1703,6 +1703,7 @@ var lowestCommonAncestor = function(root, p, q) {
     const dfs = (root) => {
         /* 确定递归终止条件 */
         if (root == null) {return null;}
+        /* 这是其中一种情况， 如果root 等于其中某一个，那么，root就是要找到的最近的公共祖先 */
         if(root == p || root == q) {
             return root;
         }
@@ -1710,6 +1711,7 @@ var lowestCommonAncestor = function(root, p, q) {
         const right = dfs(root.right);
 
         if(left && right) {
+            /* 当这两个同时不为空，那么p,q 肯定就是在root的两侧，那么root就是我们要找的节点 */
             return root;
         }
         if (left == null) {
@@ -1719,4 +1721,53 @@ var lowestCommonAncestor = function(root, p, q) {
     }
     return dfs(root);
 }; 
+```
+
+## 103. 二叉树的锯齿形层序遍历
+
+[103. 二叉树的锯齿形层序遍历](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var zigzagLevelOrder = function(root) {
+    if (root == null) return [];
+
+    const queue = [root];
+    let res = [];
+    /* 设置一个开关 */
+    let b = true;
+    while (queue.length) {
+        let length = queue.length;
+        let curArr = [];
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+            curArr.push(node.val);
+
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+
+        if(!b) {
+            curArr = curArr.reverse();
+        }
+        b = !b;
+        res.push(curArr);
+    }
+    return res;
+};
 ```

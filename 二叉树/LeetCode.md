@@ -1679,3 +1679,44 @@ var levelOrder = function(root) {
     return res;
 };
 ```
+
+## 236. 二叉树的最近公共祖先
+
+[236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function(root, p, q) {
+    if(root == null) return null;
+    const dfs = (root) => {
+        /* 确定递归终止条件 */
+        if (root == null) {return null;}
+        if(root == p || root == q) {
+            return root;
+        }
+        const left = dfs(root.left);
+        const right = dfs(root.right);
+
+        if(left && right) {
+            return root;
+        }
+        if (left == null) {
+            return right;
+        }
+        return left;
+    }
+    return dfs(root);
+}; 
+```

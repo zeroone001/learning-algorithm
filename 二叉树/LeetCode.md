@@ -1865,6 +1865,47 @@ var insertIntoBST = function(root, val) {
  * @return {TreeNode}
  */
 var sortedArrayToBST = function(nums) {
+    if (nums.length === 0) return null;
+    const dfs = (nums, left, right) => {
+        // 条件限制
+        if (left > right) return null;
+        // 找到中点
+        const mid = Math.floor(left + (right - left) / 2);
+        const root = new TreeNode(nums[mid]);
+        // 左子树
+        root.left = dfs(nums, left, mid - 1);
+        // 右子树
+        root.right = dfs(nums, mid + 1, right);
+        return root;
+    }
+    return dfs(nums, 0, nums.length - 1);
+};
+```
+
+## 1382. 将二叉搜索树变平衡
+
+[1382. 将二叉搜索树变平衡](https://leetcode-cn.com/problems/balance-a-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+/* 
+    上一个题目，是一个有序数组转化为平衡二叉树
+    思路： 
+    1， 先把BST 中序遍历，生成一个有序数组
+    2， 再把这个有序数组转化为平衡BST二叉树
+*/
+var balanceBST = function(root) {
 
 };
 ```

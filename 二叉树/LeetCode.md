@@ -1790,7 +1790,27 @@ var zigzagLevelOrder = function(root) {
  * @return {number[][]}
  */
 var levelOrderBottom = function(root) {
+    if (root == null) return [];
 
+    const queue = [root];
+    const res = [];
+    while(queue.length) {
+        const curArr = [];
+        const length = queue.length;
+
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+            curArr.push(node.val);
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+        res.push(curArr);
+    }
+    return res.reverse();
 };
 ```
 
@@ -1813,6 +1833,38 @@ var levelOrderBottom = function(root) {
  * @return {TreeNode}
  */
 var insertIntoBST = function(root, val) {
+    if (root == null) {
+        return new TreeNode(val);
+    }
+    if (root.val >= val) {
+        /* 如果当前的节点大于等于要插入的节点，那么就插入左子树 */
+        root.left = insertIntoBST(root.left, val);
+    } else {
+        root.right = insertIntoBST(root.right, val);
+    }
+
+    return root;
+};
+```
+
+## 108. 将有序数组转换为二叉搜索树
+
+[108. 将有序数组转换为二叉搜索树](https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function(nums) {
 
 };
 ```

@@ -2216,7 +2216,107 @@ var findMode = function(root) {
  * @return {number}
  */
 var getMinimumDifference = function(root) {
-    let min = 0;
-    
+    let min = Number.MAX_SAFE_INTEGER;
+    let pre = -1;
+    const dfs = (root) => {
+        if (root == null) return;
+        if(root.left) dfs(root.left);
+        /* 逻辑 */
+        if (pre == -1) {
+            pre = root.val;
+        } else {
+            min = Math.min(root.val - pre, min);
+            pre = root.val;
+        }
+        
+        if(root.right) dfs(root.right);
+    }
+    dfs(root);
+    return min;
+};
+```
+
+## 572. 另一棵树的子树
+
+[572. 另一棵树的子树](https://leetcode-cn.com/problems/subtree-of-another-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} subRoot
+ * @return {boolean}
+ */
+var isSubtree = function(root, subRoot) {
+
+    let bool = true
+    let res = false
+    let subnode = subRoot
+    function tra(n1, n2) {
+        if (n1 && n2) {
+            if (n1.val === n2.val) {
+                tra(n1.left, n2.left)
+                tra(n1.right, n2.right)
+            } else {
+                bool = false
+            }
+        } else {
+            if ((!n2 && !n1)) {
+                return ;
+            } else {
+                bool = false
+            }
+        }
+    }
+    function traverse(node) {
+        // 如果已经找到相同子树了（res === true）就直接返回不再递归了
+        // 防止重复的叶子，导致res置false
+        if (!node || res) {
+            return ;
+        }
+        if (node.val === subnode.val) {
+            // 每次准备dfs子树时，先将标志置true
+            // 因为树中可能有重复val的叶子 
+            bool = true
+            tra(node, subnode)
+            res = bool
+        }
+        traverse(node.left)
+        traverse(node.right)
+    }
+    traverse(root)
+    return res
+};
+
+```
+
+## 606. 根据二叉树创建字符串
+
+简单
+
+[606. 根据二叉树创建字符串](https://leetcode-cn.com/problems/construct-string-from-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var tree2str = function(root) {
+
 };
 ```

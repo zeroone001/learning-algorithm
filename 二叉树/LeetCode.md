@@ -2035,4 +2035,188 @@ var hasPathSum = function(root, targetSum) {
 };
 ```
 
-## 
+## 235. 二叉搜索树的最近公共祖先
+
+[235. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function(root, p, q) {
+    if (root == null) return null;
+    const dfs = (root) => {
+        if (root == null) {
+            return null;
+        }
+        /* 这是其中一种情况， 如果root 等于其中某一个，那么，root就是要找到的最近的公共祖先 */
+        if (root.val == p.val || root.val == q.val) {
+            return root;
+        }
+        const left = dfs(root.left);
+        const right = dfs(root.right);
+
+        if (left && right) {
+            return root;
+        }
+        if (left == null) {
+            return right;
+        }
+        return left;
+    }
+    return dfs(root);
+};
+```
+## 257. 二叉树的所有路径
+
+[257. 二叉树的所有路径](https://leetcode-cn.com/problems/binary-tree-paths/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+var binaryTreePaths = function(root) {
+    if (root == null) return [];
+    const res = [];
+    const dfs = (root, arr) => {
+        if (root == null) return;
+        arr.push(root.val);
+        if (root.left == null && root.right == null) {
+            const str = arr.join('->');
+            res.push(str);
+        }
+        dfs(root.left, arr);
+        dfs(root.right, arr);
+        /* 回溯 */
+        arr.pop();
+    }
+    dfs(root, []);
+    return res;
+};
+```
+
+## 404. 左叶子之和
+
+简单
+
+[404. 左叶子之和](https://leetcode-cn.com/problems/sum-of-left-leaves/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumOfLeftLeaves = function(root) {
+    if (root == null) return 0;
+    let num = 0;
+    const dfs = (root) => {
+        if (root == null) return;
+        if (root.left !== null && root.left.left == null && root.left.right == null) {
+            num = num + root.left.val;
+        }
+        dfs(root.left);
+        dfs(root.right);
+    }
+    dfs(root);
+    return num;
+};
+```
+
+## 501. 二叉搜索树中的众数
+
+[501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode = function(root) {
+    if (root == null) return [];
+    let res = [];
+    let pre; /* 当前数字 */
+    let preNum; /* 当前数字的数量 */
+    let max = 0;
+    const dfs = (root) => {
+        if(root == null) return;
+
+        if (root.left) dfs(root.left);
+        /* 处理判断条件 */
+        if (root.val == pre) {
+            preNum++;
+        } else {
+            pre = root.val;
+            preNum = 1;
+        }
+        if (preNum > max) {
+            max = preNum;
+            /* 替换为新的众数 */
+            res = [root.val];
+        } else if (preNum == max) {
+            res.push(root.val);
+        }
+        if (root.right) dfs(root.right);
+    }
+    dfs(root);
+    return res;
+};
+```
+
+## 530. 二叉搜索树的最小绝对差
+
+[530. 二叉搜索树的最小绝对差](https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var getMinimumDifference = function(root) {
+    let min = 0;
+    
+};
+```

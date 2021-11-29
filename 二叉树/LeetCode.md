@@ -1906,6 +1906,127 @@ var sortedArrayToBST = function(nums) {
     2， 再把这个有序数组转化为平衡BST二叉树
 */
 var balanceBST = function(root) {
+    if (root == null) return null;
+    const arr = [];
+    const inorder = (root) => {
+        if (root == null) return;
+        inorder(root.left);
+        arr.push(root.val);
+        inorder(root.right);
+    }
+    inorder(root);
+    const buildDfs = (arr, left, right) => {
+        if (left > right) return null;
 
+        // zhong
+        const mid = Math.floor(left + (right - left) / 2);
+        const root = new TreeNode(arr[mid]);
+        root.left = buildDfs(arr, left, mid - 1);
+        root.right = buildDfs(arr, mid + 1, right);
+        return root;
+    }
+    return buildDfs(arr, 0, arr.length - 1);
+};
+```
+
+## 100. 相同的树
+
+[100. 相同的树](https://leetcode-cn.com/problems/same-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function(p, q) {
+    if (p == null && q == null) {
+        return true;
+    } else if (p == null || q == null) {
+        return false;
+    } else if (p.val !== q.val) {
+        return false;
+    } else {
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+};
+```
+
+## 111. 二叉树的最小深度
+
+[111. 二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+/* 这个使用BFS 更好理解 */
+var minDepth = function(root) {
+    if (root == null) return 0;
+
+    const queue = [root];
+    let depth = 1;
+    while(queue.length) {
+        const length = queue.length;
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+
+            if (node.left == null && node.right == null) {
+                return depth;
+            }
+
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right)
+            }
+            
+        }
+        depth += 1;
+    }
+    return depth;
+};
+```
+
+## 112. 路径总和
+
+[112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ */
+var hasPathSum = function(root, targetSum) {
+    if() {
+        
+    }
 };
 ```

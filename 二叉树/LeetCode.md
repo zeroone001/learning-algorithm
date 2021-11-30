@@ -2598,7 +2598,171 @@ var isBalanced = function(root) {
         if (node== null) return 0;
         return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
     }
-    return Math.abs(getHeight(root.left) - getHeight(root.right) <= 1) && isBalanced(root.left) && isBalanced(root.right);
+    return Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+};
+```
+
+## 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先
+
+简单
+
+[剑指 Offer 68 - I. 二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+/* 
+    经典题目
+*/
+var lowestCommonAncestor = function(root, p, q) {
+    if (root == null) return null;
+
+    const dfs = (root) => {
+        if (root == null) return null;
+
+        if (root.val == p.val || root.val == q.val) {
+            return root;
+        }
+        let left = dfs(root.left);
+        let right = dfs(root.right);
+        if (left && right) {
+            return root;
+        }
+        if (left == null) {
+            return right;
+        }
+        return left;
+    }
+    return dfs(root);
+};
+/* 这个方式真不错 */
+var lowestCommonAncestor = function(root, p, q){
+  if(p.val < root.val && q.val < root.val){
+    return lowestCommonAncestor(root.left, p, q);
+  }else if(p.val > root.val && q.val > root.val){
+    return lowestCommonAncestor(root.right, p, q);
+  }else return root;
+}
+```
+
+## 剑指 Offer 68 - II. 二叉树的最近公共祖先
+
+简单
+
+[剑指 Offer 68 - II. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function(root, p, q) {
+    if (root == null) return null;
+    const dfs = (root) => {
+        if (root == null) return null;
+        if (root.val == p.val || root.val == q.val) {
+            return root;
+        }
+        let left = dfs(root.left);
+        let right = dfs(root.right);
+
+        if (left && right) {
+            return root;
+        }
+        if (left == null) {
+            return right;
+        }
+        return left;
+    }
+    return dfs(root);
+};
+```
+
+## 剑指 Offer II 052. 展平二叉搜索树
+
+简单
+
+[剑指 Offer II 052. 展平二叉搜索树](https://leetcode-cn.com/problems/NYBBNL/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+/* 
+    先转成数组
+    在一个个变成新的搜索树
+*/
+var increasingBST = function(root) {
+    if (root == null) return null;
+    let prev = new TreeNode(-1);
+    let res = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left, prev.right);
+        res.push(root.val);
+        dfs(root.right, prev.right);
+    }
+    dfs(root);
+    /* 指针 */
+    let cur = prev;
+    for (const iterator of res) {
+        cur.right = new TreeNode(iterator);
+        cur = cur.right;
+    }
+
+    return prev.right;
+};
+```
+
+## 剑指 Offer II 056. 二叉搜索树中两个节点之和
+
+[剑指 Offer II 056. 二叉搜索树中两个节点之和](https://leetcode-cn.com/problems/opLdQZ/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {boolean}
+ */
+var findTarget = function(root, k) {
+
 };
 ```
 

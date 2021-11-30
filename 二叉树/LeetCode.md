@@ -2317,6 +2317,34 @@ var isSubtree = function(root, subRoot) {
  * @return {string}
  */
 var tree2str = function(root) {
-
+    if (root == null) return '';
+    
+    const dfs = (root) => {
+        if(root == null) return '';
+        /* 找到叶子节点 */
+        if (root.left == null && root.right == null) {
+            return `${root.val}`;
+        }
+        let left, right;
+        if(root.left && !root.right) {
+            left = `(${dfs(root.left)})`;
+            right = '';
+        } else {
+            left = root.left ? `(${dfs(root.left)})` : '()';
+            right = `(${dfs(root.right)})`;
+        }
+        
+        return `${root.val}${left}${right}`;
+    }
+    
+    return dfs(root);
 };
+```
+
+## 617. 合并二叉树
+
+[617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
+
+```js
+
 ```

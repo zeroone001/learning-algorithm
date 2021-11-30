@@ -51,4 +51,5 @@ class Solution:
         if not root: return True
         if abs(dfs(root.left) -  dfs(root.right)) > 1: return False
         return self.isBalanced(root.left) and self.isBalanced(root.right)
+        
 ```

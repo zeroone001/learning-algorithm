@@ -2510,7 +2510,96 @@ var isSymmetric = function(root) {
  * @param {TreeNode} root
  * @return {number[][]}
  */
+/* 
+    BFS
+*/
 var levelOrder = function(root) {
+    if (root == null) return [];
+    const queue = [root];
+    const res = [];
+    while (queue.length) {
+        const length = queue.length;
+        let arr = [];
 
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+            arr.push(node.val);
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+            
+        }
+        res.push(arr);
+    }
+    return res;
 };
 ```
+
+## 剑指 Offer 54. 二叉搜索树的第k大节点
+
+简单
+
+[剑指 Offer 54. 二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthLargest = function(root, k) {
+    if (root == null) return 0;
+    let arr = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left);
+        arr.push(root.val);
+        dfs(root.right);
+    }
+    dfs(root);
+    arr.reverse();
+    return arr[k - 1];
+};
+```
+
+## 剑指 Offer 55 - II. 平衡二叉树
+
+简单
+
+[剑指 Offer 55 - II. 平衡二叉树](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+// 左右子树的深度不超过1，就是平衡二叉树
+var isBalanced = function(root) {
+    if (root==null) return true;
+
+    const getHeight = (node) => {
+        if (node== null) return 0;
+        return Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+    }
+    return Math.abs(getHeight(root.left) - getHeight(root.right) <= 1) && isBalanced(root.left) && isBalanced(root.right);
+};
+```
+
+

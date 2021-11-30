@@ -1297,7 +1297,7 @@ var lcaDeepestLeaves = function(root) {
     }
 };
 ```
-// tag 掘金
+
 ## 1530. 好叶子节点对的数量
 
 [1530. 好叶子节点对的数量](https://leetcode-cn.com/problems/number-of-good-leaf-nodes-pairs/description/)
@@ -2341,10 +2341,176 @@ var tree2str = function(root) {
 };
 ```
 
+
+
+
+
+# tag 掘金
+
 ## 617. 合并二叉树
 
 [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
 
 ```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {TreeNode}
+ */
+var mergeTrees = function(root1, root2) {
+    if (root1 == null && root2 == null) return null;
+    if (root1 == null && root2 !== null) return root2;
+    if (root1 !== null && root2 == null) return root1;
 
+    const dfs = (root1, root2) => {
+        if (root1 == null && root2 == null) return null;
+        if (root1 == null && root2 !== null) return root2;
+        if (root1 !== null && root2 == null) return root1;
+
+        const root = new TreeNode(root1.val + root2.val);
+        root.left = dfs(root1.left, root2.left);
+        root.right = dfs(root1.right, root2.right);
+        return root;
+    }
+    return dfs(root1, root2);
+};
+```
+## 637. 二叉树的层平均值
+
+[637. 二叉树的层平均值](https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+/* BFS 广度优先遍历 */
+var averageOfLevels = function(root) {
+    if (root == null) return [];
+    const queue = [root];
+    const res = [];
+
+    while (queue.length) {
+        let curArr = [];
+        const length = queue.length;
+
+        for (let index = 0; index < length; index++) {
+            const node = queue.shift();
+            curArr.push(node.val);
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+            
+        }
+        /* 取总数 */
+        let sum = curArr.reduce((prev, current) => current + prev);
+        /* 计算平均值 */
+        res.push(sum / curArr.length);
+    }
+    return res;
+};
+```
+
+## 剑指 Offer 27. 二叉树的镜像
+
+简单
+
+[剑指 Offer 27. 二叉树的镜像](https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var mirrorTree = function(root) {
+    if (root == null) return null;
+    const dfs = (root) => {
+        if (root == null) return null;
+        const node = new TreeNode(root.val);
+        node.left = dfs(root.right);
+        node.right = dfs(root.left);
+        return node;
+    }
+    return dfs(root);
+};
+```
+
+## 剑指 Offer 28. 对称的二叉树
+
+简单
+
+[剑指 Offer 28. 对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function(root) {
+    if(root == null) return true;
+    const help = (left, right) => {
+        if(left == null && right == null) return true;
+        if (left == null || right == null || left.val !== right.val) {
+            return false;
+        }
+        return help(left.left, right.right) && help(left.right, right.left);
+    }
+    return help(root.left, root.right);
+};
+```
+
+## 剑指 Offer 32 - II. 从上到下打印二叉树 II
+
+简单
+
+[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+
+};
 ```

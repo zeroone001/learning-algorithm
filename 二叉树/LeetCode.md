@@ -2788,4 +2788,51 @@ var findTarget = function(root, k) {
 };
 ```
 
+## 面试题 04.02. 最小高度树
 
+[面试题 04.02. 最小高度树](https://leetcode-cn.com/problems/minimum-height-tree-lcci/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} nums
+ * @return {TreeNode}
+ */
+var sortedArrayToBST = function(nums) {
+    if (!nums.length) return null;
+    let i = Math.floor(nums.length / 2);
+    const root = new TreeNode(nums[i]);
+    root.left = sortedArrayToBST(nums.slice(0, i));
+    root.right = sortedArrayToBST(nums.slice(i + 1));
+    return root;
+};
+```
+
+## 面试题 04.04. 检查平衡性
+
+简单
+
+[面试题 04.04. 检查平衡性](https://leetcode-cn.com/problems/check-balance-lcci/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function(root) {
+    
+};
+```

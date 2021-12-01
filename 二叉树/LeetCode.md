@@ -2761,8 +2761,30 @@ var increasingBST = function(root) {
  * @param {number} k
  * @return {boolean}
  */
+/* 
+    中序遍历 + 双指针
+*/
 var findTarget = function(root, k) {
-
+    let arr = [];
+    const inorder = (root) => {
+        if (root == null) return;
+        inorder(root.left);
+        arr.push(root.val);
+        inorder(root.right);
+    }
+    inorder(root);
+    let left = 0;
+    let right = arr.length - 1;
+    while (left < right) {
+        if (arr[left] + arr[right] > k) {
+            right--;
+        } else if (arr[left] + arr[right] < k) {
+            left++;
+        } else {
+            return true;
+        }
+    }
+    return false;
 };
 ```
 

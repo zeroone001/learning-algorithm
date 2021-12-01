@@ -2833,6 +2833,21 @@ var sortedArrayToBST = function(nums) {
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    
+    if (root == null) return true;
+    const help = (root) => {
+        if(root == null) return 0;
+        let left = help(root.left);
+        let right = help(root.right);
+        return Math.max(left, right) + 1;
+    }
+    return Math.abs(help(root.left) - help(root.right)) <=1 &&  isBalanced(root.left) && isBalanced(root.right)
 };
+```
+
+## 面试题 17.12. BiNode
+
+[面试题 17.12. BiNode](https://leetcode-cn.com/problems/binode-lcci/)
+
+```js
+
 ```

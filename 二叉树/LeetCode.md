@@ -2343,10 +2343,6 @@ var tree2str = function(root) {
 
 
 
-
-
-# tag 掘金
-
 ## 617. 合并二叉树
 
 [617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
@@ -2849,5 +2845,42 @@ var isBalanced = function(root) {
 [面试题 17.12. BiNode](https://leetcode-cn.com/problems/binode-lcci/)
 
 ```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+/* 
+    这个题目有两个解决方案
+    1， 用中序遍历，获取值的数组，然后再创建一个新的树
+    2， 在原来的树上进行操作，使用指针的形式
+*/
+var convertBiNode = function(root) {
+    if (root == null) return null;
+    let prev= new TreeNode(-1);
+    let res = prev;
+    const inorder = (root) => {
+        if (root == null) return null;
+        inorder(root.left);
 
+        root.left = null;
+        prev.right = root;
+        /* 指针指向下一位 */
+        prev = root;
+
+        inorder(root.right);
+    }
+    inorder(root);
+    return res.right;
+};
 ```
+
+
+# tag 掘金
+

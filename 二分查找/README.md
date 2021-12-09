@@ -1,5 +1,8 @@
 ## 数据结构与算法之数组
 
+https://leetcode-cn.com/leetbook/read/binary-search/x6q6fi/
+
+
 ### 二分查找
 
 #### 定义
@@ -472,6 +475,26 @@ var search = function(nums, target) {
 
 [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)
 
-```js
+要数组中存在一个元素比相邻元素大，那么沿着它一定可以找到一个峰值
 
+如果 m 较大，则左侧存在峰值，r = m，如果 m + 1 较大，则右侧存在峰值，l = m + 1
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findPeakElement = function(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+    while (left < right) {
+      let mid = (left + right) >> 1;
+      if (nums[mid] > nums[mid + 1]) {
+          right = mid;
+      } else {
+          left = mid + 1;
+      }
+    }
+    return left;
+};
 ```

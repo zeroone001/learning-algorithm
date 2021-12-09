@@ -19,8 +19,8 @@ function binary_search(arr, key) {
   let left = 0; // 定义下标值
   let right = arr.length - 1;
   while (left <= right) {
-       let mid = Math.floor((left+right) / 2);
-      if (key === arr[mid]) return mid;
+    let mid = Math.floor((left+right) / 2);
+    if (key === arr[mid]) return mid;
     if (arr[mid] > key) {
       // key 在左侧区间
       right = mid - 1;
@@ -191,9 +191,11 @@ var guessNumber = function(n) {
 };
 ```
 
-## 33. 搜索旋转排序数组
+## 面试题 10.03. 搜索旋转数组
 
-[33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+[面试题 10.03. 搜索旋转数组](https://leetcode-cn.com/problems/search-rotate-array-lcci/)
+
+这个的难点是里面有重复的值
 
 ```js
 /**
@@ -201,12 +203,8 @@ var guessNumber = function(n) {
  * @param {number} target
  * @return {number}
  */
-/* 
-  旋转数组的特点是至少有一半是有序的，
-  因此，每次二分之后，只需要判断要寻找的目标是否在有序的那一半数组中即可
-*/
 var search = function(arr, target) {
-  let left = 0;
+let left = 0;
   let right = arr.length - 1;
   while (left <= right) {
     if (left == right && arr[left] !== target) {
@@ -253,4 +251,227 @@ var search = function(arr, target) {
   }
   return -1;
 };
+```
+
+## 33. 搜索旋转排序数组
+
+中等
+
+这个简单一些，因为里面没有重复的值
+
+使用二分查找
+
+
+
+[33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+
+```js
+/**
+ * @param {number[]} arr
+ * @param {number} target
+ * @return {number}
+ */
+/* 
+  旋转数组的特点是至少有一半是有序的，
+  因此，每次二分之后，只需要判断要寻找的目标是否在有序的那一半数组中即可
+
+  时间复杂度： O(\log n)O(logn)，其中 nn 为 \textit{nums}nums 数组的大小。整个算法时间复杂度即为二分查找的时间复杂度 O(\log n)O(logn)
+*/
+var search = function(nums, target) {
+  const n = nums.length;
+  if (!n) return -1;
+  if (n == 1) {
+    return nums[0] == target ? 0 : -1;
+  }
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    const leftVal = nums[left];
+    const rightVal = nums[right];
+    const midVal = nums[mid];
+
+    if (midVal == target) {
+      return mid;
+    }
+    /* 这里是关键代码，因为总有一侧是有序的 */
+    if (midVal >= leftVal) { /* 左边有序 */
+      if(target < midVal && target >= leftVal) {
+        /* 目标在左边部分 */
+        right = mid - 1;
+      } else {
+        /* 目标在右边部分 */
+        left = mid + 1;
+      }
+    } else {
+      /* 右边有序 */
+      if(target > midVal && target <= rightVal) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  }
+  return -1;
+};
+```
+
+## 189. 轮转数组
+
+中等
+
+[189. 轮转数组](https://leetcode-cn.com/problems/rotate-array/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+/* 
+  1， 先反转整个数组
+  2， 通过k 分为两个部分
+  3， 分别反转两个部分
+*/
+var rotate = function(nums, k) {
+  const reverse = (arr, start, end) => {
+    while(start < end) {
+      [arr[start], arr[end]] = [arr[end], arr[start]];
+      start++;
+      end--;
+    }
+  }
+  if (nums.length === 0) return [];
+  if (nums.length === 1) return nums;
+  /* 有可能k 大于这个length */
+  k %= nums.length;
+  reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1);
+    return nums;
+};
+```
+
+## 153. 寻找旋转排序数组中的最小值
+
+[153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+
+最小值，跟数组中的最后一个值，进行比较
+
+这里有个特性，最后一个值，比最小值的左侧都小，比最小值的右侧都大
+
+```js
+  /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+  let little = 0;
+  let large = nums.length - 1;
+  while (little < large) {
+    let mid = Math.floor((little + large) / 2);
+    if (nums[mid] > nums[large]) {
+      /* 利用特性，跟最后一个值进行比较 */
+      little = mid + 1;
+    } else {
+      large = mid;
+    }
+  }
+  return nums[little];
+};
+```
+
+## 154. 寻找旋转排序数组中的最小值 II
+
+
+[154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+
+这个是困难难度，因为里面有重复的值
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMin = function(nums) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] > nums[right]) {
+      left = mid + 1;
+    } else if (nums[mid] < nums[right]) {
+      right = mid;
+    } else {
+      /* 这个是解决有重复值的问题 */
+      right -= 1;
+    }
+  }
+  return nums[left];
+};
+```
+
+## 81. 搜索旋转排序数组 II
+
+[81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {boolean}
+ */
+var search = function(nums, target) {
+  const n = nums.length;
+  if (n === 0) {
+      return false;
+  }
+  if (n === 1) {
+      return nums[0] === target;
+  }
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    if (left == right && nums[left] == target) {
+        return true; 
+    }
+    let mid = (left + right) >> 1;
+
+    if (nums[mid] === target) {
+      return true;
+    }
+    if (nums[left] == nums[mid]) {
+        left++;
+        continue;
+    }
+    if (nums[mid] >= nums[left]) {
+      /* 左侧有序 */
+      if (target < nums[mid] && target >= nums[left]) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    } else {
+      /* 右侧有序 */
+      if (target > nums[mid] && target <= nums[right]) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+  }
+  return false;
+};
+```
+
+# 掘金
+
+## 寻找峰值
+
+[162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)
+
+```js
+
 ```

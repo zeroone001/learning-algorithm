@@ -14,7 +14,7 @@ https://leetcode-cn.com/leetbook/read/binary-search/x6q6fi/
 3. 如果目标元素小于中间元素，就在左侧区域查找
 4. 
 
-#### JS实现
+#### JS实现 模板1
 
 ```js
 // 非递归方法，用的迭代
@@ -50,6 +50,56 @@ function binary_search(arr, key) {
         low = mid + 1;
         return binary_search(arr, low, high, key);
      }
+}
+```
+
+## 模板 2
+
+```java
+int binarySearch(int[] nums, int target){
+  if(nums == null || nums.length == 0)
+    return -1;
+
+  int left = 0, right = nums.length;
+  while(left < right){
+    // Prevent (left + right) overflow
+    int mid = left + (right - left) / 2;
+    if(nums[mid] == target){ return mid; }
+    else if(nums[mid] < target) { left = mid + 1; }
+    else { right = mid; }
+  }
+
+  // Post-processing:
+  // End Condition: left == right
+  if(left != nums.length && nums[left] == target) return left;
+  return -1;
+}
+```
+## 模板 3
+
+```java
+int binarySearch(int[] nums, int target) {
+    if (nums == null || nums.length == 0)
+        return -1;
+
+    int left = 0, right = nums.length - 1;
+    while (left + 1 < right){
+        // Prevent (left + right) overflow
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+
+    // Post-processing:
+    // End Condition: left + 1 == right
+    if(nums[left] == target) return left;
+    if(nums[right] == target) return right;
+    return -1;
 }
 ```
 
@@ -498,3 +548,85 @@ var findPeakElement = function(nums) {
     return left;
 };
 ```
+## 模板 2
+
+```java
+int binarySearch(int[] nums, int target){
+  if(nums == null || nums.length == 0)
+    return -1;
+
+  int left = 0, right = nums.length;
+  while(left < right){
+    // Prevent (left + right) overflow
+    int mid = left + (right - left) / 2;
+    if(nums[mid] == target){ return mid; }
+    else if(nums[mid] < target) { left = mid + 1; }
+    else { right = mid; }
+  }
+
+  // Post-processing:
+  // End Condition: left == right
+  if(left != nums.length && nums[left] == target) return left;
+  return -1;
+}
+```
+## 模板 3
+
+```java
+int binarySearch(int[] nums, int target) {
+    if (nums == null || nums.length == 0)
+        return -1;
+
+    int left = 0, right = nums.length - 1;
+    while (left + 1 < right){
+        // Prevent (left + right) overflow
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+
+    // Post-processing:
+    // End Condition: left + 1 == right
+    if(nums[left] == target) return left;
+    if(nums[right] == target) return right;
+    return -1;
+}
+```
+
+## 34. 在排序数组中查找元素的第一个和最后一个位置
+
+[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function(nums, target) {
+
+};
+```
+
+## 658. 找到 K 个最接近的元素
+
+[658. 找到 K 个最接近的元素](https://leetcode-cn.com/problems/find-k-closest-elements/)
+
+```js
+/**
+ * @param {number[]} arr
+ * @param {number} k
+ * @param {number} x
+ * @return {number[]}
+ */
+var findClosestElements = function(arr, k, x) {
+
+};
+```
+
+## 

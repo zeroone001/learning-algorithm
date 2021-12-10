@@ -1,5 +1,7 @@
 # learning-algorithm
 
+![Alt](https://repobeats.axiom.co/api/embed/fd8670d00c87c4765ace219f1918df86873b80ed.svg "Repobeats analytics image")
+
 ## 我最爱的MarkDown编辑软件
 
 [https://typora.io/](https://typora.io/)

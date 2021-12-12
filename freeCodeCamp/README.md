@@ -4,6 +4,8 @@
 
 # freeCodeCamp
 
+## 基础算法
+
 ## **将摄氏度转换为华氏度**
 
 ```js
@@ -69,5 +71,37 @@ function largestOfFour(arr) {
 }
 
 largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]);
+```
+
+## **确认结尾**
+
+```js
+function confirmEnding(str, target) {
+  const reg = new RegExp(target + '$')
+  return reg.test(str);
+}
+
+confirmEnding("Bastian", "n");
+```
+
+## **重复输出字符串**
+
+```js
+function repeatStringNumTimes(str, num) {
+  if (num < 1) return ''
+  let res = ''
+  while (num > 0) {
+    res += str;
+    num--;
+  }
+  return res;
+}
+
+repeatStringNumTimes("abc", 3);
+```
+
+## **截断字符串**
+
+```js
 ```
 

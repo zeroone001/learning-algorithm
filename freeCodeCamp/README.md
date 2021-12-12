@@ -113,3 +113,26 @@ function truncateString(str, num) {
 truncateString("A-tisket a-tasket A green and yellow basket", 8);
 ```
 
+## **按参数过滤数组**
+
+```js
+function findElement(arr, func) {
+  let num = arr.filter(item => {
+    return func(item);
+  });
+  return num[0];
+}
+
+findElement([1, 2, 3, 4], num => num % 2 === 0);
+```
+
+## **基本类型布尔值的检查**
+
+```js
+function booWho(bool) {
+  return typeof bool === 'boolean';
+}
+
+booWho(null);
+```
+

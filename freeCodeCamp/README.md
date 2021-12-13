@@ -280,3 +280,45 @@ function whatIsInAName(collection, source) {
 whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
 ```
 
+## **短线连接格式**
+
+```js
+function spinalCase(str) {
+  let reg = /\s+|_+/g
+  // 先把空格整出来
+  str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
+  return str.replace(reg, '-').toLowerCase();
+}
+
+spinalCase('This Is Spinal Tap');
+```
+
+## **儿童黑话**
+
+```js
+function translatePigLatin(str) {
+  const yuan = 'aeiou';
+  if (yuan.includes(str.charAt(0))) {
+    return str + 'way'
+  } else {
+    let index = 0;
+    while(!yuan.includes(str.charAt(index))) {
+      index++;
+    }
+    return str.slice(index) + str.slice(0, index) + 'ay'
+  }
+}
+
+translatePigLatin("consonant");
+```
+
+## **搜索与替换**
+
+```js
+function myReplace(str, before, after) {
+  return str;
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+```
+

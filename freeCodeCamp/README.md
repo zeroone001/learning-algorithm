@@ -204,3 +204,47 @@ function mutation([str1, str2]) {
 mutation(["hello", "hey"]);
 ```
 
+## **分割数组**
+
+```js
+function chunkArrayInGroups(arr, size) {
+  const res = []
+  let num = arr.length;
+  let index= 0;
+  while(index < num) {
+    res.push(arr.slice(index, index + size))
+    index += size;
+  }
+  return res;
+}
+
+chunkArrayInGroups(["a", "b", "c", "d"], 2);
+```
+
+
+
+## 中级算法
+
+## **范围内的数字求和**
+
+```js
+function sumAll([num1, num2]) {
+  const count = Math.abs(num2 - num1) +1;
+  const res = (num1 + num2) * count >> 1
+  return res;
+}
+
+sumAll([1, 4]);
+```
+
+## **数组的对称差**
+
+```js
+function diffArray(arr1, arr2) {
+  const newArr = [];
+  return newArr;
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+```
+

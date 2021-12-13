@@ -366,3 +366,34 @@ function fearNotLetter(str) {
 fearNotLetter("abce");
 ```
 
+## **集合排序**
+
+```js
+function uniteUnique(...args) {
+  const arr = args.flat(Infinity);
+  const set = new Set(arr);
+  return [...set];
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+```
+
+## **转换 HTML 字符实体**
+
+```js
+function convertHTML(str) {
+  const htmlEntities = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;"
+  };
+  return str.replace(/([&<>\"'])/g, m => {
+    return htmlEntities[m];
+  });
+}
+
+convertHTML("Dolce & Gabbana");
+```
+

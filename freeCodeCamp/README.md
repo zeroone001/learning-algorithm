@@ -176,5 +176,20 @@ bouncer([7, "ate", "", false, 9]);
 ## **找出元素在排序后数组中的索引**
 
 ```js
+function getIndexToIns(arr, num) {
+  const arr1 = arr.sort((a,b) => {
+    return a - b; 
+  });
+  for(let i = 0; i < arr1.length; i++) {
+    if (arr1[i] >= num) {
+      return i;
+    }
+  }
+  return arr1.length;
+}
+
+getIndexToIns([40, 60], 50);
 ```
+
+## **比较字符串**
 

@@ -241,10 +241,24 @@ sumAll([1, 4]);
 
 ```js
 function diffArray(arr1, arr2) {
-  const newArr = [];
-  return newArr;
+  return arr1.concat(arr2).filter(item => {
+    return !arr1.includes(item) || !arr2.includes(item)
+  });
 }
 
 diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+```
+
+## **过滤数组元素**
+
+```js
+function destroyer(arr, ...args) {
+
+  return arr.filter(item => {
+    return !args.includes(item);
+  });
+}
+
+destroyer([1, 2, 3, 1, 2, 3], 2, 3, 4);
 ```
 

@@ -136,3 +136,45 @@ function booWho(bool) {
 booWho(null);
 ```
 
+## **句中单词首字母大写**
+
+```js
+function titleCase(str) {
+  const arr = str.toLowerCase().split(/\s+/g);
+  const arr1 = arr.map(item => {
+    return item.charAt(0).toUpperCase() + item.slice(1) 
+  });
+
+  return arr1.join(' ');
+}
+
+titleCase("I'm a little tea pot");
+```
+
+## **Slice 与 Splice**
+
+```js
+function frankenSplice(arr1, arr2, n) {
+  return arr2.slice(0, n).concat(arr1).concat(arr2.slice(n));
+}
+
+frankenSplice([1, 2, 3], [4, 5, 6], 1);
+```
+
+## **过滤数组中的假值**
+
+```js
+function bouncer(arr) {
+  return arr.filter(item => {
+    return item
+  });
+}
+
+bouncer([7, "ate", "", false, 9]);
+```
+
+## **找出元素在排序后数组中的索引**
+
+```js
+```
+

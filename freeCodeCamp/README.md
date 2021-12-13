@@ -193,3 +193,14 @@ getIndexToIns([40, 60], 50);
 
 ## **比较字符串**
 
+```js
+function mutation([str1, str2]) {
+  const arr = str2.toLowerCase().split('');
+  return arr.every(item => {
+    return str1.toLowerCase().includes(item)
+  })
+}
+
+mutation(["hello", "hey"]);
+```
+

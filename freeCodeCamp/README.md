@@ -262,3 +262,21 @@ function destroyer(arr, ...args) {
 destroyer([1, 2, 3, 1, 2, 3], 2, 3, 4);
 ```
 
+## **找出包含特定键值对的对象**
+
+```js
+function whatIsInAName(collection, source) {
+  const arr = [];
+  // 只修改这一行下面的代码
+  const keys = Object.keys(source);
+  // 只修改这一行上面的代码
+  return collection.filter(item => {
+      return keys.every((key) => {
+          return item.hasOwnProperty(key) && item[key] === source[key]
+      })
+  });
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
+```
+

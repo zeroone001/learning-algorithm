@@ -316,9 +316,53 @@ translatePigLatin("consonant");
 
 ```js
 function myReplace(str, before, after) {
-  return str;
+  let reg = /^[A-Z]/g
+  if (reg.test(before)) {
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+  } else {
+    after = after.charAt(0).toLowerCase() + after.slice(1);
+  }
+  return str.replace(before, after);
 }
 
 myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+```
+
+## **DNA 配对**
+
+```js
+function pairElement(str) {
+  const obj = {
+    'A': 'T',
+    'T': 'A',
+    'C': 'G',
+    'G': 'C',
+  }
+  const res = []
+  for(let i = 0; i < str.length; i++) {
+    let a = [str[i], obj[str[i]]];
+    res.push(a);
+  }
+  return res;
+}
+
+pairElement("GCG");
+```
+
+## **寻找缺失的字母**
+
+```js
+function fearNotLetter(str) {
+  for(let i = 0; i< str.length; i++) {
+    let code = str.charCodeAt(i);
+    if (code !== str.charCodeAt(0) + i) {
+      return String.fromCharCode(code - 1);
+    }
+  }
+
+  return undefined
+}
+
+fearNotLetter("abce");
 ```
 

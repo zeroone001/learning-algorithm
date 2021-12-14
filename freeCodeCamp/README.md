@@ -622,3 +622,19 @@ orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
 
 
 
+# JS 算法和数据结构项目
+
+
+
+## **回文检查器**
+
+[**回文检查器**](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/javascript-algorithms-and-data-structures-projects/palindrome-checker)
+
+```js
+function palindrome(str) {
+  return true;
+}
+
+palindrome("eye");
+```
+

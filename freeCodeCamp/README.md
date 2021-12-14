@@ -509,5 +509,116 @@ steamrollArray([1, [2], [3, [[4]]]]);
 [翻译二进制字符串](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/binary-agents)
 
 ```js
+function binaryAgent(str) {
+    let res = [];
+    const arr = str.split(' ');
+  	return arr.map(item => {
+        let asciiCode = parseInt(item, 2);
+        let charValue = String.fromCharCode(asciiCode);
+        return charValue
+    }).join('');
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
 ```
+
+```js
+// 字符串转二进制
+function strToBinary (str) {
+    let list = str.split('');
+    return list.map(item => {
+        return item.charCodeAt().toString(2);
+    }).join(' ');
+}
+strToBinary('我们')
+```
+
+## **一切都是True**
+
+```js
+function truthCheck(collection, pre) {
+  return collection.every(item => {
+    return item[pre]
+  });
+}
+
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+```
+
+## **可选参数**
+
+```js
+function addTogether(...args) {
+  if (args.length === 1) {
+    let a = args[0]
+    if (typeof a === 'number') {
+      return function (b) {
+        return typeof b === 'number' ? a+b : undefined;
+      }
+    }
+  } else {
+    if (typeof args[0] === 'number' && typeof args[1] === 'number') {
+      return args[0] + args[1]
+    }
+  }
+  return undefined;
+}
+
+addTogether(2,3);
+```
+
+## **创建一个人员对象**
+
+```js
+const Person = function(firstAndLast) {
+  // 只修改这一行下面的代码
+  // 完成下面的方法，其余的执行类似
+  var firstAndLast = firstAndLast;
+  this.getFullName = function() {
+    return firstAndLast;
+  };
+  this.getFirstName = function() {
+    return firstAndLast.split(' ')[0];
+  };
+  this.getLastName = function() {
+    return firstAndLast.split(' ')[1];
+  };
+  this.setFirstName = function(str) {
+    firstAndLast = `${str} ${firstAndLast.split(' ')[1]}`
+  };
+  this.setLastName = function(str) {
+    firstAndLast = `${firstAndLast.split(' ')[0]} ${str}`
+  };
+  this.setFullName = function(str) {
+    firstAndLast = str;
+  };
+  
+};
+
+const bob = new Person('Bob Ross');
+bob.getFullName();
+```
+
+## **计算轨道周期**
+
+```js
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+  const newArr = JSON.parse(JSON.stringify(arr));
+  newArr.forEach(function(item) {
+    const tmp = Math.round(
+      2 * Math.PI * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM)
+    );
+    delete item.avgAlt;
+    item.orbitalPeriod = tmp;
+  });
+
+  return newArr;
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+```
+
+
 

@@ -449,9 +449,36 @@ sumPrimes(10);
 
 ```js
 function smallestCommons(arr) {
-  return arr;
+    const [min, max] = arr.sort((a,b) => a-b);
+    // 先生成一个排序数组
+    const rangeArr = Array(max-min+1).fill(0).map((item, index) => {
+        return min+index;
+    });
+    // 计算一个所有值的乘积
+    const upper = rangeArr.reduce((prev, cur) => {
+        return prev * cur;
+    });
+    // 循环找到最小的公倍数
+    for (let i = max; i <= upper; i+=max ) {
+        const p = rangeArr.every(item => {
+            return i % item === 0;
+        });
+        if (p) {
+            return i;
+        }
+    }
 }
 
 smallestCommons([1,5]);
+```
+
+## **根据参数删除数组元素**
+
+```js
+function dropElements(arr, func) {
+  return arr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });
 ```
 

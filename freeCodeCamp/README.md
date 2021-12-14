@@ -397,3 +397,61 @@ function convertHTML(str) {
 convertHTML("Dolce & Gabbana");
 ```
 
+## **求斐波那契数列中的奇数之和**
+
+```js
+function sumFibs(num) {
+    let prev = 0;
+    let cur = 1;
+    let res = 0;
+    while(cur <= num) {
+        if (cur % 2 != 0) {
+            // 奇数
+            res += cur;
+        }
+        cur = prev + cur;
+        prev = cur - prev;
+    }
+  return res;
+}
+
+sumFibs(4);
+```
+
+## **质数求和**
+
+```js
+function sumPrimes(num) {
+    let res = 0;
+    let cur = 2;
+    function isPrime (num) {
+        for(let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false
+            }
+            
+        }
+        return true;
+    }
+    while (cur <= num) {
+        if(isPrime(cur)) {
+            res += cur;
+        }
+        cur += 1;
+    }
+  return res;
+}
+
+sumPrimes(10);
+```
+
+## **找出数字范围内的最小公倍数**
+
+```js
+function smallestCommons(arr) {
+  return arr;
+}
+
+smallestCommons([1,5]);
+```
+

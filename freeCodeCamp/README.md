@@ -476,9 +476,38 @@ smallestCommons([1,5]);
 
 ```js
 function dropElements(arr, func) {
+  while(arr.length && !func(arr[0])) {
+    arr.shift();
+  }
   return arr;
 }
 
 dropElements([1, 2, 3], function(n) {return n < 3; });
+```
+
+## **数组扁平化**
+
+不能使用 `arr.flat(Infinity)`
+
+那么只能使用递归来解决了，可以使用for 循环判断元素有没有数据，然后递归
+
+下面是另一种递归
+
+```js
+function steamrollArray(arr) {
+ 	const res = [].concat(...arr);
+    return res.some(item => {
+        return Array.isArray(item) 
+    }) ? steamrollArray(res) : res
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+```
+
+## **翻译二进制字符串**
+
+[翻译二进制字符串](https://chinese.freecodecamp.org/learn/javascript-algorithms-and-data-structures/intermediate-algorithm-scripting/binary-agents)
+
+```js
 ```
 

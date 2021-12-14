@@ -632,9 +632,59 @@ orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
 
 ```js
 function palindrome(str) {
-  return true;
+  const str1 = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  let left = 0;
+  let right = str1.length - 1;
+  while (left < right && str1[left] === str1[right]) {
+    left++;
+    right--;
+  }
+
+  return str1[left] === str1[right];
 }
 
 palindrome("eye");
+```
+
+## **罗马数字转换器**
+
+```js
+function convertToRoman(num) {
+  var roman =  {"M" :1000, "CM":900, "D":500, "CD":400, "C":100, "XC":90, "L":50, "XL":40, "X":10, "IX":9, "V":5, "IV":4, "I":1};
+  var str = "";
+
+  for (var i of Object.keys(roman) ) {
+    var q = Math.floor(num / roman[i]);
+    num -= q * roman[i];
+    str += i.repeat(q);
+  }
+
+  return str;
+}
+
+convertToRoman(36);
+```
+
+## **凯撒密码**
+
+```js
+function rot13(str) {
+  let left = 'A'.charCodeAt();
+  let right = 'Z'.charCodeAt();
+  return str.replace(/[A-Z]/g, match => {
+    let code = match.charCodeAt() - 13;
+    if (code < left) {
+      code = match.charCodeAt() + 13;
+    }
+    return String.fromCharCode(code)
+  });
+}
+
+rot13("SERR PBQR PNZC");
+```
+
+## **电话号码检查器**
+
+```js
 ```
 

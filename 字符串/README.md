@@ -54,6 +54,4 @@ function palindrome(s, l, r) {
     }
     return s.slice(l + 1, r);
 }
-
-
 ```

@@ -1,3 +1,5 @@
+# 数组
+
 ## 674. 最长连续递增序列
 
 [https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)

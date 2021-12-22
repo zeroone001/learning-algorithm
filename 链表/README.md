@@ -12,6 +12,43 @@
 
 链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成
 
+## 插入
+
+```js
+temp = 待插入位置的前驱节点.next
+待插入位置的前驱节点.next = 待插入指针
+待插入指针.next = temp
+```
+
+## 删除
+
+只需要将需要删除的节点的前驱指针的 next 指针修正为其下下个节点即可，注意考虑边界条件。
+
+```js
+待删除位置的前驱节点.next = 待删除位置的前驱节点.next.next
+```
+
+## 遍历
+
+```js
+/* 迭代 */
+当前指针 =  头指针
+while 当前节点不为空 {
+   print(当前节点)
+   当前指针 = 当前指针.next
+}
+/* 一个前序遍历的递归的伪代码： */
+dfs(cur) {
+    if 当前节点为空 return
+    print(cur.val)
+    return dfs(cur.next)
+}
+/* 链表的尾部添加一个节点 */
+// 假设 tail 是链表的尾部节点
+tail.next = new ListNode('lucifer')
+tail = tail.next
+```
+
 ## 206. 反转链表
 
 [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
@@ -43,10 +80,9 @@ var reverseList = function(head) {
 };
 ```
 
-## 23. 合并K个升序链表
+## 23. 合并K个升序链表 （困难）
 
-https://leetcode-cn.com/problems/merge-k-sorted-lists/
-
+[23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
 
 ```js
 /**
@@ -98,6 +134,57 @@ var mergeLists = function (arr) {
 var mergeKLists = function(lists) {
 	if (lists.length === 0) return null;
   return mergeLists(lists);
+};
+```
+
+## 25. K 个一组翻转链表 （困难）
+
+
+[25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+/* 这个题目用到了递归和链表的反转 */
+var reverseLists = function (head, end) {
+    // end 节点 用于终止reverse
+    let current = head;
+    let prev = head;
+
+    while (current != end) {
+        let tmp = current.next;
+        current.next = prev;
+        prev = current;
+        current = tmp;
+    }
+    return prev;
+
+};
+var reverseKGroup = function(head, k) {
+    let left = head; 
+    let right = head;
+
+    for (let i= 0; i < k; i++) {
+        // 这里的意思是，如果不到k个链表就没有了，说明就不反转了
+        if (right == null) return head;
+        right = right.next;
+    }
+    // 此时，left是头节点，right是一组的尾节点
+
+    let newHead = reverseLists(left, right);
+    // 这里是转换之后的
+    left.next = reverseKGroup(right, k);
+    return newHead;
 };
 ```
 
@@ -715,5 +802,136 @@ let mergeSortList = function (head) {
 
 ```
 
+
+
+
+## 141. 环形链表
+
+[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/* 
+    使用快慢指针的方式去解决这个问题
+慢指针走一步，快指针走两步，那么假如有环的话，慢指针会等于快指针
+*/
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+    let slow = head;
+    let fast = head;
+
+    while (slow && fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow == fast) return true;
+    }
+    return false;
+};
+```
+
+## 160. 相交链表
+
+[160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
+
+### 解析
+
+
+使用双指针的方式
+
+情况一：两个链表相交
+
+链表headA 和headB 的长度分别是 mm 和 nn。假设链表 headA 的不相交部分有 aa 个节点，链表 headB 的不相交部分有 bb 个节点，两个链表相交的部分有 cc 个节点，则有 a+c=m，b+c=n。
+
+如果 a=b，则两个指针会同时到达两个链表相交的节点，此时返回相交的节点；
+
+如果 a 不等于b，则指针 pA 会遍历完链表 headA，指针 pB 会遍历完链表headB，两个指针不会同时到达链表的尾节点，然后指针 pA 移到链表 headB 的头节点，指针 pB 移到链表headA 的头节点，然后两个指针继续移动，在指针 pA 移动了 a+c=c+b 次、指针pB 移动了 b+c = c+a 次之后，两个指针会同时到达两个链表相交的节点，该节点也是两个指针第一次同时指向的节点，此时返回相交的节点。
+
+情况二：两个链表不相交
+
+链表headA 和 headB 的长度分别是 mm 和 nn。考虑当 m=n 和 m 不等于 n  时，两个指针分别会如何移动：
+
+如果 m=n，则两个指针会同时到达两个链表的尾节点，然后同时变成空值null，此时返回null；
+
+如果 m 不等于n，则由于两个链表没有公共节点，两个指针也不会同时到达两个链表的尾节点
+
+[https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/xiang-jiao-lian-biao-by-leetcode-solutio-a8jn/](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/xiang-jiao-lian-biao-by-leetcode-solutio-a8jn/)
+
+
+
+
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(headA, headB) {
+    let a = headA;
+  let b = headB;
+  if (!a || !b) return null;
+  while (a !== b) {
+    // 这里非常非常巧妙，分为相交和不相交两种情况
+    a = a == null ? headB : a.next;
+    b = b == null ? headA : b.next;
+  }
+  return a;
+};
+```
+
+## 206. 反转链表
+
+[206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const reverseList = (head) => {
+    let current = head;
+    let prev = null;
+    let next = head;
+
+    while (current) {
+        next = current.next;
+        current.next = prev;
+
+        prev = current;
+
+        current = next;
+    }
+    return prev;
+
+};
+
+var node2 = {val: 1, next: {val:2, next: {val: 3}}};
+
+reverseList(node2);
+```
 
 

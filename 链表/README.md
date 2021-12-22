@@ -1,5 +1,7 @@
 # 链表
 
+> [github](https://github.com/zeroone001/learning-algorithm/tree/main/%E9%93%BE%E8%A1%A8)
+
 各种数据结构，不管是队列，栈等线性数据结构还是树，图的等非线性数据结构，
 从根本上底层都是数组和链表。
 
@@ -190,11 +192,7 @@ var getIntersectionNode = function(headA, headB) {
 };
 ```
 
-## 两两交换链表中的节点
-
-
-给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。
-你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
+## 24. 两两交换链表中的节点
 
 [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
@@ -251,8 +249,7 @@ node2.next = node1
 
 ```
 
-
-## 判断链表是否有环  环形链表
+## 141. 环形链表
 
 使用快慢指针来处理问题
 
@@ -720,4 +717,6 @@ let mergeSortList = function (head) {
 }
 
 ```
+
+
 

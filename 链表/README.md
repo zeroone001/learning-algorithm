@@ -486,7 +486,6 @@ var copyRandomList = function(head) {
 
 4. 链表中环的检测
 
-5. 两个有序的链表合并
 
 ## 21. 合并两个有序链表
 

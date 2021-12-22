@@ -488,6 +488,8 @@ var copyRandomList = function(head) {
 
 5. 两个有序的链表合并
 
+## 21. 合并两个有序链表
+
 [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 
 利用了归并排序的算法
@@ -528,7 +530,9 @@ var mergeTwoLists = function(l1, l2) {
 };
 ```
 
-6. 删除链表倒数第 n 个结点
+## 19. 删除链表的倒数第 N 个结点
+
+删除链表倒数第 n 个结点
 
 方案一， 循环遍历一遍，然后，计算出在第几个是要删除的节点，然后删除
 方案二，快慢指针，快指针先走n个节点，然后，再一起走，最后，快指针指向null，慢指针就是要删除的倒数第N个节点
@@ -575,7 +579,7 @@ var removeNthFromEnd = function(head, n) {
 };
 ```
 
-7. 求链表的中间结点
+## 876. 链表的中间结点
 
 [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
 
@@ -607,9 +611,7 @@ var middleNode = function(head) {
 ```
 
 
-
-#### 回文链表
-
+## 234. 回文链表
 
 
 给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
@@ -672,10 +674,7 @@ var isPalindrome = function(head) {
 ```
 
 
-
-#### 两两交换链表中的节点
-
-
+## 24. 两两交换链表中的节点
 
 [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
@@ -732,11 +731,9 @@ var swapPairs = function(head) {
 
 
 
-#### 链表排序
+## 剑指 Offer II 077. 链表排序
 
-
-
-[leetcode地址](https://leetcode-cn.com/problems/7WHec2/)
+[剑指 Offer II 077. 链表排序](https://leetcode-cn.com/problems/7WHec2/)
 
 ```js
 /**
@@ -802,9 +799,6 @@ let mergeSortList = function (head) {
 
 ```
 
-
-
-
 ## 141. 环形链表
 
 [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
@@ -844,7 +838,6 @@ var hasCycle = function(head) {
 
 ### 解析
 
-
 使用双指针的方式
 
 情况一：两个链表相交
@@ -862,12 +855,6 @@ var hasCycle = function(head) {
 如果 m=n，则两个指针会同时到达两个链表的尾节点，然后同时变成空值null，此时返回null；
 
 如果 m 不等于n，则由于两个链表没有公共节点，两个指针也不会同时到达两个链表的尾节点
-
-[https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/xiang-jiao-lian-biao-by-leetcode-solutio-a8jn/](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/xiang-jiao-lian-biao-by-leetcode-solutio-a8jn/)
-
-
-
-
 
 ```js
 /**

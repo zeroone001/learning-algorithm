@@ -1,6 +1,14 @@
 # 链表
 
+各种数据结构，不管是队列，栈等线性数据结构还是树，图的等非线性数据结构，
+从根本上底层都是数组和链表。
 
+不管你用的是数组还是链表，用的都是计算机内存，
+物理内存是一个个大小相同的内存单元构成的
+
+链表是一种物理存储单元上非连续、非顺序的存储结构
+
+链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成
 
 ## 1. 经典，反转链表 
 
@@ -33,6 +41,64 @@ var reverseList = function(head) {
         current = tmp;
     }
     return prev;
+};
+```
+
+## 23. 合并K个升序链表
+
+https://leetcode-cn.com/problems/merge-k-sorted-lists/
+
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+// 归并排序
+/* 
+这个题目主要是用归并排序去解决
+
+按照归并排序去写，分治的思想
+*/
+var merge = function(left, right) {
+  if (left == null && right == null) {return null;}
+  if (left != null && right == null) return left;
+  if (left == null && right != null) return right;
+
+  let result = new ListNode(0);
+  let current = result;
+
+  while (left && right) {
+    if (left.val < right.val) {
+      current.next = left;
+      left = left.next;
+    } else {
+      current.next = right;
+      right = right.next;
+    }
+    current = current.next;
+  }
+  current.next = left || right;
+  return result.next;
+};
+
+var mergeLists = function (arr) {
+  if (arr.length <= 1) return arr[0];
+  let middleIndex = Math.floor(arr.length / 2);
+  let left = mergeLists(arr.slice(0, middleIndex));
+  let right = mergeLists(arr.slice(middleIndex, arr.length));
+  return merge(left, right);
+}
+var mergeKLists = function(lists) {
+	if (lists.length === 0) return null;
+  return mergeLists(lists);
 };
 ```
 

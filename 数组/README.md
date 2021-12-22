@@ -1,32 +1,65 @@
 # 数组
 
+>有没有想过为啥只有二叉树，而没有一叉树。实际上链表就是特殊的树，即一叉树
+
+对数组头部的插入和删除时间复杂度都是$O(N)$，而平均复杂度也是$O(N)$，
+只有对尾部的插入和删除才是$O(1)$
+
+数组对查询特别友好，对删除和添加不友好
+
+## 将多维数组扁平化
+
+```js
+let arr = [
+    [1,2,3],
+    [5,6,7],
+    [10]
+];
+
+// es6 flat
+console.log(arr.flat(2));
+
+// 方案二 转换为string
+
+arr = arr.toString().split(',').map(item => parseInt(item));
+
+// 三 循环迭代
+let arr = [
+    [1,2,3],
+    [5,6,7],
+    [10]
+];
+while (arr.some((item) => Array.isArray(item))) {
+    arr = [].concat(...arr);
+    arr = [...arr]; // 这个是错误的，因为展开后还是本身
+}
+console.log(arr);
+// 递归
+// for 循环，然后把不是
+let arr = [
+    [1,2,3],
+    [5,6,7],
+    [10]
+];
+(function() {
+    let result = [];
+    let _fn = (_arr) => {
+        for (let index = 0; index < _arr.length; index++) {
+            const element = _arr[index];
+            if (Array.isArray(element)) {
+                _fn(element)
+            }
+            result.push(element)
+            
+        }
+    }
+    _fn(arr);
+    return result;
+})()
+```
 ## 674. 最长连续递增序列
 
-[https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
-
-#### 描述
-
-给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
-
-连续递增的子序列 可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。
-
-#### 示例
-
-```shell
-输入：nums = [1,3,5,4,7]
-输出：3
-解释：最长连续递增序列是 [1,3,5], 长度为3。
-尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。 
-```
-
-
-
-#### 题解
-
-利用双指针来解决这个问题，
-
-通过迭代，不断的计算一个最大的递增数
-
+[674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
 
 
 ```js
@@ -34,6 +67,10 @@
  * @param {number[]} nums
  * @return {number}
  */
+/* 
+  利用双指针来解决这个问题，
+通过迭代，不断的计算一个最大的递增数
+*/
 var findLengthOfLCIS = function(nums) {
 	const num = nums.length;
   if (nums === 0) return 0;
@@ -53,9 +90,6 @@ var findLengthOfLCIS = function(nums) {
     maxValue = Math.max(count, maxValue);
   }
   return maxValue;
-  
-  
-  
 };
 ```
 

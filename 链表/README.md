@@ -2,15 +2,16 @@
 
 > [github](https://github.com/zeroone001/learning-algorithm/tree/main/%E9%93%BE%E8%A1%A8)
 
-各种数据结构，不管是队列，栈等线性数据结构还是树，图的等非线性数据结构，
+1. 各种数据结构，不管是队列，栈等线性数据结构还是树，图的等非线性数据结构，
 从根本上底层都是数组和链表。
-
-不管你用的是数组还是链表，用的都是计算机内存，
+2. 不管你用的是数组还是链表，用的都是计算机内存，
 物理内存是一个个大小相同的内存单元构成的
-
-链表是一种物理存储单元上非连续、非顺序的存储结构
-
-链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成
+3. 链表是一种物理存储单元上非连续、非顺序的存储结构
+4. 链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成
+5. 绝大多数的题目都是单链表，而单链表只有一个后继指针。因此只有前序和后序，没有中序遍历。
+6. 指针操作是链表的核心
+7. 快慢指针： 要找链表中间项就搞两个指针，一个大步走（一次走两步），一个小步走（一次走一步），这样快指针走到头，慢指针刚好在中间；
+8. 
 
 ## 插入
 
@@ -53,6 +54,8 @@ tail = tail.next
 
 [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
 
+最经典的一道题目了
+
 双指针解决这个问题
 
 ```js
@@ -68,7 +71,9 @@ tail = tail.next
  * @return {ListNode}
  */
 var reverseList = function(head) {
+    /* 当前指针的前指针， 新增这个指针来处理反转的问题 */
     let prev = null;
+    /* 遍历节点的当前指针 */
     let current = head;
     while (current) {
         let tmp = current.next;
@@ -80,113 +85,85 @@ var reverseList = function(head) {
 };
 ```
 
-## 23. 合并K个升序链表 （困难）
 
-[23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+## 141. 环形链表
+
+使用快慢指针来处理问题
+
+[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
 
 ```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode[]} lists
- * @return {ListNode}
- */
-// 归并排序
-/* 
-这个题目主要是用归并排序去解决
-
-按照归并排序去写，分治的思想
+/*
+    解决方案： 
+    1. 硬做，定个0.5秒的时间
+    2. Set 判断是否重复，时间复杂度， O(n*1)
+    3. 快慢指针。 如果有环的话，快慢会相遇
 */
-var merge = function(left, right) {
-  if (left == null && right == null) {return null;}
-  if (left != null && right == null) return left;
-  if (left == null && right != null) return right;
-
-  let result = new ListNode(0);
-  let current = result;
-
-  while (left && right) {
-    if (left.val < right.val) {
-      current.next = left;
-      left = left.next;
-    } else {
-      current.next = right;
-      right = right.next;
-    }
-    current = current.next;
-  }
-  current.next = left || right;
-  return result.next;
-};
-
-var mergeLists = function (arr) {
-  if (arr.length <= 1) return arr[0];
-  let middleIndex = Math.floor(arr.length / 2);
-  let left = mergeLists(arr.slice(0, middleIndex));
-  let right = mergeLists(arr.slice(middleIndex, arr.length));
-  return merge(left, right);
-}
-var mergeKLists = function(lists) {
-	if (lists.length === 0) return null;
-  return mergeLists(lists);
-};
-```
-
-## 25. K 个一组翻转链表 （困难）
-
-
-[25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
 /**
  * @param {ListNode} head
- * @param {number} k
+ * @return {boolean}
+ */
+ var hasCycle = function(head) {
+    let fast = head;
+    let slow = head;
+    // 如果不是环形的话，那么fast是先走到底的
+    // slow 走一步， fast走两步
+    while (slow && fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+
+        if (slow === fast) return true; 
+    }
+    return false;
+};
+
+```
+
+## 142. 环形链表 II
+
+[142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+1. 这个题目有个简单解法，就是加一个flag，但是，有个犯规的意思了，
+随着遍历每一个节点都加一个flag，如果，下一个节点有了这个flag，说明找到了这个节点了
+
+2. 正常考察的还是双指针的使用方法
+
+第一步，双指针开始迭代，等到，两个指针相遇
+第二步，再建一个从头开始的指针p, p和slow 开始循环，等到两个相遇，就是循环的入口
+
+这里面其实涉及到了数学的逻辑，算出来的
+
+```js
+/**
+ * @param {ListNode} head
  * @return {ListNode}
  */
-/* 这个题目用到了递归和链表的反转 */
-var reverseLists = function (head, end) {
-    // end 节点 用于终止reverse
-    let current = head;
-    let prev = head;
+var detectCycle = function(head) {
+    let fast = head；
+    let slow = head;
 
-    while (current != end) {
-        let tmp = current.next;
-        current.next = prev;
-        prev = current;
-        current = tmp;
+    while (fast !== null) {
+        slow = slow.next;
+        if (fast.next !== null) {
+            fast = fast.next.next;
+        } else {
+            return null;
+        }
+        // 先找到快慢指针相遇的地方
+        if (slow === fast) {
+            let p = head;
+            // 再次开始迭代
+            while (p !== slow) {
+                p = p.next;
+                slow = slow.next;
+            }
+            return p;
+        }
     }
-    return prev;
-
-};
-var reverseKGroup = function(head, k) {
-    let left = head; 
-    let right = head;
-
-    for (let i= 0; i < k; i++) {
-        // 这里的意思是，如果不到k个链表就没有了，说明就不反转了
-        if (right == null) return head;
-        right = right.next;
-    }
-    // 此时，left是头节点，right是一组的尾节点
-
-    let newHead = reverseLists(left, right);
-    // 这里是转换之后的
-    left.next = reverseKGroup(right, k);
-    return newHead;
+    return null;
 };
 ```
+
 
 ## 92. 反转链表 II
 
@@ -244,6 +221,61 @@ var reverseBetween = function(head, left, right) {
 ```
 
 
+
+## 61. 旋转链表
+
+[61. 旋转链表](https://leetcode-cn.com/problems/rotate-list/)
+
+闭合为环
+
+1. 先获取链表的长度
+2. 计算要转的次数，n - k % n;
+3. 把链表闭合为环，进行旋转while
+4. 最后指针指向最后一个节点
+5. 截断为null
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function rotateRight(head: ListNode | null, k: number): ListNode | null {
+    if (k === 0 || head === null || head.next === null) {
+        return head;
+    }
+    let n:number = 1; // 链表的长度
+    let cur: ListNode = head; // 当前指针 
+    while (cur.next) {
+        cur = cur.next;
+        n += 1;
+    }
+
+    let addNumber: number = n - k % n; /* 相当于转圈，取余数 */
+    /* 正好转到最后，新链表将与原链表相同 */
+    if (addNumber === n) {
+        return head;
+    }
+    /* 现在 cur 指向链表的最后一个节点，现在需要连成一个圈 */
+    cur.next = head;
+    while (addNumber) {
+        cur = cur.next;
+        addNumber -= 1;
+    }
+    /* 这个时候，cur 指向了新链表的最后一个节点 */
+    let res: ListNode = cur.next;
+    /* 截断链表 */
+    cur.next = null;
+    return res;
+};
+```
 
 ## 160. 相交链表
 
@@ -331,84 +363,6 @@ node2.next = node1
 
 */
 
-```
-
-## 141. 环形链表
-
-使用快慢指针来处理问题
-
-[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
-
-```js
-/*
-    解决方案： 
-    1. 硬做，定个0.5秒的时间
-    2. Set 判断是否重复，时间复杂度， O(n*1)
-    3. 快慢指针。 如果有环的话，快慢会相遇
-*/
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
- var hasCycle = function(head) {
-    let fast = head;
-    let slow = head;
-    // 如果不是环形的话，那么fast是先走到底的
-    // slow 走一步， fast走两步
-    while (slow && fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-
-        if (slow === fast) return true; 
-    }
-    return false;
-};
-
-```
-
-## 142. 环形链表 II
-
-[142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
-
-1. 这个题目有个简单解法，就是加一个flag，但是，有个犯规的意思了，
-随着遍历每一个节点都加一个flag，如果，下一个节点有了这个flag，说明找到了这个节点了
-
-2. 正常考察的还是双指针的使用方法
-
-第一步，双指针开始迭代，等到，两个指针相遇
-第二步，再建一个从头开始的指针p, p和slow 开始循环，等到两个相遇，就是循环的入口
-
-这里面其实涉及到了数学的逻辑，算出来的
-
-```js
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var detectCycle = function(head) {
-    let fast = head；
-    let slow = head;
-
-    while (fast !== null) {
-        slow = slow.next;
-        if (fast.next !== null) {
-            fast = fast.next.next;
-        } else {
-            return null;
-        }
-        // 先找到快慢指针相遇的地方
-        if (slow === fast) {
-            let p = head;
-            // 再次开始迭代
-            while (p !== slow) {
-                p = p.next;
-                slow = slow.next;
-            }
-            return p;
-        }
-    }
-    return null;
-};
 ```
 
 ## 86. 分隔链表
@@ -798,39 +752,6 @@ let mergeSortList = function (head) {
 
 ```
 
-## 141. 环形链表
-
-[141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/* 
-    使用快慢指针的方式去解决这个问题
-慢指针走一步，快指针走两步，那么假如有环的话，慢指针会等于快指针
-*/
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
-var hasCycle = function(head) {
-    let slow = head;
-    let fast = head;
-
-    while (slow && fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-        if (slow == fast) return true;
-    }
-    return false;
-};
-```
-
 ## 160. 相交链表
 
 [160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
@@ -921,3 +842,203 @@ reverseList(node2);
 ```
 
 
+
+
+## 23. 合并K个升序链表 （困难）
+
+[23. 合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+// 归并排序
+/* 
+这个题目主要是用归并排序去解决
+
+按照归并排序去写，分治的思想
+*/
+var merge = function(left, right) {
+  if (left == null && right == null) {return null;}
+  if (left != null && right == null) return left;
+  if (left == null && right != null) return right;
+
+  let result = new ListNode(0);
+  let current = result;
+
+  while (left && right) {
+    if (left.val < right.val) {
+      current.next = left;
+      left = left.next;
+    } else {
+      current.next = right;
+      right = right.next;
+    }
+    current = current.next;
+  }
+  current.next = left || right;
+  return result.next;
+};
+
+var mergeLists = function (arr) {
+  if (arr.length <= 1) return arr[0];
+  let middleIndex = Math.floor(arr.length / 2);
+  let left = mergeLists(arr.slice(0, middleIndex));
+  let right = mergeLists(arr.slice(middleIndex, arr.length));
+  return merge(left, right);
+}
+var mergeKLists = function(lists) {
+	if (lists.length === 0) return null;
+  return mergeLists(lists);
+};
+```
+
+## 25. K 个一组翻转链表 （困难）
+
+
+[25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+/* 这个题目用到了递归和链表的反转 */
+var reverseLists = function (head, end) {
+    // end 节点 用于终止reverse
+    let current = head;
+    let prev = head;
+
+    while (current != end) {
+        let tmp = current.next;
+        current.next = prev;
+        prev = current;
+        current = tmp;
+    }
+    return prev;
+
+};
+var reverseKGroup = function(head, k) {
+    let left = head; 
+    let right = head;
+
+    for (let i= 0; i < k; i++) {
+        // 这里的意思是，如果不到k个链表就没有了，说明就不反转了
+        if (right == null) return head;
+        right = right.next;
+    }
+    // 此时，left是头节点，right是一组的尾节点
+
+    let newHead = reverseLists(left, right);
+    // 这里是转换之后的
+    left.next = reverseKGroup(right, k);
+    return newHead;
+};
+```
+
+## 83. 删除排序链表中的重复元素（easy）
+
+[83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+
+};
+```
+
+## 82. 删除排序链表中的重复元素 II（ Medium）
+
+[82. 删除排序链表中的重复元素 II](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+
+};
+```
+
+## 143. 重排链表 (Medium)
+
+[143. 重排链表](https://leetcode-cn.com/problems/reorder-list/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+/**
+ Do not return anything, modify head in-place instead.
+ */
+function reorderList(head: ListNode | null): void {
+
+};
+```
+
+## 148. 排序链表 (Medium)
+
+[148. 排序链表](https://leetcode-cn.com/problems/sort-list/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function sortList(head: ListNode | null): ListNode | null {
+
+};
+```

@@ -1080,8 +1080,48 @@ function reorderList(head: ListNode | null): void {
  *     }
  * }
  */
-
-function sortList(head: ListNode | null): ListNode | null {
-
+/* 两个链表合成一个有序的链表 */
+var merge = function (left, right) {
+   let result = new ListNode(0);
+   let current = result;
+   while (left && right){
+         if (left.val < right.val) {
+           current.next = left;
+           left = left.next;
+         } else {
+           current.next = right;
+           right = right.next;
+         }
+     current = current.next;
+   }
+   current.next = left || right;
+   return result.next
+ }
+ /* 快慢指针获取中间节点 */
+var getMiddleNode = function (head) {
+  let fast = head;
+  let slow = head;
+  while (fast !== null && fast.next !== null && fast.next.next !== null) {
+         fast = fast.next.next;
+    slow = slow.next;
+         }
+  return slow;
+}
+var mergeSort = function (head) {
+    // 需要一个结束条件
+  if (!head || !head.next) return head;
+  // 获取中间节点
+  let middle = getMiddleNode(head);
+  let tmp = JSON.parse(JSON.stringify(middle.next));
+  middle.next = null;
+  
+  let left = head;
+  let right = tmp;
+  return merge(mergeSort(left), mergeSort(right));
+}
+// 归并排序
+var sortList = function(head) {
+  if (!head || !head.next) return head;
+	return mergeSort(head);
 };
 ```

@@ -12,12 +12,9 @@ function mergeSort(arr) {
 // 递归
 function mergeSortRec (arr) {
     if (arr.length <= 1) return arr;
-
     let mid = Math.floor(arr.length / 2);
-
     let leftArr = arr.slice(0, mid);
     let rightArr = arr.slice(mid, arr.length);
-
     return merge(mergeSortRec(leftArr), mergeSortRec(rightArr));
 }
 
@@ -44,8 +41,5 @@ function merge (leftArr, rightArr) {
         result.push(rightArr[righti]);
         righti++;
     }
-
     return result;
 }
-
-

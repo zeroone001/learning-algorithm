@@ -121,7 +121,6 @@ function selectionSort (arr) {
 }
 ```
 
-### 参考资料
 
 ## 三种排序O(nlogn) 归并排序 快速排序 希尔排序
 

@@ -1041,10 +1041,26 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
  */
 
 /**
- Do not return anything, modify head in-place instead.
+ 1. 把链表的每个节点都存在数组里
+ 2. 遍历数组进行新的链表的拼接
  */
 function reorderList(head: ListNode | null): void {
+    const arr = [];
+    /* arr 把链表每个字段存起来 */
+    while (head) {
+        let tmp = head.next;
+        head.next = null;
+        arr.push(head);
+        head = tmp;
+    }
 
+    /* 开始拼接 */
+    let cur = arr.shift();
+    let i = 0;
+    while (arr.length) {
+        cur.next = i++ % 2 === 0 ? arr.pop() : arr.shift();
+        cur = cur.next;
+    }
 };
 ```
 

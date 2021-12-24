@@ -968,9 +968,19 @@ var reverseKGroup = function(head, k) {
  *     }
  * }
  */
-
+/* 
+    原理， 1. 遍历，当前的节点跟下一个节点进行比较，如果相等，就指向下一个节点的下一个节点
+*/
 function deleteDuplicates(head: ListNode | null): ListNode | null {
-    
+    let cur: ListNode = head;
+    while (cur && cur.next) {
+        if (cur.val === cur.next.val) {
+            cur.next = cur.next.next;
+        } else {
+            cur = cur.next;
+        }
+    }
+    return head;
 };
 ```
 

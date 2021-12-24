@@ -970,7 +970,7 @@ var reverseKGroup = function(head, k) {
  */
 
 function deleteDuplicates(head: ListNode | null): ListNode | null {
-
+    
 };
 ```
 

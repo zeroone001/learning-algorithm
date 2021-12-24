@@ -134,6 +134,10 @@ function selectionSort (arr) {
 
 原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
 
+1. 分解
+2. 解决
+3. 合并
+
 ```js
 function mergeSort(arr) {
   let array = mergeSortRec(arr)
@@ -144,23 +148,28 @@ function mergeSort(arr) {
 // 直到分裂后的数组长度都为 1，
 // 然后合并小数组
 function mergeSortRec(arr) {
+    /* 0. 拆解到最小 */
   let length = arr.length
   if(length === 1) {
     return arr
   }
+  /* 1. 获取中点，拆分数组 */
   let mid = Math.floor(length / 2),
       left = arr.slice(0, mid),
       right = arr.slice(mid, length)
+    /* 3. 合并 */
   return merge(mergeSortRec(left), mergeSortRec(right))
 }
 
 // 顺序合并两个小数组left、right 到 result
+/* 2. 解决顺序问题 */
 function merge(left, right) {
   let result = [],
       ileft = 0,
-      iright = 0
+      iright = 0;
+    /* left, right  数组是有序的 */
   while(ileft < left.length && iright < right.length) {
-    if(left[ileft] < right[iright]){
+    if(left[ileft] < right[iright]) {
       result.push(left[ileft ++])
     } else {
       result.push(right[iright ++])

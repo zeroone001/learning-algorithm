@@ -1330,9 +1330,96 @@ function removeElements(head: ListNode | null, val: number): ListNode | null {
 /**
  Do not return anything, modify it in-place instead.
  */
+/* 
+    相当于把下一个节点变成自身，自身指向下下个节点
+*/
 function deleteNode(root: ListNode | null): void {
-    
+    root.val = root.next.val;
+    root.next = root.next.next;
 };
+```
+
+## 705. 设计哈希集合
+
+[705. 设计哈希集合](https://leetcode-cn.com/problems/design-hashset/)
+
+```ts
+class MyHashSet {
+    private _base:number = 769;
+    constructor() {
+        this.data = new Array(this._base).fill(0).map(() => new Array());
+    }
+
+    add(key: number): void {
+        const h = this.hash(key);
+         for (const element of this.data[h]) {
+            if (element === key) {
+                return;
+            }
+        }
+        this.data[h].push(key);
+    }
+
+    hash(key: number): number {
+        return key % this._base;
+    }
+
+    remove(key: number): void {
+         const h = this.hash(key);
+        const it = this.data[h];
+        for (let i = 0; i < it.length; ++i) {
+            if (it[i] === key) {
+                it.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    contains(key: number): boolean {
+         const h = this.hash(key);
+        for (const element of this.data[h]) {
+            if (element === key) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+```
+
+## 706. 设计哈希映射
+
+[706. 设计哈希映射](https://leetcode-cn.com/problems/design-hashmap/)
+
+```ts
+class MyHashMap {
+    myhash: Record<number, number>;
+    constructor() {
+        this.myhash = {};
+    }
+
+    put(key: number, value: number): void {
+        this.myhash[key] = value;
+    }
+
+    get(key: number): number {
+        if(this.myhash[key] || this.myhash[key] === 0) return this.myhash[key];
+        else return -1;
+    }
+
+    remove(key: number): void {
+        delete this.myhash[key];
+    }
+}
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * var obj = new MyHashMap()
+ * obj.put(key,value)
+ * var param_2 = obj.get(key)
+ * obj.remove(key)
+ */
 ```
 
 ## 146. LRU 缓存
@@ -1362,3 +1449,4 @@ class LRUCache {
  * obj.put(key,value)
  */
 ```
+

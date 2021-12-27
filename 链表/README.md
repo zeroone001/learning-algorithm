@@ -1275,3 +1275,90 @@ function flatten(root: TreeNode | null): void {
     }
 };
 ```
+
+## 203. 移除链表元素
+
+[203. 移除链表元素](https://leetcode-cn.com/problems/remove-linked-list-elements/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function removeElements(head: ListNode | null, val: number): ListNode | null {
+    let cur = head;
+    let prev = new ListNode();
+    prev.next = cur;
+    while (cur) {
+        if (cur.val === val) {
+            prev.next = cur.next;
+            cur = prev.next;
+        } else {
+            prev = cur;
+            cur = cur.next;
+        }
+    }
+    return prev.next;
+};
+```
+
+## 237. 删除链表中的节点
+
+[237. 删除链表中的节点](https://leetcode-cn.com/problems/delete-node-in-a-linked-list/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+/**
+ Do not return anything, modify it in-place instead.
+ */
+function deleteNode(root: ListNode | null): void {
+    
+};
+```
+
+## 146. LRU 缓存
+
+
+[146. LRU 缓存](https://leetcode-cn.com/problems/lru-cache/)
+
+```ts
+class LRUCache {
+    constructor(capacity: number) {
+
+    }
+
+    get(key: number): number {
+
+    }
+
+    put(key: number, value: number): void {
+
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * var obj = new LRUCache(capacity)
+ * var param_1 = obj.get(key)
+ * obj.put(key,value)
+ */
+```

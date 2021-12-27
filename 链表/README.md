@@ -1,6 +1,7 @@
 # 链表
 
 > [github](https://github.com/zeroone001/learning-algorithm/tree/main/%E9%93%BE%E8%A1%A8)
+> [leetcode 链表](https://leetcode-cn.com/tag/linked-list/problemset/)
 
 1. 各种数据结构，不管是队列，栈等线性数据结构还是树，图的等非线性数据结构，
 从根本上底层都是数组和链表。
@@ -1175,5 +1176,38 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
 };
 ```
 
+## 109. 有序链表转换二叉搜索树
 
+[109. 有序链表转换二叉搜索树](https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/)
 
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function sortedListToBST(head: ListNode | null): TreeNode | null {
+
+};
+```

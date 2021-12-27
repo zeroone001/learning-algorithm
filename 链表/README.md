@@ -1206,8 +1206,50 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
  *     }
  * }
  */
-
+/* 分治 + 中序遍历 */
 function sortedListToBST(head: ListNode | null): TreeNode | null {
+    const arr = []
+   while(head){
+       arr.push(head.val)
+       head=head.next
+   }
+   return buildBST(arr,0,arr.length-1)
+   // 根据arr构建BST tree
+   function buildBST(arr,start,end){
+      if (start > end) return null; // 分治算法的base case
+     // 先序遍历
+     let mid = Math.floor((start+end)/2)
+     const root= new TreeNode(arr[mid])
+     root.left = buildBST(arr,start,mid-1)
+     root.right=buildBST(arr,mid+1,end)
+     return root
+   }
+};
+```
 
+## 114. 二叉树展开为链表
+
+[114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)
+
+```ts
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+/**
+ Do not return anything, modify root in-place instead.
+ */
+function flatten(root: TreeNode | null): void {
+    
 };
 ```

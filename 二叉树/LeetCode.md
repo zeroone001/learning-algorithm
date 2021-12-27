@@ -363,9 +363,7 @@ var distanceK = function(root, target, k) {
 
 ## 98. 验证二叉搜索树
 
-
 [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
-
 
 ```js
 /**
@@ -385,23 +383,17 @@ var isValidBST = function(root) {
 
     function inorder(node) {
         if (node == null) return true;
-
         let left = inorder(node.left);
-
         // zhu
         if (node.val <= pre) return false;
         pre = node.val;
-
         let right = inorder(node.right);
-
         return left && right;
     }
     return inorder(root);
 };
 
 ```
-
-
 
 ## 99. 恢复二叉搜索树
 
@@ -540,8 +532,6 @@ BSTIterator.prototype.inorder = function(node) {
  */
 ```
 
-# 完全二叉树 
-
 ## 222. 完全二叉树的节点个数
 
 [222. 完全二叉树的节点个数](https://leetcode-cn.com/problems/count-complete-tree-nodes/)
@@ -633,7 +623,6 @@ var widthOfBinaryTree = function(root) {
 
 ## 919. 完全二叉树插入器
 
-
 [919. 完全二叉树插入器](https://leetcode-cn.com/problems/complete-binary-tree-inserter/)
 
 ```js
@@ -676,7 +665,7 @@ CBTInserter.prototype.get_root = function() {
 
 ```
 
-# 路径
+
 
 ## 124. 二叉树中的最大路径和
 

@@ -1249,7 +1249,29 @@ function sortedListToBST(head: ListNode | null): TreeNode | null {
 /**
  Do not return anything, modify root in-place instead.
  */
+/* 
+    1. 用先序遍历 把节点放在数组里
+    2. 遍历数组，list 链表 连起来
+*/
 function flatten(root: TreeNode | null): void {
-    
+    /* 先序遍历，存到数组里 */
+    function DFS(root, list) {
+        if (!root) return;
+        /* 先序遍历 */
+        list.push(root);
+        DFS(root.left, list);
+        DFS(root.right, list);
+    }
+    const list = [];
+    DFS(root, list);
+    const len = list.length;
+    /* 遍历数组转成 链表 */
+    for (let index = 0; index < list.length; index++) {
+        let prev = list[index];
+        let curr = list[index + 1] ? list[index + 1] : null;
+
+        prev.left = null;
+        prev.right = curr;
+    }
 };
 ```

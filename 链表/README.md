@@ -1125,3 +1125,55 @@ var sortList = function(head) {
 	return mergeSort(head);
 };
 ```
+
+## 2. 两数相加
+
+[2. 两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+    let head = null;
+    let cur = null;
+    let carry: number = 0; /* 进位 */
+    while (l1 || l2) {
+        let n1 = l1 ? l1.val : 0;
+        let n2 = l2 ? l2.val : 0;
+        let num = n1 + n2 + carry;
+        /* 创建新节点 */
+        if (!head) {
+            head = cur = new ListNode(num % 10);
+        } else {
+            cur.next = new ListNode(num % 10);
+            cur = cur.next;
+        }
+        /* 余数 */
+        carry = Math.floor(num / 10);
+        if(l1) {
+            l1 = l1.next;
+        }
+        if (l2) {
+            l2 = l2.next;
+        }
+
+    } 
+    if (carry > 0) {
+        cur.next = new ListNode(carry);
+    }
+    return head;
+};
+```
+
+
+

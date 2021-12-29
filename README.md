@@ -23,10 +23,6 @@
 树的前序遍历，到中序遍历，后续遍历，以至于层次遍历（递归和非递归写法）
 
 
-## 搜索算法
-
-DFS 和 BFS
-
 
 
 ## 高斯模糊
@@ -34,12 +30,21 @@ DFS 和 BFS
 原理： http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html
 高斯模糊GitHub仓库： https://www.npmjs.com/package/stackblur-canvas
 
+## 6. Z 字形变换
 
-## 求和，对称等
+[6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion)
 
+```js
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
 
-## 虚拟DOM-diff 算法
+};
 
+```
 ## leetcode
 
 [刷题](https://github.com/azl397985856/leetcode)

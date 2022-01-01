@@ -1,28 +1,12 @@
-## 字符串常考察的算法
+# 字符串常考察的算法
 
 1. 如何判断一个字符串是否是回文字符串的问题？
 
 ## 5. 最长回文子串
 
+[5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
 
-
-[https://leetcode-cn.com/problems/longest-palindromic-substring/](https://leetcode-cn.com/problems/longest-palindromic-substring/)
-
-#### 描述
-
-给你一个字符串 `s`，找到 `s` 中最长的回文子串。
-
-#### 示例
-
-```js
-输入：s = "babad"
-输出："bab"
-解释："aba" 同样是符合题意的答案。
-```
-
-
-
-#### 题解
+> 题解
 
 ```js
 

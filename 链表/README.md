@@ -1440,6 +1440,21 @@ class MyHashMap {
  */
 
 function oddEvenList(head: ListNode | null): ListNode | null {
-    
+    if (head === null) return null;
+
+    let evenHead = head.next;
+    /* 定义两个指针 */
+    let odd = head;
+    let even = evenHead;
+    /* 开始迭代 */
+    while (odd.next && even.next) {
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next;
+    }
+    /* 把偶数链表拼接到奇数链表的后面 */
+    odd.next = evenHead;
+    return head;
 };
 ```

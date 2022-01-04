@@ -1458,3 +1458,58 @@ function oddEvenList(head: ListNode | null): ListNode | null {
     return head;
 };
 ```
+
+## 445. 两数相加 II
+
+[445. 两数相加 II](https://leetcode-cn.com/problems/add-two-numbers-ii/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+/* 使用栈来解决这个问题 */
+var addTwoNumbers = function(l1, l2) {
+    const stack1 = [];
+    const stack2 = [];
+    /* 进栈 */
+    while (l1 || l2) {
+        if (l1) {
+            stack1.push(l1.val);
+            l1 = l1.next;
+        }
+        if (l2) {
+            stack2.push(l2.val);
+            l2 = l2.next;
+        }
+    }
+    let carry = 0; /* 进位 */
+    let resList = null;
+
+    while (stack1.length || stack2.length || carry !== 0) {
+        /* 出栈 */
+        const s1 = stack1.length ? stack1.pop() : 0;
+        const s2 = stack2.length ? stack2.pop() : 0;
+
+        let val = s1 + s2 + carry;
+        /* 获取进位值 */
+        carry = parseInt(val / 10);
+        /* 计算出这个位置的显示的值 */
+        let newVal = val % 10;
+        /* 往链表前面拼节点 */
+        let curList = new ListNode(newVal);
+        curList.next = resList;
+        resList = curList;
+    }
+    /* 返回链表 */
+    return resList;
+};
+```

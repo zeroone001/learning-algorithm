@@ -1513,3 +1513,96 @@ var addTwoNumbers = function(l1, l2) {
     return resList;
 };
 ```
+
+## 1721. 交换链表中的节点
+
+[1721. 交换链表中的节点](https://leetcode-cn.com/problems/swapping-nodes-in-a-linked-list/)
+
+```ts
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+/* 使用快慢指针来处理这个
+    只交换val 就可以了
+*/
+var swapNodes = function(head, k) {
+    /* 先创建一个头部节点 */
+    let dummy = new ListNode(0);
+    dumy.next = head;
+
+    let i = 0;
+    /* 快指针和慢指针 */
+    let fast = dumy;
+    let slow = dumy;
+    let nodeK = null; /* 记录第K个节点 */
+    /* 找到第K个节点 */
+    while (i < k) {
+        fast = fast.next;
+        i++;
+    }
+    /* 把第K个节点存起来，后面使用 */
+    nodeK = fast;
+
+    /* 快慢指针一起移动，快指针移动到最后，慢指针就是指向了，从后面数第K个节点 */
+    while (fast) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+
+    let tmp = nodeK.val;
+    nodeK.val = slow.val;
+    slow.val = tmp;
+    return head;
+};
+```
+
+## 725. 分隔链表
+
+[725. 分隔链表](https://leetcode-cn.com/problems/split-linked-list-in-parts/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode[]}
+ */
+var splitListToParts = function(head, k) {
+    let n = 0;
+    let temp = head;
+    while (temp != null) {
+        n++;
+        temp = temp.next;
+    }
+    let quotient = Math.floor(n / k), remainder = n % k;
+
+    const parts = new Array(k).fill(null);
+    let curr = head;
+    for (let i = 0; i < k && curr != null; i++) {
+        parts[i] = curr;
+        let partSize = quotient + (i < remainder ? 1 : 0);
+        for (let j = 1; j < partSize; j++) {
+            curr = curr.next;
+        }
+        const next = curr.next;
+        curr.next = null;
+        curr = next;
+    }
+    return parts;
+};
+```

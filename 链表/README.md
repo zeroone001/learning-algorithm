@@ -1606,3 +1606,38 @@ var splitListToParts = function(head, k) {
     return parts;
 };
 ```
+
+## 817. 链表组件
+
+[817. 链表组件](https://leetcode-cn.com/problems/linked-list-components/)
+
+```js
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number[]} G
+ * @return {number}
+ */
+var numComponents = function(head, G) {
+    let p = head
+    let res = 0
+    while (p) {
+        if (G.includes(p.val) && (!p.next || !G.includes(p.next.val))) {
+            res++
+        }
+        p = p.next
+    }
+    return res
+};
+```
+
+# 掘金 tag
+
+## 

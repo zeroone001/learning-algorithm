@@ -1640,4 +1640,23 @@ var numComponents = function(head, G) {
 
 # 掘金 tag
 
-## 
+## 面试题 02.01. 移除重复节点
+
+[面试题 02.01. 移除重复节点](https://leetcode-cn.com/problems/remove-duplicate-node-lcci/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var removeDuplicateNodes = function(head) {
+
+};
+```

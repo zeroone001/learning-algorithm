@@ -1682,3 +1682,24 @@ var removeDuplicateNodes = function(head) {
     return head;
 };
 ```
+
+## 面试题 02.06. 回文链表
+
+[面试题 02.06. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list-lcci/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+
+};
+```

@@ -1656,7 +1656,29 @@ var numComponents = function(head, G) {
  * @param {ListNode} head
  * @return {ListNode}
  */
+/* 
+    利用哈希表来解决这个问题
+*/
 var removeDuplicateNodes = function(head) {
-
+    if (head === null) {
+        return head;
+    }
+    const mySet = new Set();
+    mySet.add(head.val);
+    let prev = head;
+    let cur = head.next;
+    while (cur) {
+        if (mySet.has(cur.val)) {
+            /* 删除当前节点 */
+            prev.next = cur.next;
+            cur = cur.next;
+        } else {
+            /* 需要把这个放进去 */
+            mySet.add(cur.val);
+            prev = cur;
+            cur = cur.next;
+        }
+    }
+    return head;
 };
 ```

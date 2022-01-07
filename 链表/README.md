@@ -1699,8 +1699,22 @@ var removeDuplicateNodes = function(head) {
  * @param {ListNode} head
  * @return {boolean}
  */
+/* 
+    把节点放到数组里
+    利用双指针进行对比
+*/
 var isPalindrome = function(head) {
-
+    const arr = [];
+    while (head) {
+        arr.push(head.val);
+        head = head.next;
+    }
+    for (let i = 0, j = arr.length - 1; i < j; i++,j--) {
+        if (arr[i] !== arr[j]) {
+            return false;
+        }
+    }
+    return true;
 };
 ```
 

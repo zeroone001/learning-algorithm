@@ -1,43 +1,25 @@
-# learning-algorithm
+# Algorithm
 
 ## 排序
 
 [sort](https://github.com/zeroone001/learning-algorithm/tree/main/%E6%8E%92%E5%BA%8F)
 
-## 常用数据结构
+## 链表
 
-* 数组，字符串
-* 栈
-* 队列
-* 链表
-* 树
+[linked-list](https://github.com/zeroone001/learning-algorithm/tree/main/%E9%93%BE%E8%A1%A8)
 
+## 二叉树
+
+[二叉树tree](https://github.com/zeroone001/learning-algorithm/tree/main/%E4%BA%8C%E5%8F%89%E6%A0%91)
+
+## 字符串
+
+[字符串](https://github.com/zeroone001/learning-algorithm/tree/main/%E5%AD%97%E7%AC%A6%E4%B8%B2)
 
 ## 高斯模糊
 
 原理： http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html
 高斯模糊GitHub仓库： https://www.npmjs.com/package/stackblur-canvas
-
-## 6. Z 字形变换
-
-[6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion)
-
-```js
-/**
- * @param {string} s
- * @param {number} numRows
- * @return {string}
- */
-var convert = function(s, numRows) {
-
-};
-```
-
-## leetcode
-
-1. [刷题](https://github.com/azl397985856/leetcode)
-2. [算法的演示网站](https://recursion.vercel.app/%E3%80%82)
-
 
 ## 学习资料
 
@@ -46,3 +28,5 @@ var convert = function(s, numRows) {
 * [力扣加加-努力做西湖区最好的算法题解](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree#dan-shuang-di-gui)
 * [https://lucifer.ren/blog/2020/11/08/linked-list/](https://lucifer.ren/blog/2020/11/08/linked-list/)
 * [算法学习记录](https://juejin.cn/post/6900698814093459463)
+* [刷题](https://github.com/azl397985856/leetcode)
+* [算法的演示网站](https://recursion.vercel.app/%E3%80%82)

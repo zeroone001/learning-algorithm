@@ -1966,8 +1966,18 @@ var getIntersectionNode = function(headA, headB) {
  * @param {ListNode} headB
  * @return {ListNode}
  */
+/* 双指针 */
 var getIntersectionNode = function(headA, headB) {
-    
+    if (headA === null || headB === null) {
+        return null;
+    }
+    let nodeA = headA;
+    let nodeB = headB;
+    while (nodeA !== nodeB) {
+        nodeA = nodeA === null ? headB : nodeA.next;
+        nodeB = nodeB === null ? headA : nodeB.next;
+    }
+    return nodeA;
 };
 ```
 

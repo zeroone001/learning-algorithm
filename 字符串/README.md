@@ -39,3 +39,18 @@ function palindrome(s, l, r) {
     return s.slice(l + 1, r);
 }
 ```
+
+## 6. Z 字形变换
+
+[6. Z 字形变换](https://leetcode-cn.com/problems/zigzag-conversion)
+
+```js
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
+
+};
+```

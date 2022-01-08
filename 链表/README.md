@@ -1738,7 +1738,15 @@ var isPalindrome = function(head) {
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-    
+    if (headA === null || headB === null) return null;
+    let nodeA = headA;
+    let nodeB = headB;
+
+    while (nodeA !== nodeB) {
+        nodeA = nodeA == null ? headB : nodeA.next;
+        nodeB = nodeB == null ? headA : nodeB.next;
+    }
+    return nodeA;
 };
 ```
 
@@ -1758,8 +1766,13 @@ var getIntersectionNode = function(headA, headB) {
  * @param {ListNode} node
  * @return {void} Do not return anything, modify node in-place instead.
  */
+/* 
+    这个非常巧妙 
+    相当于自己这个节点被下一个节点替换了
+*/
 var deleteNode = function(node) {
-    
+    node.val = node.next.val;
+    node.next = node.next.next;
 };
 ```
 
@@ -2044,5 +2057,49 @@ var isPalindrome = function(head) {
         }
     }
     return true;
+};
+```
+
+## 剑指 Offer 06. 从尾到头打印链表
+
+[剑指 Offer 06. 从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {number[]}
+ */
+var reversePrint = function(head) {
+
+};
+```
+
+## 1474. 删除链表 M 个节点之后的 N 个节点
+
+[1474. 删除链表 M 个节点之后的 N 个节点](https://leetcode-cn.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} m
+ * @param {number} n
+ * @return {ListNode}
+ */
+var deleteNodes = function(head, m, n) {
+
 };
 ```

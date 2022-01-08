@@ -1900,7 +1900,20 @@ var reverseList = function(head) {
  * @return {ListNode}
  */
 var deleteNode = function(head, val) {
-
+    if (!head) return head;
+    let cur = head;
+    let prev = new ListNode(-1);
+    prev.next = head;
+    let res = prev;
+    while (cur) {
+        if (cur.val === val) {
+            prev.next = cur.next;
+        }
+        let tmp = cur.next;
+        prev = cur;
+        cur = tmp;
+    }
+    return res.next;
 };
 ```
 
@@ -1923,7 +1936,14 @@ var deleteNode = function(head, val) {
  * @return {ListNode}
  */
 var getIntersectionNode = function(headA, headB) {
-    
+    if (headA === null || headB === null) return null;
+    let pA = headA;
+    let pB = headB;
+    while (pA !== pB) {
+        pA = pA === null ? headB : pA.next;
+        pB = pB === null ? headA : pB.next;
+    }
+    return pA;
 };
 ```
 

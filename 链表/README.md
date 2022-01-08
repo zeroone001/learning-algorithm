@@ -1638,7 +1638,6 @@ var numComponents = function(head, G) {
 };
 ```
 
-# 掘金 tag
 
 ## 面试题 02.01. 移除重复节点
 
@@ -1793,10 +1792,27 @@ var deleteNode = function(node) {
  * @param {number} k
  * @return {number}
  */
+/* 快慢指针的方式 
+    快指针先走K步，然后，再一起走
+*/
 var kthToLast = function(head, k) {
+    if (!head) return head;
 
+    let prev = new ListNode(-1);
+    prev.next = head;
+    let cur = prev;
+    let slow = head;
+    while (k !== 0) {
+        cur = cur.next;
+        k--;
+    }
+
+    while (cur.next) {
+        cur = cur.next;
+        slow = slow.next;
+    }
+    return slow.val;
 };
-
 ```
 
 ## 剑指 Offer 06. 从尾到头打印链表
@@ -1816,7 +1832,13 @@ var kthToLast = function(head, k) {
  * @return {number[]}
  */
 var reversePrint = function(head) {
-
+    if (!head) return [];
+    const arr = [];
+    while (head) {
+        arr.unshift(head.val);
+        head = head.next;
+    }
+    return arr;
 };
 ```
 
@@ -1838,7 +1860,23 @@ var reversePrint = function(head) {
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
-
+    let res = new ListNode(-1);
+    let cur = res;
+    let [p1, p2] = [l1, l2];
+    /* 当两个都可以迭代的时候 */
+    while (p1 && p2) {
+        if (p1.val > p2.val) {
+            cur.next = p2;
+            p2 = p2.next;
+        } else {
+            cur.next = p1;
+            p1 = p1.next;
+        }
+        cur = cur.next;
+    }
+    /* 迭代完成其中一个了， 把剩下的拼起来 */
+    cur.next = p1 ? p1 : p2;
+    return res.next;
 };
 ```
 
@@ -1859,8 +1897,24 @@ var mergeTwoLists = function(l1, l2) {
  * @param {number} k
  * @return {ListNode}
  */
+/* 快慢指针 */
 var getKthFromEnd = function(head, k) {
-
+    if (!head) return head;
+    /* 先走K个结点 */
+    let prev = new ListNode(-1);
+    prev.next = head;
+    let fast = prev;
+    let slow = head;
+    while (k !== 0) {
+        fast = fast.next;
+        k--;
+    }
+    /* 快慢一起走 */
+    while (fast.next) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    return slow;
 };
 ```
 
@@ -2060,30 +2114,14 @@ var isPalindrome = function(head) {
 };
 ```
 
-## 剑指 Offer 06. 从尾到头打印链表
 
-[剑指 Offer 06. 从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
 
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
-/**
- * @param {ListNode} head
- * @return {number[]}
- */
-var reversePrint = function(head) {
 
-};
-```
+# 掘金 tag
 
-## 1474. 删除链表 M 个节点之后的 N 个节点
+## 1290. 二进制链表转整数
 
-[1474. 删除链表 M 个节点之后的 N 个节点](https://leetcode-cn.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/)
+[1290. 二进制链表转整数](https://leetcode-cn.com/problems/convert-binary-number-in-a-linked-list-to-integer/)
 
 ```js
 /**
@@ -2095,11 +2133,70 @@ var reversePrint = function(head) {
  */
 /**
  * @param {ListNode} head
- * @param {number} m
- * @param {number} n
+ * @return {number}
+ */
+/* 
+    5÷2=2余1 
+2÷2=1余0 
+1÷2=0余1  
+ ===> 得出二进制 101 .
+反推回去 商 x 除数 + 余数 
+=> 0 x 2 + 1 = 1 
+-> 1 x 2 + 0 = 2
+-> 2 x 2 +1 = 5
+*/
+var getDecimalValue = function(head) {
+    let res = 0;
+    while (head) {
+        res = res * 2 + head.val;
+        head = head.next;
+    }
+    return res;
+};
+```
+
+## 1669. 合并两个链表
+
+
+[1669. 合并两个链表](https://leetcode-cn.com/problems/merge-in-between-linked-lists/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {number} a
+ * @param {number} b
+ * @param {ListNode} list2
  * @return {ListNode}
  */
-var deleteNodes = function(head, m, n) {
+var mergeInBetween = function(list1, a, b, list2) {
+    
+};
+```
+
+## 1019. 链表中的下一个更大节点
+
+[1019. 链表中的下一个更大节点](https://leetcode-cn.com/problems/next-greater-node-in-linked-list/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {number[]}
+ */
+var nextLargerNodes = function(head) {
 
 };
 ```

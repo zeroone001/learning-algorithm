@@ -1967,8 +1967,20 @@ var getIntersectionNode = function(headA, headB) {
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
 
+var reverseList = function(head) {
+    /* 将要返回的头节点 */
+    let prev = null;
+    let cur = head;
+
+    while (cur) {
+        /* 下一个节点先存起来 */
+        let tmp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = tmp;
+    }
+    return prev;
 };
 ```
 
@@ -1989,6 +2001,18 @@ var reverseList = function(head) {
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-
+    /* 把节点放在数组里 */
+    const arr = [];
+    while (head) {
+        arr.push(head.val);
+        head = head.next;
+    }
+    /* for */
+    for(let i = 0, j = arr.length - 1; i < j; i++, j--) {
+        if (arr[i] !== arr[j]) {
+            return false
+        }
+    }
+    return true;
 };
 ```

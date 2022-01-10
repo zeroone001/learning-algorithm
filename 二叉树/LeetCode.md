@@ -2891,7 +2891,267 @@ var convertBiNode = function(root) {
  * @param {number} k
  * @return {boolean}
  */
+/* 
+    方法1： 中序遍历，+ 双指针法
+    方法2： 使用Set + 递归
+*/
 var findTarget = function(root, k) {
+    const list = [];
+    function BST(root) {
+        if (root === null) return;
+        BST(root.left);
+        list.push(root.val);
+        BST(root.right);
+    }
+    BST(root);
+    let left = 0;
+    let right = list.length - 1;
+    while (left < right) {
+        const sum = list[left] + list[right];
+        if (sum === k) return true
+        else if (sum > k) {
+            right -= 1;
+        } else if (sum < k) {
+            left += 1;
+        }
+    }
+    return false;
+};
+```
+
+## 671. 二叉树中第二小的节点
+
+[671. 二叉树中第二小的节点](https://leetcode-cn.com/problems/second-minimum-node-in-a-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var findSecondMinimumValue = function(root) {
 
 };
+```
+
+## 700. 二叉搜索树中的搜索
+
+[700. 二叉搜索树中的搜索](https://leetcode-cn.com/problems/search-in-a-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+var searchBST = function(root, val) {
+
+};
+```
+
+## 703. 数据流中的第 K 大元素
+
+[703. 数据流中的第 K 大元素](https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/)
+
+```js
+/**
+ * @param {number} k
+ * @param {number[]} nums
+ */
+var KthLargest = function(k, nums) {
+
+};
+
+/** 
+ * @param {number} val
+ * @return {number}
+ */
+KthLargest.prototype.add = function(val) {
+
+};
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * var obj = new KthLargest(k, nums)
+ * var param_1 = obj.add(val)
+ */
+```
+
+## 872. 叶子相似的树
+
+[872. 叶子相似的树](https://leetcode-cn.com/problems/leaf-similar-trees/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {boolean}
+ */
+var leafSimilar = function(root1, root2) {
+
+};
+```
+
+## 897. 递增顺序搜索树
+
+[897. 递增顺序搜索树](https://leetcode-cn.com/problems/increasing-order-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var increasingBST = function(root) {
+
+};
+```
+
+## 938. 二叉搜索树的范围和
+
+[938. 二叉搜索树的范围和](https://leetcode-cn.com/problems/range-sum-of-bst/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+var rangeSumBST = function(root, low, high) {
+
+};
+```
+
+## 965. 单值二叉树
+
+[965. 单值二叉树](https://leetcode-cn.com/problems/univalued-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isUnivalTree = function(root) {
+
+};
+```
+
+## 993. 二叉树的堂兄弟节点
+
+[993. 二叉树的堂兄弟节点](https://leetcode-cn.com/problems/cousins-in-binary-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} x
+ * @param {number} y
+ * @return {boolean}
+ */
+var isCousins = function(root, x, y) {
+
+};
+```
+
+## LCP 44. 开幕式焰火
+
+[LCP 44. 开幕式焰火](https://leetcode-cn.com/problems/sZ59z6/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var numColor = function(root) {
+
+};
+```
+
+## 剑指 Offer II 059. 数据流的第 K 大数值
+
+[剑指 Offer II 059. 数据流的第 K 大数值](https://leetcode-cn.com/problems/jBjn9C/)
+
+```js
+/**
+ * @param {number} k
+ * @param {number[]} nums
+ */
+var KthLargest = function(k, nums) {
+
+};
+
+/** 
+ * @param {number} val
+ * @return {number}
+ */
+KthLargest.prototype.add = function(val) {
+
+};
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * var obj = new KthLargest(k, nums)
+ * var param_1 = obj.add(val)
+ */
 ```

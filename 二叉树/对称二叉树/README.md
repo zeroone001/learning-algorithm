@@ -137,5 +137,4 @@ class Solution2 {
 }
 
 const s2 = new Solution2(the_node);
-
 ```

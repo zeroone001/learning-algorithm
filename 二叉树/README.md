@@ -1,12 +1,12 @@
 # 二叉树
 
-[https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree)
+[二叉树](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree)
 
 非线性结构
 
 1. 完全二叉树 （适合数组存储）
 2. 满二叉树
-3. 二叉搜索树
+3. 二叉搜索树 BST
 4. 平衡二叉树
 5. 红黑树
 

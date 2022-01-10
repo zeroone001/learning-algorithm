@@ -2176,7 +2176,30 @@ var getDecimalValue = function(head) {
  * @return {ListNode}
  */
 var mergeInBetween = function(list1, a, b, list2) {
-    
+    let prev = null;
+    let curA = list1;
+    let c = false;
+    let count = 0;
+    while (count !== b) {
+        if (!c) {
+            prev = curA;
+        }
+        
+        curA = curA.next;
+        count += 1;
+        if (count === a) {
+            /* prev 停止 */
+            c = true;
+        } 
+    }
+    /* curA === b  */
+    prev.next = list2;
+    let curB = list2;
+    while (curB.next) {
+        curB = curB.next;
+    }
+    curB.next = curA.next;
+    return list1;
 };
 ```
 
@@ -2196,7 +2219,22 @@ var mergeInBetween = function(list1, a, b, list2) {
  * @param {ListNode} head
  * @return {number[]}
  */
-var nextLargerNodes = function(head) {
-
+ var nextLargerNodes = function(head) {
+    if(!head) return []
+    let ret = []
+    while(head){
+        let r = head.next
+        let temp = 0
+        while(r){
+            if(r.val > head.val){
+                temp = r.val
+                break 
+            }
+            r = r.next
+        }
+        ret.push(temp)
+        head = head.next
+    }
+    return ret
 };
 ```

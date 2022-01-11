@@ -3120,8 +3120,29 @@ class MinHeap {
  * @param {TreeNode} root2
  * @return {boolean}
  */
-var leafSimilar = function(root1, root2) {
 
+/* 
+    DFS 深度优先遍历，把叶子节点放在数组里
+    然后，对比数组就可以了
+*/
+var leafSimilar = function(root1, root2) {
+    function dfs(root, arr) {
+        if (!root.left && !root.right) {
+            arr.push(root.val);
+            return;
+        }
+        root.left && dfs(root.left, arr);
+        root.right && dfs(root.right, arr);
+    }
+    const arr1 = [];
+    if (root1) {
+        dfs(root1, arr1);
+    }
+    const arr2 = [];
+    if (root2) {
+        dfs(root2, arr2);
+    }
+    return arr1.toString() === arr2.toString();
 };
 ```
 
@@ -3142,8 +3163,27 @@ var leafSimilar = function(root1, root2) {
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+/* 
+    先中序遍历，放到数组里
+    再创建新的二叉树
+*/
 var increasingBST = function(root) {
+    const res = [];
+    function inorder(node, arr) {
+        if (!node) return;
+        inorder(node.left, arr);
+        arr.push(node.val);
+        inorder(node.right, arr);
+    }
+    inorder(root, res);
 
+    let resNode = new TreeNode(-1);
+    let cur = resNode;
+    for(let val of res) {
+        cur.right = new TreeNode(val);
+        cur = cur.right;
+    }
+    return resNode.right;
 };
 ```
 

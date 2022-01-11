@@ -2937,7 +2937,22 @@ var findTarget = function(root, k) {
  * @return {number}
  */
 var findSecondMinimumValue = function(root) {
-
+    let res = -1;
+    let rootValue = root.val;
+    function dfs(root) {
+        if (root === null) return;
+        /* 如果res 有值了  */
+        if (res !== -1 && root.val >= res) {
+            return;
+        }
+        if (root.val > rootValue) {
+            res = root.val;
+        }
+        dfs(root.left);
+        dfs(root.right);
+    }
+    dfs(root);
+    return res;
 };
 ```
 
@@ -2959,8 +2974,15 @@ var findSecondMinimumValue = function(root) {
  * @param {number} val
  * @return {TreeNode}
  */
+/* 
+    这个题目单纯的递归就可以了
+*/
 var searchBST = function(root, val) {
-
+    if (root == null) return null;
+    if (val === root.val) {
+        return root;
+    }
+    return searchBST(root.val > val ? root.left : root.right, val);
 };
 ```
 

@@ -3207,7 +3207,18 @@ var increasingBST = function(root) {
  * @return {number}
  */
 var rangeSumBST = function(root, low, high) {
-
+    if (!root) return null;
+    let sum = 0;
+    function bst(node) {
+        if (!node) return;
+        bst(node.left);
+        if (node.val >= low && node.val <= high) {
+            sum += node.val;
+        }
+        bst(node.right);
+    }
+    bst(root);
+    return sum;
 };
 ```
 

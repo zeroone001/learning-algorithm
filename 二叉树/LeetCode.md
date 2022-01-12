@@ -3240,7 +3240,20 @@ var rangeSumBST = function(root, low, high) {
  * @return {boolean}
  */
 var isUnivalTree = function(root) {
-
+    if (!root) return true;
+    let num = root.val;
+    let isUnival = true;
+    function dfs(root) {
+        if (root == null || !isUnival) return;
+        if (root.val !== num) {
+            isUnival = false;
+            return;
+        }
+        root.left && dfs(root.left);
+        root.right && dfs(root.right);
+    }
+    dfs(root)
+    return isUnival;
 };
 ```
 

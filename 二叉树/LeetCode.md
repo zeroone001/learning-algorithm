@@ -2871,7 +2871,7 @@ var convertBiNode = function(root) {
 ```
 
 
-# tag 掘金
+
 
 ## 653. 两数之和 IV - 输入 BST
 
@@ -3457,6 +3457,8 @@ class MinHeap {
  */
 ```
 
+# tag 掘金
+
 ## 559. N 叉树的最大深度
 
 [559. N 叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)
@@ -3474,7 +3476,155 @@ class MinHeap {
  * @param {Node|null} root
  * @return {number}
  */
+/* 
+    深度优先遍历
+*/
 var maxDepth = function(root) {
-    
+    if (!root) return 0;
+    let maxChild = 0;
+    const children = root.children;
+    for(const child of children) {
+        /* 递归 */
+        const childDepth = maxDepth(child);
+        /* 获取最大值 */
+        maxChild = Math.max(maxChild, childDepth);
+    }
+    /* 这里很关键 */
+    return maxChild + 1;
 };
+```
+
+## 589. N 叉树的前序遍历
+
+[589. N 叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal)
+
+```js
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/**
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+var preorder = function(root) {
+    let arr = [];
+    if (!root) return [];
+    function dfs(node) {
+        if (!node) return;
+        arr.push(node.val);
+        for (const child of node.children) {
+            dfs(child);
+        }
+    }
+    dfs(root);
+    return arr;
+};
+```
+
+## 590. N 叉树的后序遍历
+
+[590. N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)
+
+```js
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/**
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+var postorder = function(root) {
+     let arr = [];
+    if (!root) return [];
+    function dfs(node) {
+        if (!node) return;
+        for (const child of node.children) {
+            dfs(child);
+        }
+        arr.push(node.val);
+    }
+    dfs(root);
+    return arr;
+};
+```
+
+## 733. 图像渲染
+
+[733. 图像渲染](https://leetcode-cn.com/problems/flood-fill/)
+
+```js
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} newColor
+ * @return {number[][]}
+ */
+const floodFill = (image, sr, sc, newColor) => {
+    const m = image.length;
+    const n = image[0].length;
+    const oldColor = image[sr][sc];
+    if (oldColor == newColor) return image;
+
+    const fill = (i, j) => {
+        if (i < 0 || i >= m || j < 0 || j >= n || image[i][j] != oldColor) {
+            return;
+        }
+        image[i][j] = newColor;
+        fill(i - 1, j);
+        fill(i + 1, j);
+        fill(i, j - 1);
+        fill(i, j + 1);
+    };
+
+    fill(sr, sc);
+    return image;
+};
+```
+
+## LCP 07. 传递信息
+
+[LCP 07. 传递信息](https://leetcode-cn.com/problems/chuan-di-xin-xi/)
+
+```js
+/**
+ * @param {number} n
+ * @param {number[][]} relation
+ * @param {number} k
+ * @return {number}
+ */
+var numWays = function(n, relation, k) {
+    let ways = 0;
+    const edges = new Array(n).fill(0).map(() => new Array());
+
+    for (const [src, dst] of relation) {
+        edges[src].push(dst);
+    }
+
+    const dfs = (index, steps) => {
+        if (steps === k) {
+            if (index === n - 1) {
+                ways++;
+            }
+            return;
+        }
+        const list = edges[index];
+        for (const nextIndex of list) {
+            dfs(nextIndex, steps + 1);
+        }
+    }
+    
+    dfs(0, 0);
+    return ways;
+}
 ```

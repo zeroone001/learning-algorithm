@@ -3277,7 +3277,37 @@ var isUnivalTree = function(root) {
  * @return {boolean}
  */
 var isCousins = function(root, x, y) {
+    // x 的信息
+    let x_parent = null, x_depth = null, x_found = false;
+    // y 的信息
+    let y_parent = null, y_depth = null, y_found = false;
+    
+    const dfs = (node, depth, parent) => {
+        if (!node) {
+            return;
+        }
+        if (node.val === x) {
+            [x_parent, x_depth, x_found] = [parent, depth, true];
+        } else if (node.val === y) {
+            [y_parent, y_depth, y_found] = [parent, depth, true];
+        }
 
+        // 如果两个节点都找到了，就可以提前退出遍历
+        // 即使不提前退出，对最坏情况下的时间复杂度也不会有影响
+        if (x_found && y_found) {
+            return;
+        }
+
+        dfs(node.left, depth + 1, node);
+
+        if (x_found && y_found) {
+            return;
+        }
+
+        dfs(node.right, depth + 1, node);
+    }
+    dfs(root, 0, null);
+    return x_depth === y_depth && x_parent !== y_parent;
 };
 ```
 
@@ -3298,7 +3328,16 @@ var isCousins = function(root, x, y) {
  * @return {number}
  */
 var numColor = function(root) {
-
+     let mySet = new Set();
+    if (!root) return 0;
+    function dfs(node) {
+        if (!node) return;
+        mySet.add(node.val);
+        dfs(node.left);
+        dfs(node.right);
+    }
+    dfs(root);
+    return mySet.size;
 };
 ```
 
@@ -3312,20 +3351,130 @@ var numColor = function(root) {
  * @param {number[]} nums
  */
 var KthLargest = function(k, nums) {
-
+    this.k = k;
+    this.heap = new MinHeap();
+    for (const x of nums) {
+        this.add(x);
+    }
 };
 
-/** 
- * @param {number} val
- * @return {number}
- */
 KthLargest.prototype.add = function(val) {
-
+    this.heap.offer(val);
+    if (this.heap.size() > this.k) {
+        this.heap.poll();
+    }
+    return this.heap.peek();
 };
 
+class MinHeap {
+    constructor(data = []) {
+        this.data = data;
+        this.comparator = (a, b) => a - b;
+        this.heapify();
+    }
+
+    heapify() {
+        if (this.size() < 2) return;
+        for (let i = 1; i < this.size(); i++) {
+        this.bubbleUp(i);
+        }
+    }
+
+    peek() {
+        if (this.size() === 0) return null;
+        return this.data[0];
+    }
+
+    offer(value) {
+        this.data.push(value);
+        this.bubbleUp(this.size() - 1);
+    }
+
+    poll() {
+        if (this.size() === 0) {
+            return null;
+        }
+        const result = this.data[0];
+        const last = this.data.pop();
+        if (this.size() !== 0) {
+            this.data[0] = last;
+            this.bubbleDown(0);
+        }
+        return result;
+    }
+
+    bubbleUp(index) {
+        while (index > 0) {
+            const parentIndex = (index - 1) >> 1;
+            if (this.comparator(this.data[index], this.data[parentIndex]) < 0) {
+                this.swap(index, parentIndex);
+                index = parentIndex;
+            } else {
+                break;
+            }
+        }
+    }
+
+    bubbleDown(index) {
+        const lastIndex = this.size() - 1;
+        while (true) {
+            const leftIndex = index * 2 + 1;
+            const rightIndex = index * 2 + 2;
+            let findIndex = index;
+            if (
+                leftIndex <= lastIndex &&
+                this.comparator(this.data[leftIndex], this.data[findIndex]) < 0
+            ) {
+                findIndex = leftIndex;
+            }
+            if (
+                rightIndex <= lastIndex &&
+                this.comparator(this.data[rightIndex], this.data[findIndex]) < 0
+            ) {
+                findIndex = rightIndex;
+            }
+            if (index !== findIndex) {
+                this.swap(index, findIndex);
+                index = findIndex;
+            } else {
+                break;
+            }
+        }
+    }
+
+  swap(index1, index2) {
+        [this.data[index1], this.data[index2]] = [this.data[index2], this.data[index1]];
+    }
+
+    size() {
+        return this.data.length;
+    }
+}
 /**
  * Your KthLargest object will be instantiated and called as such:
  * var obj = new KthLargest(k, nums)
  * var param_1 = obj.add(val)
  */
+```
+
+## 559. N 叉树的最大深度
+
+[559. N 叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-n-ary-tree/)
+
+```js
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/**
+ * @param {Node|null} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    
+};
 ```

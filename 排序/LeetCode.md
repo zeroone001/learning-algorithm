@@ -120,6 +120,55 @@ var missingNumber = function(nums) {
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
+    let set2 = new Set([...nums2]);
+    return [...new Set([...nums1].filter(x => set2.has(x)))];
+};
+```
+
+## 350. 两个数组的交集 II
+
+[350. 两个数组的交集 II](https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/)
+
+```js
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+/* 
+    双指针来做这个题目
+    1. 先两个数组排序
+    2. 双指针来对比
+*/
+var intersect = function(nums1, nums2) {
+    nums1.sort((a, b) => a-b);
+    nums2.sort((a, b) => a-b);
+    let l = 0, r = 0, res = [];
+    while (l < nums1.length && r < nums2.length) {
+        if (nums1[l] === nums2[r]) {
+            res.push(nums1[l]);
+            l++;
+            r++;
+        } else {
+            /* 较小的值 继续往上加 */
+            nums1[l] < nums2[r] ? l++ : r++; 
+        }
+    }
+    return res;
+};  
+```
+
+## 389. 找不同
+
+[389. 找不同](https://leetcode-cn.com/problems/find-the-difference/)
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {character}
+ */
+var findTheDifference = function(s, t) {
 
 };
 ```

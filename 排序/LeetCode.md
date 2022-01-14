@@ -60,3 +60,21 @@ var dominantIndex = function(nums) {
     return m1 >= m2 * 2 ? index : -1;
 };
 ```
+
+## 242. 有效的字母异位词
+
+[242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/)
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+/* 
+    使用排序的方法
+*/
+var isAnagram = function(s, t) {
+    return s.length === t.length && [...s].sort().join('') === [...t].sort().join('');
+};
+```

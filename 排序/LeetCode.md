@@ -73,8 +73,53 @@ var dominantIndex = function(nums) {
  */
 /* 
     使用排序的方法
+    1. 先判断长度
+    2. 再进行排序
+    3. 转化成字符串进行比较
 */
 var isAnagram = function(s, t) {
     return s.length === t.length && [...s].sort().join('') === [...t].sort().join('');
+};
+```
+
+## 268. 丢失的数字
+
+[268. 丢失的数字](https://leetcode-cn.com/problems/missing-number/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+/* 
+    1. 先排序
+    2. 然后，进行判断 [0, n-1]， 如果都没找到，执行第三步
+    3. 直接return最后一个长度就是缺少的
+*/
+var missingNumber = function(nums) {
+    const arr = [...nums].sort((a, b) => a - b);
+
+    for (const [key, val] of arr.entries()) {
+        if (key !== val) {
+            return key;
+        }
+    }
+    /* 注意这里，少了最后一个 */
+    return arr.length;
+};
+```
+
+## 349. 两个数组的交集
+
+[349. 两个数组的交集](https://leetcode-cn.com/problems/intersection-of-two-arrays/)
+
+```js
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersection = function(nums1, nums2) {
+
 };
 ```

@@ -3646,7 +3646,20 @@ var numWays = function(n, relation, k) {
  * @param {TreeNode} root
  * @return {number}
  */
+/* 使用前序遍历 来解决这个问题 */
+/* 也可以层序遍历来解决这个问题 */
 var findBottomLeftValue = function(root) {
+    if (root == null) return null;
+    let queue = [];
+    queue.push(root);
+    let resNode = null;
 
+    while (condition) {
+        
+    }
 };
 ```
+
+
+
+

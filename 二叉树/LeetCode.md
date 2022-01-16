@@ -3654,9 +3654,19 @@ var findBottomLeftValue = function(root) {
     queue.push(root);
     let resNode = null;
 
-    while (condition) {
-        
+    while (queue.length) {
+        let len = queue.length;
+        /* 一层一层的遍历 */
+        for (let index = 0; index < len; index++) {
+            /* 出队列 */
+            let node = queue.shift();
+            if (index === 0) resNode = node.val;
+
+            node.left && queue.push(node.left);
+            node.right && queue.push(node.right);
+        }
     }
+    return resNode;
 };
 ```
 

@@ -586,6 +586,7 @@ var middleNode = function(head) {
  * @param {ListNode} head
  * @return {boolean}
  */
+// 通过快、慢指针找链表中点，然后反转链表，比较两个链表两侧是否相等，来判断是否是回文链表
 var isPalindrome = function(head) {
     let fast = head;
     let slow = head;

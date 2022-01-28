@@ -1,30 +1,29 @@
+# 递归
 
+> 递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法，比如DFS深度优先搜索、前中后序二叉树遍历等都是使用递归
 
-## 递归
-
-递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法，比如DFS深度优先搜索、前中后序二叉树遍历等都是使用递归
-
-### 编写递归代码的姿势
+## 编写递归代码的姿势
 
 1. 推导递归公式
 2. 找出终止条件
 3. 编写递归代码
 
 
-### 弊端
+## 弊端
 
 1. 堆栈溢出
 2. 重复计算
 3. 函数调用耗时多
 4. 空间复杂度高
 
-### 一个问题只要同时满足以下3个条件，就可以用递归来解决
+## 一个问题只要同时满足以下3个条件，就可以用递归来解决
 
 1. 问题的解可以分解为几个子问题的解。何为子问题？就是数据规模更小的问题。
 2. 问题与子问题，除了数据规模不同，求解思路完全一样
 3. 存在递归终止条件
 
-### 递归结构分为4部分
+## 递归结构分为4部分
+
 ```js
 f(n){
 //终止条件
@@ -40,11 +39,11 @@ return result;
 }
 ```
 
-### LeetCode题目
+## LeetCode题目
 
 通过经典算法题，来加深递归的理解
 
-#### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+### [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 
 递归的DFS（深度优先算法）
 
@@ -74,7 +73,7 @@ var maxDepth = function(root) {
 };
 ```
 
-#### 两两交换链表中的节点
+### 两两交换链表中的节点
 
 [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
 
@@ -129,7 +128,7 @@ var swapPairs = function(head) {
 
 ```
 
-#### 110. 平衡二叉树
+### 110. 平衡二叉树
 
 [110. 平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/)
 
@@ -162,6 +161,4 @@ var isBalanced = function(root) {
 
     return Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
 };
-
 ```
-

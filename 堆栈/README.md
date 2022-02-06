@@ -10,12 +10,9 @@
 
 ## 224. 基本计算器
 
-字节跳动的面试题
-
-重要，还挺难的
+字节跳动的面试题, 重要，还挺难的
 
 [224. 基本计算器](https://leetcode-cn.com/problems/basic-calculator/)
-
 
 ```js
 /**

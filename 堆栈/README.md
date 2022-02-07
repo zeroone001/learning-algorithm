@@ -111,9 +111,7 @@ MyStack.prototype.empty = function() {
  * var param_4 = obj.empty()
  */
  ```
-
-
-
+ 
 ## 20. 有效的括号
 
 [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)

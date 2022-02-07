@@ -16,6 +16,10 @@
 
 [字符串](https://github.com/zeroone001/learning-algorithm/tree/main/%E5%AD%97%E7%AC%A6%E4%B8%B2)
 
+## 数组
+
+[数组](https://github.com/zeroone001/learning-algorithm/tree/main/Array)
+
 ## 高斯模糊
 
 * 原理： http://www.ruanyifeng.com/blog/2012/11/gaussian_blur.html

@@ -46,7 +46,6 @@ function partition (arr, left, right) {
             i++;
             j--;
         }
-
     }
 
     return i;
@@ -56,17 +55,6 @@ function swap (arr, i, j) {
     arr[i] = arr[j];
     arr[j] = tmp;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 let swap = (arr, i, j) => {
     let tmp = arr[i];

@@ -115,73 +115,11 @@ function selectionSort (arr) {
 ```
 
 
-## 三种排序O(nlogn) 归并排序 快速排序 希尔排序
+## 三种排序O(nlogn) 快速排序 归并排序 希尔排序
 
 1. 都是O(nlogn)，适合大规模的排序，比上面三个更加常用
 2. 分治是一种解决问题的处理思想，递归是一种编程技巧
-3. 归并排序，快速排序， 希尔排序
-
-### 归并排序
-
-缺点： 不是原地排序
-
-原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
-
-1. 分解
-2. 解决
-3. 合并
-
-```js
-function mergeSort(arr) {
-  let array = mergeSortRec(arr)
-  return array
-}
-
-// 若分裂后的两个数组长度不为 1，则继续分裂
-// 直到分裂后的数组长度都为 1，
-// 然后合并小数组
-function mergeSortRec(arr) {
-    /* 0. 拆解到最小 */
-  let length = arr.length
-  if(length === 1) {
-    return arr
-  }
-  /* 1. 获取中点，拆分数组 */
-  let mid = Math.floor(length / 2),
-      left = arr.slice(0, mid),
-      right = arr.slice(mid, length)
-    /* 3. 合并 */
-  return merge(mergeSortRec(left), mergeSortRec(right))
-}
-
-// 顺序合并两个小数组left、right 到 result
-/* 2. 解决顺序问题 */
-function merge(left, right) {
-  let result = [],
-      ileft = 0,
-      iright = 0;
-    /* left, right  数组是有序的 */
-  while(ileft < left.length && iright < right.length) {
-    if(left[ileft] < right[iright]) {
-      result.push(left[ileft ++])
-    } else {
-      result.push(right[iright ++])
-    }
-  }
-  while(ileft < left.length) {
-    result.push(left[ileft ++])
-  }
-  while(iright < right.length) {
-    result.push(right[iright ++])
-  }
-  return result
-}
-
-// 测试
-let arr = [1, 3, 2, 5, 4]
-console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
-```
-
+3. 快速排序，归并排序，希尔排序
 
 ### 快速排序
 
@@ -198,14 +136,15 @@ console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
 我们可以用递归排序下标从p到q-1之间的数据和下标从q+1到r之间的数据，直到区间缩小为1，就说明所有的数据都有序了。
 
 
-
 时间复杂度：O(nlogn)
 
-
+二分法
 
 1. 首先从序列中选取一个数作为基准数
 2. 将比这个数大的数全部放到它的右边，把小于或者等于它的数全部放到它的左边 （一次快排 partition）
 3. 然后分别对基准的左右两边重复以上的操作，直到数组完全排序
+
+
 ```js
 let quickSort = (arr) => {
   quick(arr, 0 , arr.length - 1)
@@ -269,6 +208,66 @@ console.log(arr) // [1, 2, 3, 4, 5]
 console.log(arr[arr.length - 2])  // 4
 ```
 
+### 归并排序
+
+缺点： 不是原地排序
+
+原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
+
+1. 分解
+2. 解决
+3. 合并
+
+```js
+function mergeSort(arr) {
+  let array = mergeSortRec(arr)
+  return array
+}
+
+// 若分裂后的两个数组长度不为 1，则继续分裂
+// 直到分裂后的数组长度都为 1，
+// 然后合并小数组
+function mergeSortRec(arr) {
+    /* 0. 拆解到最小 */
+  let length = arr.length
+  if(length === 1) {
+    return arr
+  }
+  /* 1. 获取中点，拆分数组 */
+  let mid = Math.floor(length / 2),
+      left = arr.slice(0, mid),
+      right = arr.slice(mid, length)
+    /* 3. 合并 */
+  return merge(mergeSortRec(left), mergeSortRec(right))
+}
+
+// 顺序合并两个小数组left、right 到 result
+/* 2. 解决顺序问题 */
+function merge(left, right) {
+  let result = [],
+      ileft = 0,
+      iright = 0;
+    /* left, right  数组是有序的 */
+  while(ileft < left.length && iright < right.length) {
+    if(left[ileft] < right[iright]) {
+      result.push(left[ileft ++])
+    } else {
+      result.push(right[iright ++])
+    }
+  }
+  while(ileft < left.length) {
+    result.push(left[ileft ++])
+  }
+  while(iright < right.length) {
+    result.push(right[iright ++])
+  }
+  return result
+}
+
+// 测试
+let arr = [1, 3, 2, 5, 4]
+console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
+```
 
 
 

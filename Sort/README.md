@@ -146,11 +146,11 @@ function selectionSort (arr) {
 
 
 ```js
-let quickSort = (arr) => {
+const quickSort = (arr) => {
   quick(arr, 0 , arr.length - 1)
 }
 
-let quick = (arr, left, right) => {
+const quick = (arr, left, right) => {
   let index
   if(left < right) {
     // 划分数组
@@ -165,24 +165,21 @@ let quick = (arr, left, right) => {
 }
 
 // 一次快排
-let partition = (arr, left, right) => {
+const partition = (arr, left, right) => {
   // 取中间项为基准
   var datum = arr[Math.floor(Math.random() * (right - left + 1)) + left],
       i = left,
       j = right
   // 开始调整
   while(i <= j) {
-    
     // 左指针右移
     while(arr[i] < datum) {
       i++
     }
-    
     // 右指针左移
     while(arr[j] > datum) {
       j--
     }
-    
     // 交换
     if(i <= j) {
       swap(arr, i, j)
@@ -194,7 +191,7 @@ let partition = (arr, left, right) => {
 }
 
 // 交换
-let swap = (arr, i , j) => {
+const swap = (arr, i , j) => {
     let temp = arr[i]
     arr[i] = arr[j]
     arr[j] = temp

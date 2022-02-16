@@ -37,19 +37,3 @@ var isBalanced = function(root) {
 };
 
 ```
-
-## Python
-
-```Python
-class Solution:
-    def isBalanced(self, root: TreeNode) -> bool:
-        def dfs(node):
-            if not node: return 0
-            l = dfs(node.left)
-            r = dfs(node.right)
-            return max(l, r)  + 1
-        if not root: return True
-        if abs(dfs(root.left) -  dfs(root.right)) > 1: return False
-        return self.isBalanced(root.left) and self.isBalanced(root.right)
-        
-```

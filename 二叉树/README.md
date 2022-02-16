@@ -1,6 +1,4 @@
-# 二叉树
-
-[二叉树](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree)
+# [二叉树](https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/tree)
 
 非线性结构
 
@@ -9,7 +7,6 @@
 3. 二叉搜索树 BST
 4. 平衡二叉树
 5. 红黑树
-
 
 面试中常考的树： 普通二叉树，平衡二叉树，完全二叉树，二叉搜索树，红黑树
 
@@ -26,13 +23,10 @@
 
 针对空间利用率设计出来的数据结构
 
-## 怎么存储一个二叉树
+## 深度优先 DFS
 
 
-## 深度优先
-
-
-## 广度优先
+## 广度优先 BFS
 
 ## 一个中心
 
@@ -205,7 +199,6 @@ var levelOrder = function(root) {
 
 ## 7个技巧
 
-
 1. DFS
 2. 单双递归
 3. 前后遍历
@@ -235,6 +228,3 @@ path 携带，也是常用的
 最后我给大家介绍了七种干货技巧，很多技巧都说明了在什么情况下可以使用。好不好用你自己去找几个题目试试就知道了。
 
 ## 树的遍历迭代写法
-
-
-

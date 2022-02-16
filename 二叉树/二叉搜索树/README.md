@@ -52,6 +52,47 @@ var sortedArrayToBST = function(nums) {
 };
 ```
 
+## 剑指 Offer II 052. 展平二叉搜索树
+
+[剑指 Offer II 052. 展平二叉搜索树](https://leetcode-cn.com/problems/NYBBNL/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+/* 
+    先转成数组
+    在一个个变成新的搜索树
+*/
+var increasingBST = function(root) {
+    if (root == null) return null;
+    let prev = new TreeNode(-1);
+    let res = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left);
+        res.push(root.val);
+        dfs(root.right);
+    }
+    dfs(root);
+    /* 指针 */
+    let cur = prev;
+    for (const iterator of res) {
+        cur.right = new TreeNode(iterator);
+        cur = cur.right;
+    }
+    return prev.right;
+};
+```
 
 
 

@@ -2118,7 +2118,6 @@ var isPalindrome = function(head) {
 
 
 
-# 掘金 tag
 
 ## 1290. 二进制链表转整数
 

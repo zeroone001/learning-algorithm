@@ -2649,50 +2649,6 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 ```
 
-## 剑指 Offer II 052. 展平二叉搜索树
-
-简单
-
-[剑指 Offer II 052. 展平二叉搜索树](https://leetcode-cn.com/problems/NYBBNL/)
-
-```js
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {TreeNode}
- */
-/* 
-    先转成数组
-    在一个个变成新的搜索树
-*/
-var increasingBST = function(root) {
-    if (root == null) return null;
-    let prev = new TreeNode(-1);
-    let res = [];
-    const dfs = (root) => {
-        if (root == null) return;
-        dfs(root.left, prev.right);
-        res.push(root.val);
-        dfs(root.right, prev.right);
-    }
-    dfs(root);
-    /* 指针 */
-    let cur = prev;
-    for (const iterator of res) {
-        cur.right = new TreeNode(iterator);
-        cur = cur.right;
-    }
-
-    return prev.right;
-};
-```
 
 ## 剑指 Offer II 056. 二叉搜索树中两个节点之和
 

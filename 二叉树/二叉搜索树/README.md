@@ -94,6 +94,39 @@ var increasingBST = function(root) {
 };
 ```
 
+## 剑指 Offer 54. 二叉搜索树的第k大节点
+
+
+[剑指 Offer 54. 二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthLargest = function(root, k) {
+    if (root == null) return 0;
+    let arr = [];
+    const dfs = (root) => {
+        if (root == null) return;
+        dfs(root.left);
+        arr.push(root.val);
+        dfs(root.right);
+    }
+    dfs(root);
+    arr.reverse();
+    return arr[k - 1];
+};
+```
+
 
 
 ```js

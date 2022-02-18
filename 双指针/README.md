@@ -42,6 +42,6 @@ var sortedSquares = function(nums) {
  * @return {number}
  */
 var removeElement = function(nums, val) {
-
+    
 };
 ```

@@ -30,7 +30,7 @@ temp = 待插入位置的前驱节点.next
 
 ```js
 /* 迭代 */
-当前指针 =  头指针
+当前指针 = 头指针
 while 当前节点不为空 {
    print(当前节点)
    当前指针 = 当前指针.next
@@ -82,7 +82,6 @@ var reverseList = function(head) {
 };
 ```
 
-
 ## 141. 环形链表
 
 使用快慢指针来处理问题
@@ -113,7 +112,6 @@ var reverseList = function(head) {
     }
     return false;
 };
-
 ```
 
 ## 142. 环形链表 II
@@ -560,9 +558,7 @@ var middleNode = function(head) {
 };
 ```
 
-
 ## 234. 回文链表
-
 
 给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
 
@@ -624,7 +620,6 @@ var isPalindrome = function(head) {
 };
 ```
 
-
 ## 24. 两两交换链表中的节点
 
 [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
@@ -643,8 +638,6 @@ var isPalindrome = function(head) {
  */
 var swapPairs = function(head) {
     /* 
-
-    
     // 当前节点
     const dummyHead = new ListNode(0);
     
@@ -668,19 +661,13 @@ var swapPairs = function(head) {
     if (head == null || head.next == null) {
         return head;
     }
-
     const NewHead = head.next;
-
     head.next = swapPairs(NewHead.next);
     NewHead.next = head;
-
     return NewHead;
-
 };
 
 ```
-
-
 
 ## 剑指 Offer II 077. 链表排序
 

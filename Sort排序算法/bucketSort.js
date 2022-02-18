@@ -1,8 +1,3 @@
-/* 
-    桶排序
-*/
-
-
 // 桶排序
 let bucketSort = (arr) => {
     let bucket = [], res = []

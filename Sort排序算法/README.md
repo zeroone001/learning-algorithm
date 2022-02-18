@@ -26,7 +26,6 @@ function bubbleSort (arr) {
 }
 ```
 
-
 ### 插入排序
 
 时间复杂度： O(n^2)
@@ -125,6 +124,136 @@ function selectionSort (arr) {
 2. 分治是一种解决问题的处理思想，递归是一种编程技巧
 3. 快速排序，归并排序，希尔排序
 
+### 归并排序
+
+缺点： 不是原地排序
+
+原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
+
+1. 分解
+2. 解决
+3. 合并
+
+```js
+function mergeSort(arr) {
+  let array = mergeSortRec(arr);
+  return array;
+}
+
+// 若分裂后的两个数组长度不为 1，则继续分裂
+// 直到分裂后的数组长度都为 1，
+// 然后合并小数组
+function mergeSortRec(arr) {
+    /* 0. 拆解到最小 */
+  let length = arr.length
+  if(length === 1) {
+    return arr
+  }
+  /* 1. 获取中点，拆分数组 */
+  let mid = Math.floor(length / 2),
+      left = arr.slice(0, mid),
+      right = arr.slice(mid, length)
+    /* 3. 合并 */
+  return merge(mergeSortRec(left), mergeSortRec(right))
+}
+
+// 顺序合并两个小数组left、right 到 result
+/* 2. 解决顺序问题 */
+function merge(left, right) {
+  let result = [],
+      ileft = 0,
+      iright = 0;
+    /* left, right  数组是有序的 */
+  while(ileft < left.length && iright < right.length) {
+    if(left[ileft] < right[iright]) {
+      result.push(left[ileft ++])
+    } else {
+      result.push(right[iright ++])
+    }
+  }
+  while(ileft < left.length) {
+    result.push(left[ileft ++])
+  }
+  while(iright < right.length) {
+    result.push(right[iright ++])
+  }
+  return result
+}
+
+// 测试
+let arr = [1, 3, 2, 5, 4]
+console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
+```
+
+### 148. 排序链表
+
+[148. 排序链表](https://leetcode-cn.com/problems/sort-list/)
+
+归并排序
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// 使用快慢指针的形式，获取中间节点
+ var merge = function (left, right) {
+   let result = new ListNode(0);
+   let current = result;
+   while (left && right){
+         if (left.val < right.val) {
+           current.next = left;
+           left = left.next;
+         } else {
+           current.next = right;
+           right = right.next;
+         }
+     current = current.next;
+   }
+   current.next = left || right;
+   
+   return result.next
+          
+          
+ }
+var getMiddleNode = function (head) {
+  let fast = head;
+  let slow = head;
+  
+  while (fast !== null && fast.next !== null && fast.next.next !== null) {
+         fast = fast.next.next;
+    slow = slow.next;
+         }
+  return slow;
+}
+var mergeSort = function (head) {
+    // 需要一个结束条件
+  if (!head || !head.next) return head;
+  // 获取中间节点
+  let middle = getMiddleNode(head);
+  let tmp = JSON.parse(JSON.stringify(middle.next));
+  middle.next = null;
+  
+  let left = head;
+  let right = tmp;
+  return merge(mergeSort(left), mergeSort(right));
+}
+// 归并排序
+var sortList = function(head) {
+    if (!head || !head.next) return head;
+    return mergeSort(head);
+};
+```
+
+
+
 ### 快速排序
 
 不稳定
@@ -157,7 +286,7 @@ const quickSort = (arr) => {
 const quick = (arr, left, right) => {
   let index
   if(left < right) {
-    // 划分数组
+    // 划分数组，小的放左边，大的放右边
     index = partition(arr, left, right)
     if(left < index - 1) {
       quick(arr, left, index - 1)
@@ -209,68 +338,6 @@ console.log(arr) // [1, 2, 3, 4, 5]
 console.log(arr[arr.length - 2])  // 4
 ```
 
-### 归并排序
-
-缺点： 不是原地排序
-
-原理： 如果要排序一个数组，我们先把数组从中间分成前后两部分，然后对前后两部分分别排序，再将排好序的两部分合并在一起，这样整个数组就都有序了。
-
-1. 分解
-2. 解决
-3. 合并
-
-```js
-function mergeSort(arr) {
-  let array = mergeSortRec(arr)
-  return array
-}
-
-// 若分裂后的两个数组长度不为 1，则继续分裂
-// 直到分裂后的数组长度都为 1，
-// 然后合并小数组
-function mergeSortRec(arr) {
-    /* 0. 拆解到最小 */
-  let length = arr.length
-  if(length === 1) {
-    return arr
-  }
-  /* 1. 获取中点，拆分数组 */
-  let mid = Math.floor(length / 2),
-      left = arr.slice(0, mid),
-      right = arr.slice(mid, length)
-    /* 3. 合并 */
-  return merge(mergeSortRec(left), mergeSortRec(right))
-}
-
-// 顺序合并两个小数组left、right 到 result
-/* 2. 解决顺序问题 */
-function merge(left, right) {
-  let result = [],
-      ileft = 0,
-      iright = 0;
-    /* left, right  数组是有序的 */
-  while(ileft < left.length && iright < right.length) {
-    if(left[ileft] < right[iright]) {
-      result.push(left[ileft ++])
-    } else {
-      result.push(right[iright ++])
-    }
-  }
-  while(ileft < left.length) {
-    result.push(left[ileft ++])
-  }
-  while(iright < right.length) {
-    result.push(right[iright ++])
-  }
-  return result
-}
-
-// 测试
-let arr = [1, 3, 2, 5, 4]
-console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
-```
-
-
 
 ### 希尔排序
 
@@ -284,8 +351,7 @@ console.log(mergeSort(arr)) // [1, 2, 3, 4, 5]
 
 又叫，缩小增量排序
 
-原理，
-1. 就是把序列进行分组，组内进行插入排序；这个时候从宏观上来看是有序的，
+1. 就是把序列进行分组，组内进行插入排序；这个时候从宏观上来看是有序的
 2. 最后一次进行插入排序，无须多次位移或者交换
 
 [希尔排序参考资料https://juejin.cn/post/6844904007182319624](https://juejin.cn/post/6844904007182319624)
@@ -312,8 +378,6 @@ function shellSort(arr) {
     return arr;
 }
 ```
-
-
 
 ### 排序链表
 
@@ -416,7 +480,7 @@ function merge (left, right) {
 - 时间复杂度：**O(n+k)**
 - 空间复杂度：**O(n+k)**
 
-##### 原理
+#### 原理
 
 1. 先查找数组里最大的那个值；
 2. 根据（最大的值+1）创建新的数组，用于将数据值转化为键存储,下标是[0,...,maxValue]

@@ -97,7 +97,7 @@ function selectionSort (arr) {
     if (arr.length <= 1) {return arr;}
     const length = arr.length;
     for (let index = 0; index < arr.length - 1; index++) {
-        const element = arr[index];
+        // const element = arr[index];
         let minIndex = index;
         // 找到未排序的数组里面的最小值
         for (let j = i; j < length; j++) {
@@ -166,9 +166,9 @@ function merge(left, right) {
     /* left, right  数组是有序的 */
   while(ileft < left.length && iright < right.length) {
     if(left[ileft] < right[iright]) {
-      result.push(left[ileft ++])
+      result.push(left[ileft++]);
     } else {
-      result.push(right[iright ++])
+      result.push(right[iright++]);
     }
   }
   while(ileft < left.length) {
@@ -573,21 +573,15 @@ Bucket sort，桶排序是计数排序的升级
 
 否则基数排序的时间复杂度就无法做到O（n）了
 
-
-
 * 非比较排序
 * 本质上是多关键字排序
 * 桶思想的一种
-
-
 
 #### 算法思想
 
 假如有一个数组`[123,321,432,654]`，先取每个元素的个位数，进行计数排序，
 
 排完之后，对新数组再继续用十位数排序，最后，给百位数进行计数排序，这样最后就得到排好的数组了
-
-
 
 ```js
 //LSD Radix Sort
@@ -679,14 +673,3 @@ var items = [,1, 9, 2, 8, 3, 7, 4, 6, 5]
 heapSort(items)
 // [empty, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-
-
-
-
-
-
-
-
-
-
-

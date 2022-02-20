@@ -1,29 +1,5 @@
 # 动态规划
 
-## 70. 爬楼梯
-
-[70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
-
-```js
-/**
- * @param {number} n
- * @return {number}
- */
-/* 
-
-*/
-var climbStairs = function(n) {
-    if (n < 4) return n;
-    /* 初始化，跟菲波那切数列的区别是初始化的部分 */
-    const arr = [1, 1];
-    for (let i = 2; i <= n; i++) {
-        /* 递推公式 */
-        arr[i] = arr[i-2] + arr[i-1];
-    } 
-    return arr[n];
-};
-```
-
 ## 509. 斐波那契数
 
 [509. 斐波那契数](https://leetcode-cn.com/problems/fibonacci-number/)
@@ -66,6 +42,30 @@ var fib = function(n) {
     for (let i = 2; i <= n; i++) {
         arr[i] = (arr[i - 2] + arr[i - 1]) % MOD;
     }
+    return arr[n];
+};
+```
+
+## 70. 爬楼梯
+
+[70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+/* 
+
+*/
+var climbStairs = function(n) {
+    if (n < 4) return n;
+    /* 初始化，跟菲波那切数列的区别是初始化的部分 */
+    const arr = [1, 1];
+    for (let i = 2; i <= n; i++) {
+        /* 递推公式 */
+        arr[i] = arr[i-2] + arr[i-1];
+    } 
     return arr[n];
 };
 ```

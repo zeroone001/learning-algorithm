@@ -76,6 +76,7 @@ var calculate = function(s) {
             i++
         } else {
             let num = 0;
+            // 处理 123 这种格式
             while (i < n && !isNaN(Number(s[i])) && s[i] !== ' ') {
                 num = num * 10 + (parseInt(s[i]));
                 i++

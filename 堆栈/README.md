@@ -8,6 +8,37 @@
 
 插入，删除： O(1) 
 
+## 20. 有效的括号
+
+[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    let arr = [];
+    let strObj = {
+        ')': '(',
+        ']': '[',
+        '}': '{',
+    };
+    // 这里可以改为for of 循环字符串
+    for(let item of s){
+        let item = strArr[i];
+        if (item === '(' || item === '[' || item === '{') {
+            arr.push(item);
+        } else {
+            if (strObj[item] !== arr.pop()) return false;
+        }
+
+    }
+    return arr.length === 0;
+};
+```
+
+
 ## 224. 基本计算器
 
 字节跳动的面试题, 重要，还挺难的
@@ -112,32 +143,3 @@ MyStack.prototype.empty = function() {
  */
  ```
  
-## 20. 有效的括号
-
-[20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
-
-```js
-/**
- * @param {string} s
- * @return {boolean}
- */
-var isValid = function(s) {
-    let arr = [];
-    let strObj = {
-        ')': '(',
-        ']': '[',
-        '}': '{',
-    };
-    // 这里可以改为for of 循环字符串
-    for(let item of s){
-        let item = strArr[i];
-        if (item === '(' || item === '[' || item === '{') {
-            arr.push(item);
-        } else {
-            if (strObj[item] !== arr.pop()) return false;
-        }
-
-    }
-    return arr.length === 0;
-};
-```

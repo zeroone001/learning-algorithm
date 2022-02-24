@@ -34,14 +34,6 @@ function insertSort (arr) {
     return arr;
 }
 
-
-
-
-
-
-
-
-
 function insertionSort(arr) {
     let n = arr.length;
     let preIndex, current;
@@ -57,29 +49,41 @@ function insertionSort(arr) {
     return arr;
 }
 
+// [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/)
 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var insertionSortList = function(head) {
+    if (head == null) return;
+    let dummyHead = new ListNode(0);
+    dummyHead.next = head;
 
+    let lastSort = head; // 新链表的最后一个元素
+    let cur = head.next;
 
-// function insertSort (array, n) {
-//     if (n <= 1) return;
-//     for (let index = 1; index < n; index++) {
-//         const element = array[index]; // 即将
-//         const j = index - 1;
-//         /* 
-//             // 已经插入的数组
-//             // 这里倒着循环
-//             有序数组最大的进行比较
-//         */
-//         for (; j >=0 ; --j) {
-//             if (array[j] > element) {
-//                 array[j+1] = array[j]; // 数据移动
-//             } else {
-//                 break;
-//             }
-            
-//         }
-//         array[j+1] = element;
-        
-//     }
-// }
-
+    
+    while (cur != null) {
+        if (cur.val >= lastSort.val) {
+            lastSort = lastSort.next;
+        } else {
+            let prev = dummyHead;
+            while (prev.next.val <= cur.val) {
+                prev = prev.next;
+            }
+            lastSort.next = cur.next;
+            cur.next = prev.next;
+            prev.next = cur;
+        }
+        cur = lastSort.next;
+    }
+    return dummyHead.next;
+};

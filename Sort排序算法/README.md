@@ -36,6 +36,29 @@ function bubbleSort (arr) {
 
 重点： 涉及到数据的移动
 
+```js
+function insertSort (arr) {
+    const arrlength = arr.length;
+    if (arrlength <= 1) return arr;
+
+    let current;
+    let prevIndex;
+
+    for(let i = 1; i < arrlength; i++) {
+        current = arr[i];
+        prevIndex = i - 1;
+
+        // 迭代有序数组,从后往前遍历
+        while(prevIndex >= 0 && arr[prevIndex] > current) {
+            arr[prevIndex + 1] = arr[prevIndex];
+            prevIndex--;
+        }
+        arr[prevIndex] = current;
+    }
+    return arr;
+}
+```
+
 [147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/)
 
 ```js

@@ -59,49 +59,6 @@ function insertSort (arr) {
 }
 ```
 
-[147. 对链表进行插入排序](https://leetcode-cn.com/problems/insertion-sort-list/)
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var insertionSortList = function(head) {
-    if (head == null) return;
-    let dummyHead = new ListNode(0);
-    dummyHead.next = head;
-
-    let lastSort = head; // 新链表的最后一个元素
-    let cur = head.next;
-
-    
-    while (cur != null) {
-        if (cur.val >= lastSort.val) {
-            lastSort = lastSort.next;
-        } else {
-            let prev = dummyHead;
-            while (prev.next.val <= cur.val) {
-                prev = prev.next;
-            }
-            lastSort.next = cur.next;
-            cur.next = prev.next;
-            prev.next = cur;
-        }
-        cur = lastSort.next;
-    }
-    return dummyHead.next;
-};
-```
-
-
-
 ### 选择排序
 
 时间复杂度： O(n^2)
@@ -251,9 +208,9 @@ var getMiddleNode = function (head) {
   let slow = head;
   
   while (fast !== null && fast.next !== null && fast.next.next !== null) {
-         fast = fast.next.next;
-    slow = slow.next;
-         }
+      fast = fast.next.next;
+      slow = slow.next;
+  }
   return slow;
 }
 var mergeSort = function (head) {
@@ -323,7 +280,7 @@ const quick = (arr, left, right) => {
 // 一次快排
 const partition = (arr, left, right) => {
   // 取中间项为基准
-  var datum = arr[Math.floor(Math.random() * (right - left + 1)) + left],
+  var datum = arr[Math.floor((right - left) / 2) + left],
       i = left,
       j = right
   // 开始调整

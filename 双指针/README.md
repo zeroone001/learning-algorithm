@@ -45,3 +45,30 @@ var removeElement = function(nums, val) {
     
 };
 ```
+
+## 128. 最长连续序列
+
+[128. 最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+    const set = new Set(nums);
+    let max = 0;
+    for(let val of set) {
+        if (!set.has(val - 1)) {
+            let count = 1;
+            let cur = val;
+            while (set.has(cur+1)) {
+                count++;
+                cur++;
+            }
+            max = Math.max(max, count);
+        }
+    }
+    return max;
+};
+```

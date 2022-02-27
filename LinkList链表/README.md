@@ -274,7 +274,6 @@ function rotateRight(head: ListNode | null, k: number): ListNode | null {
 
 ## 160. 相交链表
 
-
 [160. 相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
 
 ```js
@@ -302,6 +301,69 @@ var getIntersectionNode = function(headA, headB) {
     return a;
 };
 ```
+
+## 234. 回文链表
+
+给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
+
+方案： 1，通过快慢指针找到中间节点；2， 把后面节点reverse反转；3， 两个链表进行比较
+
+[234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+// 通过快、慢指针找链表中点，然后反转链表，比较两个链表两侧是否相等，来判断是否是回文链表
+var isPalindrome = function(head) {
+    let fast = head;
+    let slow = head;
+
+    if (head.next == null) return true;
+    // 先找出中间节点
+    while (fast != null && fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    let right = slow.next;
+    slow.next = null;
+    let left = head;
+
+    // right 反转
+  	// 反转的方法，就是定义一个prev指针，current指向prev
+    let current = right;
+    let prev = null;
+    while (current) {
+        let tmp = current.next;
+        current.next = prev;
+        prev = current;
+        current = tmp;
+    }
+    // 两个链表进行对比
+    while (left != null && prev != null) {
+        if (left.val != prev.val) {
+            return false;
+        } else {
+            left = left.next;
+            prev = prev.next;
+        }
+    }
+
+    return true;
+    // 一共三部走
+
+};
+```
+
 
 ## 24. 两两交换链表中的节点
 
@@ -555,68 +617,6 @@ var middleNode = function(head) {
     }
 
     return slow;
-};
-```
-
-## 234. 回文链表
-
-给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
-
-方案： 1，通过快慢指针找到中间节点；2， 把后面节点reverse反转；3， 两个链表进行比较
-
-[234. 回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {boolean}
- */
-// 通过快、慢指针找链表中点，然后反转链表，比较两个链表两侧是否相等，来判断是否是回文链表
-var isPalindrome = function(head) {
-    let fast = head;
-    let slow = head;
-
-    if (head.next == null) return true;
-    // 先找出中间节点
-    while (fast != null && fast.next != null && fast.next.next != null) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-
-    let right = slow.next;
-    slow.next = null;
-    let left = head;
-
-    // right 反转
-  	// 反转的方法，就是定义一个prev指针，current指向prev
-    let current = right;
-    let prev = null;
-    while (current) {
-        let tmp = current.next;
-        current.next = prev;
-        prev = current;
-        current = tmp;
-    }
-    // 两个链表进行对比
-    while (left != null && prev != null) {
-        if (left.val != prev.val) {
-            return false;
-        } else {
-            left = left.next;
-            prev = prev.next;
-        }
-    }
-
-    return true;
-    // 一共三部走
-
 };
 ```
 

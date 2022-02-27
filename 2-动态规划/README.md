@@ -55,9 +55,6 @@ var fib = function(n) {
  * @param {number} n
  * @return {number}
  */
-/* 
-
-*/
 var climbStairs = function(n) {
     if (n < 4) return n;
     /* 初始化，跟菲波那切数列的区别是初始化的部分 */
@@ -67,6 +64,32 @@ var climbStairs = function(n) {
         arr[i] = arr[i-2] + arr[i-1];
     } 
     return arr[n];
+};
+```
+
+## 121. 买卖股票的最佳时机
+
+[121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
+
+```js
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+    const n = prices.length;
+    let maxprice = prices[n - 1];
+    let result = 0;
+
+    for (let i = n - 1; i >= 0; i--) {
+        if (maxprice > prices[i]) {
+            result = Math.max(result, maxprice - prices[i]);
+        } else {
+            maxprice = prices[i];
+        }
+    }
+
+    return result;
 };
 ```
 

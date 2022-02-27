@@ -364,6 +364,48 @@ var isPalindrome = function(head) {
 };
 ```
 
+## 21. 合并两个有序链表
+
+[21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+利用了归并排序的算法
+
+```js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+    let newNode = new ListNode(-1);
+    let prev = newNode; // prev 作为一个指针
+    while (l1 != null && l2 != null) {
+        if (l1.val <= l2.val) {
+            prev.next = l1;
+            l1 = l1.next;
+        } else {
+            prev.next = l2;
+            l2 = l2.next;
+        }
+        prev = prev.next; // 指针指向下一个，作为当前指针
+    }
+    if (l1 != null) {
+        prev.next = l1;
+    }
+    if (l2 != null) {
+        prev.next = l2;
+    }
+    return newNode.next;
+};
+```
+
 
 ## 24. 两两交换链表中的节点
 
@@ -497,48 +539,6 @@ var copyRandomList = function(head) {
 
 4. 链表中环的检测
 
-
-## 21. 合并两个有序链表
-
-[21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
-
-利用了归并排序的算法
-
-```js
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
-var mergeTwoLists = function(l1, l2) {
-    let newNode = new ListNode(-1);
-    let prev = newNode; // prev 作为一个指针
-    while (l1 != null && l2 != null) {
-        if (l1.val <= l2.val) {
-            prev.next = l1;
-            l1 = l1.next;
-        } else {
-            prev.next = l2;
-            l2 = l2.next;
-        }
-        prev = prev.next; // 指针指向下一个，作为当前指针
-    }
-    if (l1 != null) {
-        prev.next = l1;
-    }
-    if (l2 != null) {
-        prev.next = l2;
-    }
-    return newNode.next;
-};
-```
 
 ## 19. 删除链表的倒数第 N 个结点
 

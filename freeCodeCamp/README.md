@@ -1,7 +1,3 @@
-
-
-
-
 # freeCodeCamp
 
 ## 基础算法

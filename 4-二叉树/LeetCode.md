@@ -1,5 +1,43 @@
 # leetcode
 
+## 617. 合并二叉树
+
+[617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {TreeNode}
+ */
+var mergeTrees = function(root1, root2) {
+    if (root1 == null && root2 == null) return null;
+    if (root1 == null && root2 !== null) return root2;
+    if (root1 !== null && root2 == null) return root1;
+
+    const dfs = (root1, root2) => {
+        if (root1 == null && root2 == null) return null;
+        if (root1 == null && root2 !== null) return root2;
+        if (root1 !== null && root2 == null) return root1;
+
+        const root = new TreeNode(root1.val + root2.val);
+        root.left = dfs(root1.left, root2.left);
+        root.right = dfs(root1.right, root2.right);
+        return root;
+    }
+    return dfs(root1, root2);
+};
+```
+
+
 ## 剑指 Offer 34. 二叉树中和为某一值的路径
 
 [剑指 Offer 34. 二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
@@ -2298,42 +2336,7 @@ var tree2str = function(root) {
 
 
 
-## 617. 合并二叉树
 
-[617. 合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)
-
-```js
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root1
- * @param {TreeNode} root2
- * @return {TreeNode}
- */
-var mergeTrees = function(root1, root2) {
-    if (root1 == null && root2 == null) return null;
-    if (root1 == null && root2 !== null) return root2;
-    if (root1 !== null && root2 == null) return root1;
-
-    const dfs = (root1, root2) => {
-        if (root1 == null && root2 == null) return null;
-        if (root1 == null && root2 !== null) return root2;
-        if (root1 !== null && root2 == null) return root1;
-
-        const root = new TreeNode(root1.val + root2.val);
-        root.left = dfs(root1.left, root2.left);
-        root.right = dfs(root1.right, root2.right);
-        return root;
-    }
-    return dfs(root1, root2);
-};
-```
 ## 637. 二叉树的层平均值
 
 [637. 二叉树的层平均值](https://leetcode-cn.com/problems/average-of-levels-in-binary-tree/)

@@ -53,6 +53,7 @@ function insertSort (arr) {
             arr[prevIndex + 1] = arr[prevIndex];
             prevIndex--;
         }
+        /* 进行插入操作 */
         arr[prevIndex] = current;
     }
     return arr;
@@ -132,7 +133,7 @@ function mergeSortRec(arr) {
   /* 1. 获取中点，拆分数组 */
   let mid = Math.floor(length / 2),
       left = arr.slice(0, mid),
-      right = arr.slice(mid, length)
+      right = arr.slice(mid, length);
     /* 3. 合并 */
   return merge(mergeSortRec(left), mergeSortRec(right))
 }

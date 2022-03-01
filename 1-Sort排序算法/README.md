@@ -144,7 +144,7 @@ function merge(left, right) {
   let result = [],
       ileft = 0,
       iright = 0;
-    /* left, right  数组是有序的 */
+  /* left, right  数组是有序的 */
   while(ileft < left.length && iright < right.length) {
     if(left[ileft] < right[iright]) {
       result.push(left[ileft++]);

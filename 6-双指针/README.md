@@ -45,6 +45,28 @@ var threeSum = function(nums) {
 };
 ```
 
+## 11. 盛最多水的容器
+
+[11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
+
+```js
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+    const len = height.length;
+    let max= 0;
+    for(let i=0, j=len-1; i<j;) {
+        let minHeight = height[i] < height[j] ? height[i++] : height[j--];
+        let area = (j-i+1) * minHeight;
+        max= Math.max(max, area);
+    }
+    return max;
+};
+```
+
+
 ## 977. 有序数组的平方
 
 [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)

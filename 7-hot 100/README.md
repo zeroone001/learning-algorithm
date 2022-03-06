@@ -61,3 +61,27 @@ MinStack.prototype.getMin = function() {
 };
 
 ```
+
+## 283. 移动零
+
+[283. 移动零](https://leetcode-cn.com/problems/move-zeroes/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    let j = 0;
+    const len = nums.length;
+    for (let i = 0; i < len; i++) {
+        if (nums[i] !== 0) {
+            nums[j] = nums[i]; 
+            j++;
+        }
+    }
+    for(let i = j; i<len; i++) {
+        nums[i] = 0;
+    }
+};
+```

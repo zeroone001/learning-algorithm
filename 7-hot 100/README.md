@@ -134,3 +134,24 @@ var findDisappearedNumbers = function(nums) {
     return res;
 };
 ```
+
+## 461. 汉明距离
+
+[461. 汉明距离](https://leetcode-cn.com/problems/hamming-distance/)
+
+```js
+/**
+ * @param {number} x
+ * @param {number} y
+ * @return {number}
+ */
+var hammingDistance = function(x, y) {
+  let res = x ^ y;
+  let count = 0;
+  while (res) {
+    count++;
+    res = res & (res - 1);
+  }
+  return count;
+};
+```

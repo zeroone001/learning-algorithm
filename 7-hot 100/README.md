@@ -85,3 +85,30 @@ var moveZeroes = function(nums) {
     }
 };
 ```
+
+## 338. 比特位计数
+
+[338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/)
+
+```js
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function(n) {
+    let res = new Array(n+1).fill(0);
+    for (let i = 0; i <= n; i++) {
+        res[i] = countOnes(i);
+    }
+    return res;
+
+};
+var countOnes = (i) => {
+    let count = 0;
+    while(i >0) {
+        i &= (i-1);
+        count++;
+    }
+    return count;
+}
+```

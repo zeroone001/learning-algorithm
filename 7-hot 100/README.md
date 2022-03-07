@@ -112,3 +112,25 @@ var countOnes = (i) => {
     return count;
 }
 ```
+
+## 448. 找到所有数组中消失的数字
+
+[448. 找到所有数组中消失的数字](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function(nums) {
+    let res = [];
+    let set = new Set(nums);
+    let n = nums.length;
+    for (let i = 1; i <= n; i++) {
+        if (!set.has(i)) {
+            res.push(i);
+        }
+    }
+    return res;
+};
+```

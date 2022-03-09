@@ -67,6 +67,20 @@ var climbStairs = function(n) {
 };
 ```
 
+## 300. 最长递增子序列
+
+[300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function(nums) {
+
+};
+```
+
 ## 121. 买卖股票的最佳时机
 
 [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)

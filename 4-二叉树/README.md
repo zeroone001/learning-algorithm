@@ -96,56 +96,30 @@ DFS借助栈来完成
 
 BFS 需要借助队列来完成
 
-BFS有两种类型
+BFS
 
 原理上就是一个队列，放进去root，然后，取出来，判断，再把左右节点放进去，再取出左节点，。。。。
 对二叉树横向的遍历
 
-有标记层
 
 ```js
-class Solution:
-    def bfs(k):
-        # 使用双端队列，而不是数组。因为数组从头部删除元素的时间复杂度为 N，双端队列的底层实现其实是链表。
-        queue = collections.deque([root])
-        # 记录层数
-        steps = 0
-        # 需要返回的节点
-        ans = []
-        # 队列不空，生命不止！
-        while queue:
-            size = len(queue)
-            # 遍历当前层的所有节点
-            for _ in range(size):
-                node = queue.popleft()
-                if (step == k) ans.append(node)
-                if node.right:
-                    queue.append(node.right)
-                if node.left:
-                    queue.append(node.left)
-            # 遍历完当前层所有的节点后 steps + 1
-            steps += 1
-        return ans
-```
-
-
-不标记层
-
-```js
-class Solution:
-    def bfs(k):
-        # 使用双端队列，而不是数组。因为数组从头部删除元素的时间复杂度为 N，双端队列的底层实现其实是链表。
-        queue = collections.deque([root])
-        # 队列不空，生命不止！
-        while queue:
-            node = queue.popleft()
-            # 由于没有记录 steps，因此我们肯定是不需要根据层的信息去判断的。否则就用带层的模板了。
-            if (node 是我们要找到的) return node
-            if node.right:
-                queue.append(node.right)
-            if node.left:
-                queue.append(node.left)
-        return -1
+var deepestLeavesSum = function (root) {
+  if (root == null) return 0;
+  let queue = [root];
+  let sum = 0;
+  while (queue.length) {
+    sum = 0;
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {  
+      let cur = queue.shift();
+      sum += cur.val;
+      if (cur.left) queue.push(cur.left);
+      if (cur.right) queue.push(cur.right);
+    }
+  }
+  // 现在就是最后一层的节点值和
+  return sum;
+};
 ```
 
 ```js

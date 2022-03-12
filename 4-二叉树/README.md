@@ -226,51 +226,6 @@ path 携带，也是常用的
 而遍历从大的方向分为广度优先遍历和深度优先遍历，这就是我们的两个基本点。两个基本点可以进一步细分，比如广度优先遍历有带层信息的和不带层信息的（其实只要会带层信息的就够了）。深度优先遍历常见的是前序和后序，中序多用于二叉搜索树，因为二叉搜索树的中序遍历是严格递增的数组。
 树的题目从大的方向上来看就三种，一种是搜索类，这类题目最多，这种题目牢牢把握开始点，结束点 和 目标即可。构建类型的题目我之前的专题以及讲过了，一句话概括就是根据一种遍历结果确定根节点位置，根据另外一种遍历结果（如果是二叉搜索树就不需要了）确定左右子树。修改类题目不多，这种问题边界需要特殊考虑，这是和搜索问题的本质区别，可以使用虚拟节点技巧。另外搜索问题，如果返回值不是根节点也可以考虑虚拟节点。
 
-## 94. 二叉树的中序遍历
 
-[94. 二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
-```js
-const solution = (root) => {
-    let res = [];
-    const dfs = (node) => {
-        if (!node) return;
-        dfs(node.left);
-        res.push(node.val);
-        dfs(node.right);
-    }
-    dfs(root);
-    return res;
-}
-```
-
-## 100. 相同的树
-
-[100. 相同的树](https://leetcode-cn.com/problems/same-tree/)
-
-```js
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} p
- * @param {TreeNode} q
- * @return {boolean}
- */
-var isSameTree = function(p, q) {
-    if (p == null && q == null) {
-        return true;
-    } else if (p == null || q == null) {
-        return false;
-    } else if (p.val !== q.val) {
-        return false;
-    } else {
-        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-    }
-};
-```
+## 102. 二叉树的层序遍历

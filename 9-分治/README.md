@@ -8,7 +8,8 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-
+    nums.sort((a,b) => a-b);
+    return nums[Math.floor(nums.length / 2)];
 };
 ```
 
@@ -17,7 +18,20 @@ var majorityElement = function(nums) {
 [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 
 ```js
+var findMin = function(nums) {
+    let left = 0;
+    let right = nums.length - 1;
 
+    while (left < right) {
+        let mid = Math.floor((left +right)/2);
+        if (nums[mid] > nums[right]) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    return nums[left];
+};
 ```
 
 ## 154. 寻找旋转排序数组中的最小值 II

@@ -36,6 +36,8 @@ var findMin = function(nums) {
 
 ## 154. 寻找旋转排序数组中的最小值 II
 
+这个题目跟上一题的区别是，数组里面的元素有重复
+
 [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 
 ```js
@@ -44,7 +46,19 @@ var findMin = function(nums) {
  * @return {number}
  */
 var findMin = function(nums) {
-
+    let left = 0;
+    let right = nums.length - 1;
+    while (left < right) {
+        let mid = Math.floor((left + right)/2);
+        if (nums[mid] > nums[right]) {
+            left = mid + 1;
+        } else if (nums[mid] < nums[right]) {
+            right = mid
+        } else {
+            right -= 1;
+        }
+    }
+    return nums[left];
 };
 ```
 
@@ -58,7 +72,18 @@ var findMin = function(nums) {
  * @return {number[]}
  */
 var sortArray = function(nums) {
-
+    if (nums.length <=1) return nums;
+    const n = nums.length;
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            if (nums[j] > nums[j+1]) {
+                let tmp = nums[j+1];
+                nums[j+1] = nums[j];
+                nums[j] = tmp;
+            }
+        }
+    }
+    return nums;
 };
 ```
 

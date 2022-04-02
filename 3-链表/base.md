@@ -63,7 +63,23 @@ var addTwoNumbers = function(l1, l2) {
  * @return {ListNode}
  */
 var swapPairs = function(head) {
+    const dummyHead = new ListNode(0);
 
+    dummyHead.next = head;
+
+    let tmp = dummyHead;
+
+    while(tmp.next != null && tmp.next.next != null) {
+        let node1 = tmp.next;
+        let node2 = tmp.next.next;
+        /* 进行交换 */
+        node1.next= node2.next;
+        node2.next = node1;
+        tmp.next = node2;
+        tmp = node1;
+    }
+
+    return dummyHead.next;
 };
 ```
 
@@ -84,7 +100,16 @@ var swapPairs = function(head) {
  * @return {ListNode}
  */
 var reverseList = function(head) {
+    let cur = head;
+    let prev = null;
 
+    while (cur) {
+        let tmp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = tmp;
+    }
+    return prev;
 };
 ```
 
@@ -106,7 +131,16 @@ var reverseList = function(head) {
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    
+    let slow = head;
+    let fast = head;
+    /* 快慢指针 */
+    while (slow && fast && fast.next) {
+        slow = slow.next;
+        fast= fast.next.next;
+
+        if (slow == fast) return true;
+    }
+    return false;
 };
 ```
 

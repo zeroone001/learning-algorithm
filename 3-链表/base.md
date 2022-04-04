@@ -160,9 +160,39 @@ var hasCycle = function(head) {
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function(lists) {
+var merge = function(left, right) {
+  if (left == null && right == null) {return null;}
+  if (left != null && right == null) return left;
+  if (left == null && right != null) return right;
 
+  let result = new ListNode(0);
+  let current = result;
+
+  while (left && right) {
+    if (left.val < right.val) {
+      current.next = left;
+      left = left.next;
+    } else {
+      current.next = right;
+      right = right.next;
+    }
+    current = current.next;
+  }
+  current.next = left || right;
+  return result.next;
 };
+var mergeLists = function (arr) {
+  if (arr.length <= 1) return arr[0];
+  let middleIndex = Math.floor(arr.length / 2);
+  let left = mergeLists(arr.slice(0, middleIndex));
+  let right = mergeLists(arr.slice(middleIndex, arr.length));
+  return merge(left, right);
+}
+var mergeKLists = function(lists) {
+	if (lists.length === 0) return null;
+  return mergeLists(lists);
+};
+
 ```
 
 ## 147. 对链表进行插入排序
@@ -182,7 +212,28 @@ var mergeKLists = function(lists) {
  * @return {ListNode}
  */
 var insertionSortList = function(head) {
-
+    if (!head) return [];
+    let res = new ListNode(0);
+    res.next = head;
+    let cur = head.next;
+    let lastSort = head;
+    /* 从第二个元素开始往后遍历 */
+    while (!cur) {
+        if (cur.val >= lastSort.val) {
+            lastSort = lastSort.next;
+        } else {
+            /* 从头开始遍历 */
+            let prev = res;
+            while (prev.next.val <= cur.val) {
+                prev = prev.next;
+            }
+            lastSort.next = cur.next;
+            cur.next = prev.next;
+            prev.next = cur;
+        }
+        cur = lastSort.next;
+    }
+    return res.next;
 };
 ```
 

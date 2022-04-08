@@ -1,4 +1,4 @@
-# 二分查找
+# Binary Search（二分搜索）
 
 ## 定义
 
@@ -13,102 +13,42 @@
 因为数组是有序的，所以： a) A 较大则说明要查找的数字应该从前半部分查找 b) A 较小则说明应该从查找数字的后半部分查找
 这样不断查找缩小数量级（扔掉一半数据），直到找完数组为止
 
-
 1. 从有序数组的中间元素进行搜索，如果找到，就直接返回
 2. 如果目标元素大于中间元素，那么就去右侧区域查找
 3. 如果目标元素小于中间元素，就在左侧区域查找
-   
 
-## JS实现 模板1
+## 35. 搜索插入位置
+
+[35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
 
 ```js
-// 非递归方法，用的迭代
-function binary_search(arr, key) {
-  let left = 0; // 定义下标值
-  let right = arr.length - 1;
-  while (left <= right) {
-    let mid = Math.floor((left+right) / 2);
-    if (key === arr[mid]) return mid;
-    if (arr[mid] > key) {
-      // key 在左侧区间
-      right = mid - 1;
-    }
-    if (arr[mid] < key) {
-      // key 在右侧区间
-      left = mid + 1;
-    }
-  }
-  return -1;
-}
-// 递归算法
-function binary_search(arr, key) {
-  if (low > high){
-       return -1;
-        }
-     var mid = parseInt((high + low) / 2);
-      if(arr[mid] == key){
-        return mid;
-     }else if (arr[mid] > key){
-        high = mid - 1;
-        return binary_search(arr, low, high, key);
-     }else if (arr[mid] < key){
-        low = mid + 1;
-        return binary_search(arr, low, high, key);
-     }
-}
-```
-
-## 模板 2
-
-```java
-int binarySearch(int[] nums, int target){
-  if(nums == null || nums.length == 0)
-    return -1;
-
-  int left = 0, right = nums.length;
-  while(left < right){
-    // Prevent (left + right) overflow
-    int mid = left + (right - left) / 2;
-    if(nums[mid] == target){ return mid; }
-    else if(nums[mid] < target) { left = mid + 1; }
-    else { right = mid; }
-  }
-
-  // Post-processing:
-  // End Condition: left == right
-  if(left != nums.length && nums[left] == target) return left;
-  return -1;
-}
-```
-## 模板 3
-
-```java
-int binarySearch(int[] nums, int target) {
-    if (nums == null || nums.length == 0)
-        return -1;
-
-    int left = 0, right = nums.length - 1;
-    while (left + 1 < right){
-        // Prevent (left + right) overflow
-        int mid = left + (right - left) / 2;
-        if (nums[mid] == target) {
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    let res = 0;
+    while (left <= right){
+        let mid = Math.floor((right + left) / 2);
+        if (target === nums[mid]) {
             return mid;
-        } else if (nums[mid] < target) {
-            left = mid;
-        } else {
-            right = mid;
-        }
+        } 
+        if (target > nums[mid]) {
+            left = mid + 1;
+            res = left
+        } 
+        if (target < nums[mid]) {
+            right = mid - 1;
+        } 
     }
-
-    // Post-processing:
-    // End Condition: left + 1 == right
-    if(nums[left] == target) return left;
-    if(nums[right] == target) return right;
-    return -1;
-}
+    return res;
+};
 ```
 
-# 二分查找
+
 
 ## 704. 二分查找
 
@@ -181,36 +121,7 @@ var solution = function(isBadVersion) {
 };
 ```
 
-## 35. 搜索插入位置
 
-[35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var searchInsert = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
-    let res = 0;
-    while (left <= right){
-        let mid = Math.floor((right + left) / 2);
-        if (target === nums[mid]) {
-            return mid;
-        } 
-        if (target > nums[mid]) {
-            left = mid + 1;
-            res = left
-        } 
-        if (target < nums[mid]) {
-            right = mid - 1;
-        } 
-    }
-    return res;
-};
-```
 
 ## 374. 猜数字大小
 
@@ -632,4 +543,93 @@ var searchRange = function(nums, target) {
 var findClosestElements = function(arr, k, x) {
 
 };
+```
+
+## JS实现 模板1
+
+```js
+// 非递归方法，用的迭代
+function binary_search(arr, key) {
+  let left = 0; // 定义下标值
+  let right = arr.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left+right) / 2);
+    if (key === arr[mid]) return mid;
+    if (arr[mid] > key) {
+      // key 在左侧区间
+      right = mid - 1;
+    }
+    if (arr[mid] < key) {
+      // key 在右侧区间
+      left = mid + 1;
+    }
+  }
+  return -1;
+}
+// 递归算法
+function binary_search(arr, key) {
+  if (low > high){
+       return -1;
+        }
+     var mid = parseInt((high + low) / 2);
+      if(arr[mid] == key){
+        return mid;
+     }else if (arr[mid] > key){
+        high = mid - 1;
+        return binary_search(arr, low, high, key);
+     }else if (arr[mid] < key){
+        low = mid + 1;
+        return binary_search(arr, low, high, key);
+     }
+}
+```
+
+## 模板 2
+
+```java
+int binarySearch(int[] nums, int target){
+  if(nums == null || nums.length == 0)
+    return -1;
+
+  int left = 0, right = nums.length;
+  while(left < right){
+    // Prevent (left + right) overflow
+    int mid = left + (right - left) / 2;
+    if(nums[mid] == target){ return mid; }
+    else if(nums[mid] < target) { left = mid + 1; }
+    else { right = mid; }
+  }
+
+  // Post-processing:
+  // End Condition: left == right
+  if(left != nums.length && nums[left] == target) return left;
+  return -1;
+}
+```
+## 模板 3
+
+```java
+int binarySearch(int[] nums, int target) {
+    if (nums == null || nums.length == 0)
+        return -1;
+
+    int left = 0, right = nums.length - 1;
+    while (left + 1 < right){
+        // Prevent (left + right) overflow
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+
+    // Post-processing:
+    // End Condition: left + 1 == right
+    if(nums[left] == target) return left;
+    if(nums[right] == target) return right;
+    return -1;
+}
 ```

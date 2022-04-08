@@ -129,10 +129,80 @@ var insertIntoBST = function(root, val) {
 
 [230. 二叉搜索树中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)
 
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthSmallest = function(root, k) {
+    if (root == null) return null;
+    let res = [];
+    const dfs = (node) => {
+        if (node == null) return;
+        node.left && dfs(node.left);
+        res.push(node.val);
+        node.right && dfs(node.right);
+    }
+    dfs(root);
+    return res[k-1];
+};
+```
+
 
 ## 99. 恢复二叉搜索树
 
-[](https://leetcode-cn.com/problems/recover-binary-search-tree/)
+[99. 恢复二叉搜索树](https://leetcode-cn.com/problems/recover-binary-search-tree/)
+
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {void} Do not return anything, modify root in-place instead.
+ */
+var recoverTree = function(root) {
+    let prev = new TreeNode(-Infinity);
+    let err1 = null;
+    let err2 = null;
+
+    const inorder = (node) => {
+        if (node == null) return;
+
+        inorder(node.left);
+        /*  */
+        if (prev.val >= node.val && err1 == null) {
+            err1 = prev;
+        }
+        if (prev.val >= node.val && err1 != null) {
+            err2 = node;
+        }
+
+        prev = node;
+
+        inorder(node.right);
+    }
+    inorder(root);
+    let tmp = err1.val;
+    err1.val = err2.val;
+    err2.val = tmp;
+
+};
+```
 
 ## 108. 将有序数组转换为二叉搜索树
 
@@ -145,4 +215,3 @@ var insertIntoBST = function(root, val) {
 ## 450. 删除二叉搜索树中的节点
 
 [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
-

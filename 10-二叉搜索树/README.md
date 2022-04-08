@@ -124,3 +124,25 @@ var insertIntoBST = function(root, val) {
     return root;
 };
 ```
+
+## 230. 二叉搜索树中第K小的元素
+
+[230. 二叉搜索树中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)
+
+
+## 99. 恢复二叉搜索树
+
+[](https://leetcode-cn.com/problems/recover-binary-search-tree/)
+
+## 108. 将有序数组转换为二叉搜索树
+
+[](https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/)
+
+## 501. 二叉搜索树中的众数
+
+[501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/)
+
+## 450. 删除二叉搜索树中的节点
+
+[450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
+

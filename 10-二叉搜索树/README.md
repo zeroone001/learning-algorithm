@@ -22,6 +22,7 @@ var isValidBST = function(root) {
         let left = inorder(node.left);
 
         if (node.val <= pre) return false;
+        
         let right = inorder(node.right);
         return left && right;
     }
@@ -96,7 +97,7 @@ var searchBST = function(root, val) {
 
 ## 701. 二叉搜索树中的插入操作
 
-[701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+[701. 二叉搜索树中的插入操作](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree)
 
 ```js
 /**
@@ -241,7 +242,49 @@ var sortedArrayToBST = function(nums) {
 [501. 二叉搜索树中的众数](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/)
 
 ```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode = function(root) {
+    if (root == null) return [];
+    /* 代表前一个值 */
+    let prev = 0;
+    /* 代表重复数字的数量 */
+    let prevNum = 0;
+    /* 代表最大的那个数量 */
+    let max = 0;
+    const dfs = (node) => {
+        if (node == null) return;
 
+        node.left && dfs(node.left);
+
+        if (node.val == prev) {
+            prevNum++;
+        } else {
+            prev = node.val;
+            prevNum = 1;
+        }
+        if (prevNum > max) {
+            max = prevNum;
+            res = [node.val];
+        } else if (prevNum == max) {
+            res.push(node.val);
+        }
+
+        node.right && dfs(node.right);
+    }
+    dfs(root);
+    return res;
+};
 ```
 
 ## 450. 删除二叉搜索树中的节点
@@ -249,5 +292,47 @@ var sortedArrayToBST = function(nums) {
 [450. 删除二叉搜索树中的节点](https://leetcode-cn.com/problems/delete-node-in-a-bst/)
 
 ```js
-
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+var deleteNode = function(root, key) {
+    if (root == null) return root;
+    if (root.val == key) {
+        if (!root.left) {
+            // 其无左子：其右子顶替其位置，删除了该节点；
+            return root.right;
+        } else if (!root.right) {
+            // 其无右子：其左子顶替其位置，删除了该节点；
+            return root.left;
+        } else {
+            /* 其左子树转移到其右子树的最左节点的左子树上，然后右子树顶替其位置，由此删除了该节点。 */
+            let cur = root.right;
+            while (cur.left) {
+                cur = cur.left;
+            }
+            cur.left = root.left;
+            root = root.right;
+            return root;
+        }
+    }
+    // 如果目标节点小于当前节点值，则去左子树中删除；
+    if (root.val > key) {
+        root.left = deleteNode(root.left, key);
+    }
+    // 如果目标节点大于当前节点值，则去右子树中删除；
+    if (root.val < key) {
+        root.right = deleteNode(root.right, key);
+    }
+    return root;
+};
 ```

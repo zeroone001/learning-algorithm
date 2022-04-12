@@ -17,6 +17,21 @@
 2. 如果目标元素大于中间元素，那么就去右侧区域查找
 3. 如果目标元素小于中间元素，就在左侧区域查找
 
+## 34. 在排序数组中查找元素的第一个和最后一个位置
+
+[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var searchRange = function(nums, target) {
+
+};
+```
+
 ## 35. 搜索插入位置
 
 [35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
@@ -229,8 +244,6 @@ let left = 0;
 这个简单一些，因为里面没有重复的值
 
 使用二分查找
-
-
 
 [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 

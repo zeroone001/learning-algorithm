@@ -41,7 +41,23 @@ var letterCombinations = function(digits) {
  * @return {number[][]}
  */
 var combinationSum = function(candidates, target) {
+    const res = [];
+    const dfs = (target, combine, idx) => {
+        if (idx === candidates.length) {
+            return;
+        }
+        if(target == 0) {
+            res.push(combine);
+            return;
+        }
+        dfs(target, combine, idx + 1);
+        if (target - candidates[idx] >= 0) {
+            dfs(target - candidates[idx], [...combine, candidates[idx]], idx);
+        }
+    }
 
+    dfs(target, [], 0);
+    return res;
 };
 ```
 ## 40. 组合总和 II
@@ -55,6 +71,27 @@ var combinationSum = function(candidates, target) {
  * @return {number[][]}
  */
 var combinationSum2 = function(candidates, target) {
-
+    candidates.sort();
+    let result = [], combination = [];
+    function dfs(nums, target, index, combination, result) {
+         if(target === 0) {
+             result.push([...combination])
+         } else if(target > 0 && index < nums.length) {  // 剪枝
+             dfs(nums, target, getNext(nums, index), combination, result);
+             combination.push(nums[index]);
+             dfs(nums, target - nums[index], index + 1, combination, result);
+             combination.pop();
+         }
+     };
+     dfs(candidates, target, 0, combination, result);
+     return result;
 };
+
+function getNext(nums, index) {
+    let next = index;
+    while(next < nums.length && nums[next] === nums[index]) {
+        next++;
+    }
+    return next;
+}
 ```

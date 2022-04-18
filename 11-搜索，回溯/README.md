@@ -95,3 +95,46 @@ function getNext(nums, index) {
     return next;
 }
 ```
+
+## 77. 组合
+
+[77. 组合](https://leetcode-cn.com/problems/combinations/)
+
+```js
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function(n, k) {
+
+};
+```
+
+## 78. 子集
+
+[78. 子集](https://leetcode-cn.com/problems/subsets/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+
+};
+```
+
+## 47. 全排列 II
+
+[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function(nums) {
+
+};
+```

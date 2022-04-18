@@ -62,7 +62,19 @@ var searchInsert = function(nums, target) {
 };
 ```
 
+## 69. x 的平方根 
 
+[69. x 的平方根 ](https://leetcode-cn.com/problems/sqrtx/)
+
+```js
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var mySqrt = function(x) {
+
+};
+```
 
 ## 704. 二分查找
 
@@ -472,55 +484,6 @@ var findPeakElement = function(nums) {
     return left;
 };
 ```
-## 模板 2
-
-```java
-int binarySearch(int[] nums, int target){
-  if(nums == null || nums.length == 0)
-    return -1;
-
-  int left = 0, right = nums.length;
-  while(left < right){
-    // Prevent (left + right) overflow
-    int mid = left + (right - left) / 2;
-    if(nums[mid] == target){ return mid; }
-    else if(nums[mid] < target) { left = mid + 1; }
-    else { right = mid; }
-  }
-
-  // Post-processing:
-  // End Condition: left == right
-  if(left != nums.length && nums[left] == target) return left;
-  return -1;
-}
-```
-## 模板 3
-
-```java
-int binarySearch(int[] nums, int target) {
-    if (nums == null || nums.length == 0)
-        return -1;
-
-    int left = 0, right = nums.length - 1;
-    while (left + 1 < right){
-        // Prevent (left + right) overflow
-        int mid = left + (right - left) / 2;
-        if (nums[mid] == target) {
-            return mid;
-        } else if (nums[mid] < target) {
-            left = mid;
-        } else {
-            right = mid;
-        }
-    }
-
-    // Post-processing:
-    // End Condition: left + 1 == right
-    if(nums[left] == target) return left;
-    if(nums[right] == target) return right;
-    return -1;
-}
-```
 
 ## 34. 在排序数组中查找元素的第一个和最后一个位置
 
@@ -552,6 +515,23 @@ var findClosestElements = function(arr, k, x) {
 
 };
 ```
+
+## 852. 山脉数组的峰顶索引
+
+[852. 山脉数组的峰顶索引](https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/)
+
+```js
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var peakIndexInMountainArray = function(arr) {
+
+};
+```
+
+
+
 
 ## JS实现 模板1
 

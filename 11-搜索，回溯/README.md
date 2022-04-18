@@ -22,7 +22,7 @@ var letterCombinations = function(digits) {
         const letters = map[digits[i]];
         /* 关键 */
         for (const letter of letters) {
-            dfs(cur + letter, i+1);
+            dfs(cur + letter, i + 1);
         }
     }
     dfs('', 0);

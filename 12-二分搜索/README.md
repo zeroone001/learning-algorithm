@@ -31,6 +31,36 @@ var searchRange = function(nums, target) {
 };
 ```
 
+## 74. 搜索二维矩阵
+
+[74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+
+```js
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+
+};
+```
+
+## 1011. 在 D 天内送达包裹的能力
+
+[1011. 在 D 天内送达包裹的能力](https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/)
+
+```js
+/**
+ * @param {number[]} weights
+ * @param {number} days
+ * @return {number}
+ */
+var shipWithinDays = function(weights, days) {
+
+};
+```
+
 ## 35. 搜索插入位置
 
 [35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
@@ -146,8 +176,6 @@ var solution = function(isBadVersion) {
     };
 };
 ```
-
-
 
 ## 374. 猜数字大小
 

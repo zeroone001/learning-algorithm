@@ -169,3 +169,146 @@ function getNext(nums, index) {
     return next;
 }
 ```
+
+## 784. 字母大小写全排列
+
+[784. 字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
+
+```js
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+var letterCasePermutation = function(s) {
+
+};
+```
+
+## 22. 括号生成
+
+[22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)
+
+```js
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+
+};
+```
+
+## 79. 单词搜索
+
+[79. 单词搜索](https://leetcode-cn.com/problems/word-search/)
+
+```js
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function(board, word) {
+
+};
+```
+
+## 542. 01 矩阵
+
+[542. 01 矩阵](https://leetcode-cn.com/problems/01-matrix/)
+
+```js
+/**
+ * @param {number[][]} mat
+ * @return {number[][]}
+ */
+var updateMatrix = function(mat) {
+
+};
+```
+
+## 934. 最短的桥
+
+[934. 最短的桥](https://leetcode-cn.com/problems/shortest-bridge/)
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var shortestBridge = function(grid) {
+
+};
+```
+
+## 698. 划分为k个相等的子集
+
+[698. 划分为k个相等的子集](https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var canPartitionKSubsets = function(nums, k) {
+
+};
+
+```
+
+## 93. 复原 IP 地址
+
+[93. 复原 IP 地址](https://leetcode-cn.com/problems/restore-ip-addresses/)
+
+```js
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+var restoreIpAddresses = function(s) {
+
+};
+```
+
+## 131. 分割回文串
+
+[131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
+
+```js
+/**
+ * @param {string} s
+ * @return {string[][]}
+ */
+var partition = function(s) {
+
+};
+```
+
+## 241. 为运算表达式设计优先级
+
+[241. 为运算表达式设计优先级](https://leetcode-cn.com/problems/different-ways-to-add-parentheses/)
+
+```js
+/**
+ * @param {string} expression
+ * @return {number[]}
+ */
+var diffWaysToCompute = function(expression) {
+
+};
+```
+
+## 842. 将数组拆分成斐波那契序列
+
+[842. 将数组拆分成斐波那契序列](https://leetcode-cn.com/problems/split-array-into-fibonacci-sequence/)
+
+```js
+/**
+ * @param {string} num
+ * @return {number[]}
+ */
+var splitIntoFibonacci = function(num) {
+
+};
+```

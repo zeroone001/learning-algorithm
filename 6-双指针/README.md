@@ -170,3 +170,77 @@ var findContentChildren = function(g, s) {
 
 };
 ```
+
+## 917. 仅仅反转字母
+
+[917. 仅仅反转字母](https://leetcode-cn.com/problems/reverse-only-letters/)
+
+```js
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseOnlyLetters = function(s) {
+
+};
+```
+
+## 925. 长按键入
+
+[925. 长按键入](https://leetcode-cn.com/problems/long-pressed-name/)
+
+```js
+/**
+ * @param {string} name
+ * @param {string} typed
+ * @return {boolean}
+ */
+var isLongPressedName = function(name, typed) {
+
+};
+```
+
+## 986. 区间列表的交集
+
+[986. 区间列表的交集](https://leetcode-cn.com/problems/interval-list-intersections/)
+
+```js
+/**
+ * @param {number[][]} firstList
+ * @param {number[][]} secondList
+ * @return {number[][]}
+ */
+var intervalIntersection = function(firstList, secondList) {
+
+};
+```
+
+## 167. 两数之和 II - 输入有序数组
+
+[167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)
+
+```js
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+
+};
+```
+
+## 16. 最接近的三数之和
+
+[16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+
+};
+```

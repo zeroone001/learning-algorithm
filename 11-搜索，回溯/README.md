@@ -30,6 +30,78 @@ var letterCombinations = function(digits) {
 };
 ```
 
+
+## 77. 组合
+
+[77. 组合](https://leetcode-cn.com/problems/combinations/)
+
+```js
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+var combine = function(n, k) {
+    let res = [];
+    let path = [];
+    const combineHelper = (n, k, startIndex) => {
+        if (path.length === k) {
+            res.push([...path]);
+            return;
+        }
+        for (let i = startIndex; i <= n-(k-path.length) +1; ++i) {
+            path.push(i);
+            combineHelper(n, k, i+1);
+            path.pop();
+        }
+    }
+    combineHelper(n,k, 1);
+    return res;
+};
+```
+
+## 78. 子集
+
+[78. 子集](https://leetcode-cn.com/problems/subsets/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    let path = [];
+    let res = [];
+    const len = nums.length;
+    const dfs = (cur, nums) => {
+        if (cur === nums.length) {
+            res.push([...path]);
+            return;
+        }
+        path.push(nums[cur]);
+        dfs(cur + 1, nums);
+        path.pop();
+        dfs(cur + 1, nums);
+    }
+    dfs(0, nums);
+    return res;
+};
+```
+
+## 47. 全排列 II
+
+[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function(nums) {
+
+};
+```
+
 ## 39. 组合总和
 
 [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
@@ -60,6 +132,8 @@ var combinationSum = function(candidates, target) {
     return res;
 };
 ```
+
+
 ## 40. 组合总和 II
 
 [40. 组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)
@@ -94,47 +168,4 @@ function getNext(nums, index) {
     }
     return next;
 }
-```
-
-## 77. 组合
-
-[77. 组合](https://leetcode-cn.com/problems/combinations/)
-
-```js
-/**
- * @param {number} n
- * @param {number} k
- * @return {number[][]}
- */
-var combine = function(n, k) {
-
-};
-```
-
-## 78. 子集
-
-[78. 子集](https://leetcode-cn.com/problems/subsets/)
-
-```js
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-var subsets = function(nums) {
-
-};
-```
-
-## 47. 全排列 II
-
-[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
-
-```js
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-var permuteUnique = function(nums) {
-
-};
 ```

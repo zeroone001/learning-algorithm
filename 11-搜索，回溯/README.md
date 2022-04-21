@@ -15,7 +15,7 @@ var letterCombinations = function(digits) {
     const res = [];
 
     const dfs = (cur, i) => {
-        if(i < digits.length -1) {
+        if(i > digits.length -1) {
             res.push(cur);
             return;
         }
@@ -49,13 +49,13 @@ var combine = function(n, k) {
             res.push([...path]);
             return;
         }
-        for (let i = startIndex; i <= n-(k-path.length) +1; ++i) {
+        for (let i = startIndex; i <= n-(k-path.length) + 1; ++i) {
             path.push(i);
             combineHelper(n, k, i+1);
             path.pop();
         }
     }
-    combineHelper(n,k, 1);
+    combineHelper(n, k, 1);
     return res;
 };
 ```
@@ -98,7 +98,27 @@ var subsets = function(nums) {
  * @return {number[][]}
  */
 var permuteUnique = function(nums) {
-
+    const res = [];
+    const vis = new Array(nums.length).fill(false);
+    const backtrack = (idx, perm) => {
+        if (idx === nums.length) {
+            res.push(perm.slice());
+            return;
+        }
+        for (let i = 0; i < nums.length; ++i) {
+            if (vis[i] || (i > 0 && nums[i] === nums[i - 1] && !vis[i - 1])) {
+                continue;
+            }
+            perm.push(nums[i]);
+            vis[i] = true;
+            backtrack(idx + 1, perm);
+            vis[i] = false;
+            perm.pop();
+        }
+    }
+    nums.sort((x, y) => x - y);
+    backtrack(0, []);
+    return res;
 };
 ```
 

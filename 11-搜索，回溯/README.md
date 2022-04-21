@@ -58,12 +58,13 @@ var combine = function(n, k) {
             res.push([...path]);
             return;
         }
-        for (let i = startIndex; i <= n-(k-path.length) + 1; ++i) {
+        for (let i = startIndex; i <= n; i++) {
             path.push(i);
-            combineHelper(n, k, i+1);
+            combineHelper(n, k, i + 1);
+            /* 回溯 */
             path.pop();
         }
-    }
+    };
     combineHelper(n, k, 1);
     return res;
 };

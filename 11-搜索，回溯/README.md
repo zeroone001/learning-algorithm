@@ -1,5 +1,14 @@
 # Search (BFS/DFS)（搜索/回溯）
 
+主要是利用递归实现
+
+分为下面几种
+
+1. 组合
+2. 子集
+3. 切割
+4. 排列
+
 ## 17. 电话号码的字母组合
 
 [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number)

@@ -39,8 +39,7 @@ var letterCombinations = function(digits) {
 };
 ```
 
-
-## 77. 组合
+## 77. 组合 经典
 
 [77. 组合](https://leetcode-cn.com/problems/combinations/)
 
@@ -70,69 +69,8 @@ var combine = function(n, k) {
 };
 ```
 
-## 78. 子集
 
-[78. 子集](https://leetcode-cn.com/problems/subsets/)
-
-```js
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-var subsets = function(nums) {
-    let path = [];
-    let res = [];
-    const len = nums.length;
-    const dfs = (cur, nums) => {
-        if (cur === nums.length) {
-            res.push([...path]);
-            return;
-        }
-        path.push(nums[cur]);
-        dfs(cur + 1, nums);
-        path.pop();
-        dfs(cur + 1, nums);
-    }
-    dfs(0, nums);
-    return res;
-};
-```
-
-## 47. 全排列 II
-
-[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
-
-```js
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-var permuteUnique = function(nums) {
-    const res = [];
-    const vis = new Array(nums.length).fill(false);
-    const backtrack = (idx, perm) => {
-        if (idx === nums.length) {
-            res.push(perm.slice());
-            return;
-        }
-        for (let i = 0; i < nums.length; ++i) {
-            if (vis[i] || (i > 0 && nums[i] === nums[i - 1] && !vis[i - 1])) {
-                continue;
-            }
-            perm.push(nums[i]);
-            vis[i] = true;
-            backtrack(idx + 1, perm);
-            vis[i] = false;
-            perm.pop();
-        }
-    }
-    nums.sort((x, y) => x - y);
-    backtrack(0, []);
-    return res;
-};
-```
-
-## 39. 组合总和
+## 39. 组合总和 经典
 
 [39. 组合总和](https://leetcode-cn.com/problems/combination-sum/)
 
@@ -200,6 +138,83 @@ function getNext(nums, index) {
 }
 ```
 
+
+## 78. 子集
+
+[78. 子集](https://leetcode-cn.com/problems/subsets/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    let path = [];
+    let res = [];
+    const len = nums.length;
+    const dfs = (cur, nums) => {
+        if (cur === nums.length) {
+            res.push([...path]);
+            return;
+        }
+        path.push(nums[cur]);
+        dfs(cur + 1, nums);
+        path.pop();
+        dfs(cur + 1, nums);
+    }
+    dfs(0, nums);
+    return res;
+};
+```
+
+## 131. 分割回文串
+
+[131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
+
+```js
+/**
+ * @param {string} s
+ * @return {string[][]}
+ */
+var partition = function(s) {
+
+};
+```
+
+## 47. 全排列 II
+
+[47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function(nums) {
+    const res = [];
+    const vis = new Array(nums.length).fill(false);
+    const backtrack = (idx, perm) => {
+        if (idx === nums.length) {
+            res.push(perm.slice());
+            return;
+        }
+        for (let i = 0; i < nums.length; ++i) {
+            if (vis[i] || (i > 0 && nums[i] === nums[i - 1] && !vis[i - 1])) {
+                continue;
+            }
+            perm.push(nums[i]);
+            vis[i] = true;
+            backtrack(idx + 1, perm);
+            vis[i] = false;
+            perm.pop();
+        }
+    }
+    nums.sort((x, y) => x - y);
+    backtrack(0, []);
+    return res;
+};
+```
+
 ## 784. 字母大小写全排列
 
 [784. 字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
@@ -223,7 +238,6 @@ var letterCasePermutation = function(s) {
 
         dfs(i+1, str + s[i].toLowerCase());
         dfs(i+1, str + s[i].toUpperCase());
-
     }
     dfs(0, '');
     return res;
@@ -317,19 +331,7 @@ var restoreIpAddresses = function(s) {
 };
 ```
 
-## 131. 分割回文串
 
-[131. 分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
-
-```js
-/**
- * @param {string} s
- * @return {string[][]}
- */
-var partition = function(s) {
-
-};
-```
 
 ## 241. 为运算表达式设计优先级
 

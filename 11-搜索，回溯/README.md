@@ -210,7 +210,23 @@ function getNext(nums, index) {
  * @return {string[]}
  */
 var letterCasePermutation = function(s) {
+    let res = [];
+    const dfs = (i, str) => {
+        /* 把数字类型的加上 */
+        while (!isNaN(s[i])) {
+            str += s[i++];
+        }
+        if (i == s.length) {
+            res.push(str);
+            return;
+        }
 
+        dfs(i+1, str + s[i].toLowerCase());
+        dfs(i+1, str + s[i].toUpperCase());
+
+    }
+    dfs(0, '');
+    return res;
 };
 ```
 

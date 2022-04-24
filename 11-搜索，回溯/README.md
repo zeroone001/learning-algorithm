@@ -83,9 +83,11 @@ var combine = function(n, k) {
 var combinationSum = function(candidates, target) {
     const res = [];
     const dfs = (target, combine, idx) => {
+        /* 已经遍历完了，不往下执行 */
         if (idx === candidates.length) {
             return;
         }
+        /* 已经找到了合适的，直接push */
         if(target == 0) {
             res.push(combine);
             return;

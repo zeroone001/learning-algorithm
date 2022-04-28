@@ -278,7 +278,25 @@ var letterCasePermutation = function(s) {
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
+    const res = [];
+    // 左右括号所剩的数量，str是当前字符串
+    const dfs = (left, right, str) => {
+        if (str.length == n * 2) {
+            res.push(str);
+            return;
+        }
+        // 只要左括号有剩，就可以选它，然后继续做选择（递归）
+        if (left > 0) {
+            dfs(left - 1, right, str + '(');
+        }
+        // 右括号比左括号剩的多，才能选右括号
+        if (left < right) {
+            dfs(left, right - 1, str + ')');
+        }
+    }
 
+    dfs(n,n,'');
+    return res;
 };
 ```
 

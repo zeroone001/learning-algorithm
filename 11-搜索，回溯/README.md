@@ -58,6 +58,7 @@ var combine = function(n, k) {
             return;
         }
         for (let i = startIndex; i <= n; i++) {
+            // push
             path.push(i);
             combineHelper(n, k, i + 1);
             /* 回溯 */

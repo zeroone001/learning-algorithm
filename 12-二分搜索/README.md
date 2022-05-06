@@ -26,6 +26,7 @@
  * @param {number} target
  * @return {number[]}
  */
+/* 二分法查找 */
 const binarySearch = (nums, target, lower) => {
   let left = 0, right = nums.length - 1, ans = nums.length;
   while (left <= right) {
@@ -46,7 +47,7 @@ var searchRange = function(nums, target) {
   if (len === 0) {
     return res;
   }
-
+  /* 查找到最left值和right值 */
   const leftIndex = binarySearch(nums, target, true);
   const rightIndex = binarySearch(nums, target, false) - 1;
 

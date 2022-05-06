@@ -26,8 +26,34 @@
  * @param {number} target
  * @return {number[]}
  */
+const binarySearch = (nums, target, lower) => {
+  let left = 0, right = nums.length - 1, ans = nums.length;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (nums[mid] > target || (lower && nums[mid] >= target)) {
+        right = mid - 1;
+        ans = mid;
+    } else {
+        left = mid + 1;
+    }
+  }
+  return ans;
+}
 var searchRange = function(nums, target) {
+  const len = nums.length;
+  let res = [-1, -1];
 
+  if (len === 0) {
+    return res;
+  }
+
+  const leftIndex = binarySearch(nums, target, true);
+  const rightIndex = binarySearch(nums, target, false) - 1;
+
+  if (leftIndex <= rightIndex && rightIndex < len && nums[leftIndex] === target && nums[rightIndex] === target) {
+    res = [leftIndex, rightIndex]
+  }
+  return res;
 };
 ```
 
@@ -513,20 +539,7 @@ var findPeakElement = function(nums) {
 };
 ```
 
-## 34. 在排序数组中查找元素的第一个和最后一个位置
 
-[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-var searchRange = function(nums, target) {
-
-};
-```
 
 ## 658. 找到 K 个最接近的元素
 

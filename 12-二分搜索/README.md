@@ -30,7 +30,9 @@
 const binarySearch = (nums, target, lower) => {
   let left = 0, right = nums.length - 1, ans = nums.length;
   while (left <= right) {
+    /* 找到中间值 */
     const mid = Math.floor((left + right) / 2);
+    /* lower 为 TRUE是左侧值 */
     if (nums[mid] > target || (lower && nums[mid] >= target)) {
         right = mid - 1;
         ans = mid;

@@ -28,20 +28,21 @@
  */
 /* 二分法查找 */
 const binarySearch = (nums, target, lower) => {
-  let left = 0, right = nums.length - 1, ans = nums.length;
+  let left = 0, right = nums.length - 1, res = nums.length;
   while (left <= right) {
     /* 找到中间值 */
     const mid = Math.floor((left + right) / 2);
     /* lower 为 TRUE是左侧值 */
     if (nums[mid] > target || (lower && nums[mid] >= target)) {
         right = mid - 1;
-        ans = mid;
+        // 等于的时候是mid, 大于的时候在后面mid-1
+        res = mid;
     } else {
         left = mid + 1;
     }
   }
-  return ans;
-}
+  return res;
+};
 var searchRange = function(nums, target) {
   const len = nums.length;
   let res = [-1, -1];
@@ -51,6 +52,7 @@ var searchRange = function(nums, target) {
   }
   /* 查找到最left值和right值 */
   const leftIndex = binarySearch(nums, target, true);
+  // 如果是右侧的话需要减1，因为上面没减1
   const rightIndex = binarySearch(nums, target, false) - 1;
 
   if (leftIndex <= rightIndex && rightIndex < len && nums[leftIndex] === target && nums[rightIndex] === target) {
@@ -170,16 +172,6 @@ var search = function(nums, target) {
 
 ```js
 /**
- * Definition for isBadVersion()
- * 
- * @param {integer} version number
- * @return {boolean} whether the version is bad
- * isBadVersion = function(version) {
- *     ...
- * };
- */
-
-/**
  * @param {function} isBadVersion()
  * @return {function}
  */
@@ -211,15 +203,6 @@ var solution = function(isBadVersion) {
 [374. 猜数字大小](https://leetcode-cn.com/problems/guess-number-higher-or-lower/)
 
 ```js
-/** 
- * Forward declaration of guess API.
- * @param {number} num   your guess
- * @return 	            -1 if num is lower than the guess number
- *			             1 if num is higher than the guess number
- *                       otherwise return 0
- * var guess = function(num) {}
- */
-
 /**
  * @param {number} n
  * @return {number}

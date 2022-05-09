@@ -35,7 +35,7 @@ const binarySearch = (nums, target, lower) => {
     /* lower 为 TRUE是左侧值 */
     if (nums[mid] > target || (lower && nums[mid] >= target)) {
         right = mid - 1;
-        // 等于的时候是mid, 大于的时候在后面mid-1
+        // 等于的时候是mid, 大于的时候在后面 mid-1
         res = mid;
     } else {
         left = mid + 1;
@@ -73,7 +73,20 @@ var searchRange = function(nums, target) {
  * @return {boolean}
  */
 var searchMatrix = function(matrix, target) {
-
+    const m = matrix.length, n = matrix[0].length;
+    let low = 0, high = m * n - 1;
+    while (low <= high) {
+        const mid = Math.floor((high - low) / 2) + low;
+        const x = matrix[Math.floor(mid / n)][mid % n];
+        if (x < target) {
+            low = mid + 1;
+        } else if (x > target) {
+            high = mid - 1;
+        } else {
+            return true;
+        }
+    }
+    return false;
 };
 ```
 
@@ -106,6 +119,7 @@ var searchInsert = function(nums, target) {
     let left = 0;
     let right = nums.length - 1;
     let res = 0;
+    // 二分查找
     while (left <= right){
         let mid = Math.floor((right + left) / 2);
         if (target === nums[mid]) {
@@ -113,7 +127,8 @@ var searchInsert = function(nums, target) {
         } 
         if (target > nums[mid]) {
             left = mid + 1;
-            res = left
+            // 赋值
+            res = left;
         } 
         if (target < nums[mid]) {
             right = mid - 1;

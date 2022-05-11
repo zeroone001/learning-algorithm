@@ -336,13 +336,8 @@ let left = 0;
 };
 ```
 
-## 33. 搜索旋转排序数组
+## 33. 搜索旋转排序数组 【medium】
 
-中等
-
-这个简单一些，因为里面没有重复的值
-
-使用二分查找
 
 [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
@@ -353,6 +348,7 @@ let left = 0;
  * @return {number}
  */
 /* 
+  这个简单一些，因为里面没有重复的值
   旋转数组的特点是至少有一半是有序的，
   因此，每次二分之后，只需要判断要寻找的目标是否在有序的那一半数组中即可
 
@@ -397,9 +393,8 @@ var search = function(nums, target) {
 };
 ```
 
-## 189. 轮转数组
+## 189. 轮转数组 【medium】
 
-中等
 
 [189. 轮转数组](https://leetcode-cn.com/problems/rotate-array/)
 
@@ -587,7 +582,10 @@ var findPeakElement = function(nums) {
  * @return {number[]}
  */
 var findClosestElements = function(arr, k, x) {
+    const n = arr.length;
+    arr.sort((a, b) => (Math.abs(a-x) - Math.abs(b-x)));
 
+    return arr.slice(0, k).sort((a,b) => (a-b));
 };
 ```
 
@@ -604,8 +602,6 @@ var peakIndexInMountainArray = function(arr) {
 
 };
 ```
-
-
 
 
 ## JS实现 模板1

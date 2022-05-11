@@ -16,6 +16,68 @@
 2. 如果目标元素大于中间元素，那么就去右侧区域查找
 3. 如果目标元素小于中间元素，就在左侧区域查找
 
+## 704. 二分查找
+
+[704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    while (left <= right){
+        let mid = Math.floor((right + left) / 2);
+        if (target === nums[mid]) {
+            return mid;
+        } 
+        if (target > nums[mid]) {
+            left = mid + 1;
+        } 
+        if (target < nums[mid]) {
+            right = mid - 1;
+        } 
+    }
+    return -1;
+};
+```
+
+## 35. 搜索插入位置
+
+[35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    let res = 0;
+    // 二分查找
+    while (left <= right){
+        let mid = Math.floor((right + left) / 2);
+        if (target === nums[mid]) {
+            return mid;
+        } 
+        if (target > nums[mid]) {
+            left = mid + 1;
+            // 赋值
+            res = left;
+        } 
+        if (target < nums[mid]) {
+            right = mid - 1;
+        } 
+    }
+    return res;
+};
+```
+
 ## 34. 在排序数组中查找元素的第一个和最后一个位置
 
 [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
@@ -126,42 +188,10 @@ var shipWithinDays = function(weights, days) {
 };
 ```
 
-## 35. 搜索插入位置
-
-[35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var searchInsert = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
-    let res = 0;
-    // 二分查找
-    while (left <= right){
-        let mid = Math.floor((right + left) / 2);
-        if (target === nums[mid]) {
-            return mid;
-        } 
-        if (target > nums[mid]) {
-            left = mid + 1;
-            // 赋值
-            res = left;
-        } 
-        if (target < nums[mid]) {
-            right = mid - 1;
-        } 
-    }
-    return res;
-};
-```
 
 ## 69. x 的平方根 
 
-[69. x 的平方根 ](https://leetcode-cn.com/problems/sqrtx/)
+[69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)
 
 ```js
 /**
@@ -182,35 +212,6 @@ var mySqrt = function(x) {
     }
   }
   return right;
-};
-```
-
-## 704. 二分查找
-
-[704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var search = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
-    while (left <= right){
-        let mid = Math.floor((right + left) / 2);
-        if (target === nums[mid]) {
-            return mid;
-        } 
-        if (target > nums[mid]) {
-            left = mid + 1;
-        } 
-        if (target < nums[mid]) {
-            right = mid - 1;
-        } 
-    }
-    return -1;
 };
 ```
 
@@ -394,7 +395,6 @@ var search = function(nums, target) {
 ```
 
 ## 189. 轮转数组 【medium】
-
 
 [189. 轮转数组](https://leetcode-cn.com/problems/rotate-array/)
 
@@ -599,7 +599,19 @@ var findClosestElements = function(arr, k, x) {
  * @return {number}
  */
 var peakIndexInMountainArray = function(arr) {
+    const n = arr.length;
+    let left = 1, right = n - 2, res = 0;
 
+    while (left <= right) {
+        const mid = Math.floor((left + right)/2);
+        if (arr[mid] > arr[mid + 1]) {
+            right = mid - 1;
+            res = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return res;
 };
 ```
 

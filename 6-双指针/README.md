@@ -62,12 +62,8 @@ var threeSum = function(nums) {
         }
     }
     return res;
-
 };
 ```
-
-
-
 
 ## 977. 有序数组的平方
 
@@ -80,7 +76,6 @@ var threeSum = function(nums) {
  */
 /* 
     指定两个指针，从前往后，从后往前
-
 */
 var sortedSquares = function(nums) {
     const res = [];

@@ -247,7 +247,6 @@ var isLongPressedName = function(name, typed) {
     return i === n;
 };
 ```
-
 ## 986. 区间列表的交集
 
 [986. 区间列表的交集](https://leetcode-cn.com/problems/interval-list-intersections/)

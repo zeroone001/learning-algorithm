@@ -180,7 +180,19 @@ var longestConsecutive = function(nums) {
  * @return {number}
  */
 var findContentChildren = function(g, s) {
-
+    g.sort((a, b) => a - b);
+    s.sort((a, b) => a - b);
+    const numOfChildren = g.length, numOfCookies = s.length;
+    let count = 0;
+    for (let i = 0, j = 0; i < numOfChildren && j < numOfCookies; i++, j++) {
+        while (j < numOfCookies && g[i] > s[j]) {
+            j++;
+        }
+        if (j < numOfCookies) {
+            count++;
+        }
+    }
+    return count;
 };
 ```
 
@@ -197,17 +209,23 @@ var reverseOnlyLetters = function(s) {
     const n = s.length;
     const arr = [...s];
     let left = 0, right = n - 1;
+    // 双指针，left和right
     while (true) {
+        // 过滤非字母
         while (left < right && !(/^[a-zA-Z]+$/.test(s[left]))) { // 判断左边是否扫描到字母
             left++;
         }
+        // 右侧过滤非字母
         while (right > left && !(/^[a-zA-Z]+$/.test(s[right]))) { // 判断右边是否扫描到字母
             right--;
         }
+        // 左右指针相遇，结束循环
         if (left >= right) {
             break;
         }
+        // 交换字母
         swap(arr, left, right);
+        // 指针移动
         left++;
         right--;
     }

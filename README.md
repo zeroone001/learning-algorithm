@@ -38,3 +38,4 @@
 * [算法学习记录](https://juejin.cn/post/6900698814093459463)
 * [刷题](https://github.com/azl397985856/leetcode)
 * [算法的演示网站](https://recursion.vercel.app/%E3%80%82)
+* [花花酱 LeetCode Problem List 题目列表](https://zxi.mytechroad.com/blog/leetcode-problem-categories/)

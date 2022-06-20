@@ -65,6 +65,47 @@ var threeSum = function(nums) {
 };
 ```
 
+
+## 16. 最接近的三数之和
+
+[16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+    nums.sort((a,b) => a-b);
+
+    let res = Infinity;
+    const len = nums.length;
+    // 以一个数为基点，循环遍历
+    for(let i = 0; i < len; i++) {
+        let [left, right] = [i+1, len-1];
+
+        while(left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
+
+            if (Math.abs(target - sum) < Math.abs(target - res)) {
+                res = sum;
+            }
+            if (sum < target) {
+                left++;
+            }
+            if (sum > target) {
+                right--;
+            }
+            if (sum === target) {
+                return sum;
+            }
+        }
+    }
+    return res;
+};
+```
+
 ## 977. 有序数组的平方
 
 [977. 有序数组的平方](https://leetcode-cn.com/problems/squares-of-a-sorted-array/)
@@ -327,17 +368,3 @@ var twoSum = function(numbers, target) {
 };
 ```
 
-## 16. 最接近的三数之和
-
-[16. 最接近的三数之和](https://leetcode-cn.com/problems/3sum-closest/)
-
-```js
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var threeSumClosest = function(nums, target) {
-
-};
-```

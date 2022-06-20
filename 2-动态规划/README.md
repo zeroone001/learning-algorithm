@@ -208,3 +208,31 @@ var getRow = function(rowIndex) {
     return res[rowIndex];
 };
 ```
+
+## 746. 使用最小花费爬楼梯
+
+[746. 使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)
+
+```js
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairs = function(cost) {
+
+};
+```
+
+## 1137. 第 N 个泰波那契数
+
+[1137. 第 N 个泰波那契数](https://leetcode.cn/problems/n-th-tribonacci-number/)
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var tribonacci = function(n) {
+
+};
+```

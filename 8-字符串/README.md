@@ -70,17 +70,17 @@ var romanToInt = function(s) {
     symbolValues.set('C', 100);
     symbolValues.set('D', 500);
     symbolValues.set('M', 1000);  
-    let ans = 0;
+    let res = 0;
     const n = s.length;
     for (let i = 0; i < n; ++i) {
         const value = symbolValues.get(s[i]);
         if (i < n - 1 && value < symbolValues.get(s[i + 1])) {
-            ans -= value;
+            res -= value;
         } else {
-            ans += value;
+            res += value;
         }
     }
-    return ans;
+    return res;
 };
 ```
 

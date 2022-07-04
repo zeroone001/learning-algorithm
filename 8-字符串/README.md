@@ -48,7 +48,21 @@ function palindrome(s, l, r) {
  * @return {string}
  */
 var convert = function(s, numRows) {
-
+    const n = s.length, r = numRows;
+    if (r === 1 || r >= n) {
+        return s;
+    }
+    const t = r * 2 - 2;
+    const ans = [];
+    for (let i = 0; i < r; i++) { // 枚举矩阵的行
+        for (let j = 0; j < n - i; j += t) { // 枚举每个周期的起始下标
+            ans.push(s[j + i]); // 当前周期的第一个字符
+            if (0 < i && i < r - 1 && j + t - i < n) {
+                ans.push(s[j + t - i]); // 当前周期的第二个字符
+            }
+        }
+    }
+    return ans.join('');
 };
 ```
 
@@ -138,5 +152,20 @@ var addStrings = function(a, b) {
     // 最后数组反转，再合并成一个字符串
     sum = sumArr.reverse().join('');
     return sum;
+};
+```
+
+## 28. 实现 strStr()
+
+[28. 实现 strStr()](https://leetcode.cn/problems/implement-strstr/)
+
+```js
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+
 };
 ```

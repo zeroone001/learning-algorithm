@@ -183,3 +183,18 @@ var strStr = function(haystack, needle) {
     return -1;
 };
 ```
+
+## 58. 最后一个单词的长度
+
+[58. 最后一个单词的长度](https://leetcode.cn/problems/length-of-last-word/)
+
+```js
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+
+};
+```

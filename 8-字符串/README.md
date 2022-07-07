@@ -165,6 +165,7 @@ var addStrings = function(a, b) {
  * @param {string} needle
  * @return {number}
  */
+// 暴力实现
 var strStr = function(haystack, needle) {
     const n = haystack.length, m = needle.length;
     for (let i = 0; i + m <= n; i++) {

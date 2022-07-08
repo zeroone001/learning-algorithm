@@ -89,3 +89,17 @@ var findMedianSortedArrays = function(nums1, nums2) {
         : curValue
 };
 ```
+
+## 66. 加一
+
+[66. 加一](https://leetcode.cn/problems/plus-one/)
+
+```js
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+
+};
+```

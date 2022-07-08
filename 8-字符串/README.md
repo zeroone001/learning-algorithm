@@ -194,7 +194,17 @@ var strStr = function(haystack, needle) {
  * @param {string} s
  * @return {number}
  */
+// 反向遍历
 var lengthOfLastWord = function(s) {
-
+    let index = s.length - 1;
+    while (s[index] == ' ') {
+        index--;
+    }
+    let res = 0;
+    while (s[index] !== ' ' && index >=0) {
+        res++;
+        index--;
+    }
+    return res;
 };
 ```

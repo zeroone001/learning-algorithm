@@ -209,4 +209,46 @@ var lengthOfLastWord = function(s) {
 };
 ```
 
+## 67. 二进制求和
 
+[67. 二进制求和](https://leetcode.cn/problems/add-binary/)
+
+```js
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function(a, b) {
+
+};
+```
+
+
+## 125. 验证回文串
+
+[125. 验证回文串](https://leetcode.cn/problems/valid-palindrome/)
+
+```js
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+
+};
+```
+
+## 168. Excel表列名称
+
+[168. Excel表列名称](https://leetcode.cn/problems/excel-sheet-column-title/)
+
+```js
+/**
+ * @param {number} columnNumber
+ * @return {string}
+ */
+var convertToTitle = function(columnNumber) {
+
+};
+```

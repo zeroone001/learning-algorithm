@@ -100,10 +100,12 @@ var findMedianSortedArrays = function(nums1, nums2) {
  * @return {number[]}
  */
 var plusOne = function(digits) {
-  const n = digits.length;
+    const n = digits.length;
     for (let i = n - 1; i >= 0; --i) {
+        // 假如这是倒数第二个
         if (digits[i] !== 9) {
-            ++digits[i];
+            ++digits[i]; // +1
+            // 下一个设置成0
             for (let j = i + 1; j < n; ++j) {
                 digits[j] = 0;
             }

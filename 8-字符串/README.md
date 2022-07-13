@@ -220,7 +220,30 @@ var lengthOfLastWord = function(s) {
  * @return {string}
  */
 var addBinary = function(a, b) {
+    const arr1 = a.split('');
+    const arr2 = b.split('');
 
+    let res = [];
+    let jinwei = 0;
+    while(arr1.length || arr2.length) {
+        let num1 = Number(arr1.pop()) || 0;
+        let num2 = Number(arr2.pop()) || 0;
+
+        let sum = num1 + num2 + jinwei;
+        console.log(sum)
+        if (sum > 1) {
+            jinwei = 1;
+            sum = sum % 2;
+
+        } else {
+            jinwei = 0;
+        }
+
+        res.unshift(sum);
+    }
+    jinwei && res.unshift(1);
+
+    return res.join('');
 };
 ```
 

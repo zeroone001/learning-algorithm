@@ -277,6 +277,20 @@ var isPalindrome = function(s) {
  * @return {string}
  */
 var convertToTitle = function(columnNumber) {
-
+    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    let returnStr = ''
+    let num = n
+    let rem
+    let arr = []
+    while(num > 0) {
+        num -= 1
+        rem = num%26
+        arr.push(rem)
+        num = Math.floor(num/26)
+    }
+    while(arr.length!==0){
+        returnStr += str[arr.pop()]
+    }
+    return returnStr;
 };
 ```

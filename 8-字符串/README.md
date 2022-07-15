@@ -257,8 +257,8 @@ var addBinary = function(a, b) {
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    const newStr = s.replace(/[^\w]/g, '').toLocaleLowerCase();
-    for(let i = 0; i < newStr.length / 2; i++ ){
+    const newStr = s.replace(/[^a-zA-Z0-9]/g, '').toLocaleLowerCase();
+    for(let i = 0; i < Math.floor(newStr.length / 2); i++ ){
         if(newStr[i] !== newStr[newStr.length - i - 1]) {
             return false
         }

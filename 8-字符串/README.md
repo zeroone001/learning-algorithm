@@ -294,3 +294,17 @@ var convertToTitle = function(columnNumber) {
     return returnStr;
 };
 ```
+
+## 171. Excel 表列序号
+
+[171. Excel 表列序号](https://leetcode.cn/problems/excel-sheet-column-number/)
+
+```js
+/**
+ * @param {string} columnTitle
+ * @return {number}
+ */
+var titleToNumber = function(columnTitle) {
+
+};
+```

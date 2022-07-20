@@ -315,3 +315,47 @@ var titleToNumber = function(columnTitle) {
     return number;
 };
 ```
+
+## 190. 颠倒二进制位
+
+
+[190. 颠倒二进制位](https://leetcode.cn/problems/reverse-bits/)
+
+```js
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits = function(n) {
+    
+};
+```
+
+## 191. 位1的个数
+
+[191. 位1的个数](https://leetcode.cn/problems/number-of-1-bits/)
+
+```js
+/**
+ * @param {number} n - a positive integer
+ * @return {number}
+ */
+var hammingWeight = function(n) {
+    
+};
+```
+
+## 205. 同构字符串
+
+[205. 同构字符串](https://leetcode.cn/problems/isomorphic-strings/)
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+
+};
+```

@@ -119,3 +119,60 @@ var plusOne = function(digits) {
     return ans;
 };
 ```
+
+## 219. 存在重复元素 II
+
+[219. 存在重复元素 II](https://leetcode.cn/problems/contains-duplicate-ii/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function(nums, k) {
+
+};
+```
+
+## 228. 汇总区间
+
+[228. 汇总区间](https://leetcode.cn/problems/summary-ranges/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function(nums) {
+
+};
+```
+
+## 303. 区域和检索 - 数组不可变
+
+[303. 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable/)
+
+```js
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+
+};
+
+/** 
+ * @param {number} left 
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function(left, right) {
+
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(left,right)
+ */
+```

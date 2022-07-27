@@ -176,3 +176,17 @@ NumArray.prototype.sumRange = function(left, right) {
  * var param_1 = obj.sumRange(left,right)
  */
 ```
+
+## 414. 第三大的数
+
+[414. 第三大的数](https://leetcode.cn/problems/third-maximum-number/)
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function(nums) {
+
+};
+```

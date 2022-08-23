@@ -205,3 +205,29 @@ var thirdMax = function(nums) {
     return nums[0];
 };
 ```
+
+[598. 范围求和 II](https://leetcode.cn/problems/range-addition-ii/)
+
+```js
+/**
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
+ * @return {number}
+ */
+var maxCount = function(m, n, ops) {
+
+};
+```
+
+[463. 岛屿的周长](https://leetcode.cn/problems/island-perimeter/)
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var islandPerimeter = function(grid) {
+
+};
+```

@@ -219,6 +219,7 @@ var maxCount = function(m, n, ops) {
 
 };
 ```
+## 463. 岛屿的周长
 
 [463. 岛屿的周长](https://leetcode.cn/problems/island-perimeter/)
 
@@ -228,6 +229,21 @@ var maxCount = function(m, n, ops) {
  * @return {number}
  */
 var islandPerimeter = function(grid) {
+
+};
+```
+
+## 496. 下一个更大元素 I
+
+[496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/)
+
+```js
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function(nums1, nums2) {
 
 };
 ```
